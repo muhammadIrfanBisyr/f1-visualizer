@@ -8,14 +8,13 @@ const processData = (res, setOpt) => {
     if(res.status === 200){
         const retVar = [];
         res.data.MRData.RaceTable.Races.forEach((item)=>{
-            console.log(item)
             retVar.push({round: item.round, race:item.raceName})
         })
 
         setOpt(retVar)
     }
     else {
-        message('Error Fetching Data');
+        message('Error Fetching Track Data');
     }
 }
 
@@ -33,8 +32,8 @@ export default function TrackSelect({year, track, setTrack}){
             defaultValue={track}
             onChange={(e) => {setTrack(e)}}>
             {
-                tracks.map((item) => {
-                    return(<Option value={item.round}> {item.race} </Option>)
+                tracks.map((item, i) => {
+                    return(<Option value={item.round} key={i}> {item.race} </Option>)
                 })
             }
         </Select>
