@@ -1,9 +1,10 @@
 import './App.css';
-import DataFetcher from './component/DataFetcher.js'
+
+import MainPage from './page/MainPage'
 
 function App() {
     return (
-        <DataFetcher/>
+        <MainPage/>
     );
 }
 
