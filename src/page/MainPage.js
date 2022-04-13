@@ -12,12 +12,15 @@ const { Title } = Typography;
 
 export default function MainPage(){
 
-    const [year, setYear] = useState('2021');
+    const [year, setYear] = useState('2022');
     const [track, setTrack] = useState('1');
 
     const [allData, setAllData] = useState('');
 
+    const [isLoading, setLoading] = useState(false);
+
     useEffect(() =>{
+        setLoading(true);
         axios.get(`http://ergast.com/api/f1/${year}/${track}/results.json`)
             .then(res => {
                 if(res.status === 200)
@@ -25,6 +28,7 @@ export default function MainPage(){
                 else{
                     message('Error Fetching Data');
                 }
+                setLoading(false);
             })
     },[year, track])
 
@@ -36,7 +40,10 @@ export default function MainPage(){
 
             <YearSelect year={year} setYear={setYear}/>
             <TrackSelect year={year} track={track} setTrack={setTrack}/>
-            <TableData dataSource={allData.resData} columns={allData.resColumn}/>
+            
+            <div className='main-table-container'>
+                <TableData dataSource={allData.resData} columns={allData.resColumn} loading={isLoading}/>
+            </div>
         </>
     )
 }

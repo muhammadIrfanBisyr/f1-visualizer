@@ -5,6 +5,8 @@ const { Option } = Select;
 
 export default function YearSelect({year, setYear}) {
 
+    const yearStart = Array.from({length: 13}, (_, i) => i + 2010)
+
     return (
         <Select
             showSearch
@@ -16,9 +18,9 @@ export default function YearSelect({year, setYear}) {
             }
             defaultValue={year}
         >
-            <Option value="2019">2019</Option>
-            <Option value="2020">2020</Option>
-            <Option value="2021">2021</Option>
+            {
+                yearStart.map((num) => (<Option value={num}>{num}</Option>))
+            }
         </Select>
     )
 }
