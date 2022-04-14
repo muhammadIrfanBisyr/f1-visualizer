@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Typography, message } from 'antd';
+import { Typography, message, Space } from 'antd';
 import axios from 'axios';
 
 import YearSelect from '../component/YearSelect';
@@ -39,11 +39,15 @@ export default function MainPage(){
                 F1 Visualizer
             </Title>
 
-            <YearSelect year={year} setYear={setYear}/>
-            <TrackSelect year={year} track={track} setTrack={setTrack}/>
-            
             <div className='main-table-container'>
                 <TableData dataSource={allData.resData} columns={allData.resColumn} loading={isLoading}/>
+            </div>
+
+            <div className='main-select-group'>
+                <Space>
+                    <YearSelect year={year} setYear={setYear} setTrack={setTrack}/>
+                    <TrackSelect year={year} track={track} setTrack={setTrack}/>
+                </Space>
             </div>
         </>
     )

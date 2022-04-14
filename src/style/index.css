@@ -4,6 +4,8 @@
 .main-table-container .main-table {
   width: 50%;
   margin: 0 auto;
+  height: 624px;
+  overflow-y: auto;
 }
 .main-table-container thead > tr > th {
   background-color: #399df0 !important;
@@ -11,5 +13,10 @@
 }
 .main-table-container .ant-table-cell {
   padding: 2px !important;
+}
+.main-select-group {
+  width: 50%;
+  margin: 16px auto 0 auto;
+  text-align: center;
 }
 /*# sourceMappingURL=index.css.map */

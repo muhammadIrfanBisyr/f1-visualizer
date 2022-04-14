@@ -30,7 +30,9 @@ export default function TrackSelect({year, track, setTrack}){
     return(
         <Select 
             defaultValue={track}
-            onChange={(e) => {setTrack(e)}}>
+            value={track}
+            onChange={(e) => {setTrack(e)}}
+        >
             {
                 tracks.map((item, i) => {
                     return(<Option value={item.round} key={i}> {item.race} </Option>)
