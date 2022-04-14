@@ -1,9 +1,20 @@
-@main-color: #0000ff;
+@main-color: #399df0;
 
-thead > tr > th {
-    background-color: main-color !important;
-}
+.main-table-container {    
+    
+    font-size: 10px;
 
-.main-table {
-    width: 50%;
+    .main-table {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    thead > tr > th {
+        background-color: @main-color !important;
+        color: #dfdfdf;
+    }
+
+    .ant-table-cell {
+        padding: 2px !important;
+    }
 }

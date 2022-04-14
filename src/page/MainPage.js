@@ -7,6 +7,7 @@ import TrackSelect from '../component/TrackSelect';
 import TableData from '../component/TableData';
 
 import { apiToTableData } from '../helper/utils';
+import '../style/index.css';
 
 const { Title } = Typography;
 

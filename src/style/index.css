@@ -1,0 +1,15 @@
+.main-table-container {
+  font-size: 10px;
+}
+.main-table-container .main-table {
+  width: 50%;
+  margin: 0 auto;
+}
+.main-table-container thead > tr > th {
+  background-color: #399df0 !important;
+  color: #dfdfdf;
+}
+.main-table-container .ant-table-cell {
+  padding: 2px !important;
+}
+/*# sourceMappingURL=index.css.map */
