@@ -1,3 +1,5 @@
+import CountryFlag from "../component/CountryFlag";
+
 export const apiToTableData = (data) =>{
 
     const resData = [];
@@ -21,6 +23,11 @@ export const apiToTableData = (data) =>{
             title: 'Driver Name',
             dataIndex: 'driver',
             key: 'driver',
+            render: (driver, record) => 
+                <div> 
+                    <CountryFlag name={record.nationality}/>
+                    {` ${driver}`}
+                </div>
         },
         {
             title: 'Constructor',
@@ -45,13 +52,13 @@ export const apiToTableData = (data) =>{
     ];
 
     data.data.MRData.RaceTable.Races[0].Results.forEach((item) => {
-        // console.log(item)
         resData.push(
             {
                 pos: item.position,
                 grid: item.grid,
                 carNo: item.number,
                 driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
+                nationality: item.Driver.nationality,
                 constructor: item.Constructor.name,
                 laps: item.laps,
                 status: item.status,

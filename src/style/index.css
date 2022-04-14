@@ -7,6 +7,10 @@
   height: 624px;
   overflow-y: auto;
 }
+.main-table-container .main-table .flag-icon {
+  height: 15px;
+  vertical-align: middle;
+}
 .main-table-container thead > tr > th {
   background-color: #399df0 !important;
   color: #dfdfdf;
