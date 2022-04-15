@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { Select, message } from 'antd';
 import axios from 'axios';
+
+import RaceDetailContext from './race-detail/context/RaceDetailContext';
 
 const {Option} = Select;
 
@@ -18,8 +20,9 @@ const processData = (res, setOpt) => {
     }
 }
 
-export default function TrackSelect({year, track, setTrack}){
+export default function TrackSelect(){
 
+    const { track, year, actions: {setTrack} } = useContext(RaceDetailContext);
     const [tracks, setTracks] = useState([]);
 
     useEffect(() =>{

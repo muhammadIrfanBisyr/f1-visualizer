@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Select } from 'antd';
+
+import RaceDetailContext from './race-detail/context/RaceDetailContext';
 
 const { Option } = Select;
 
-export default function YearSelect({year, setYear, setTrack}) {
+export default function YearSelect() {
+    
+    const { year, actions: {setYear} } = useContext(RaceDetailContext);
 
     const yearStart = Array.from({length: 13}, (_, i) => i + 2010)
 
@@ -12,7 +16,7 @@ export default function YearSelect({year, setYear, setTrack}) {
             showSearch
             placeholder="Select Year"
             optionFilterProp="children"
-            onChange={(val) => { setTrack('1'); setYear(val); }}
+            onChange={(val) => { setYear(val) }}
             filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
