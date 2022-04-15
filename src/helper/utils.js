@@ -1,4 +1,5 @@
 import CountryFlag from "../component/CountryFlag";
+import TeamLogo from "../component/global/logo/TeamLogo";
 
 export const apiToTableData = (data) =>{
 
@@ -33,6 +34,12 @@ export const apiToTableData = (data) =>{
             title: 'Constructor',
             dataIndex: 'constructor',
             key: 'constructor',
+            render: (constructor, record) => 
+                <div> 
+                    <TeamLogo name={record.constructorId}/>
+                    {` ${constructor}`}
+                </div>
+            
         },
         {
             title: 'Laps',
@@ -60,6 +67,7 @@ export const apiToTableData = (data) =>{
                 driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
                 nationality: item.Driver.nationality,
                 constructor: item.Constructor.name,
+                constructorId: item.Constructor.constructorId,
                 laps: item.laps,
                 status: item.status,
                 points: item.points,
