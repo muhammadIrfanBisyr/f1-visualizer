@@ -24,7 +24,8 @@ const nationality = {
     'indian': 'IN',
     'swiss': 'CH',
     'venezuelan': 'VE',
-    'new zealander': 'NZ'
+    'new zealander': 'NZ',
+    'belgian': 'BE',
 }
 
 export default function CountryFlag({name}){
