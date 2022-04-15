@@ -1,5 +1,6 @@
 import CountryFlag from "../component/CountryFlag";
 import TeamLogo from "../component/global/logo/TeamLogo";
+import RaceResultLogo from "../component/global/logo/RaceResultLogo";
 
 export const apiToTableData = (data) =>{
 
@@ -50,6 +51,11 @@ export const apiToTableData = (data) =>{
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            render: (status) => 
+                <div> 
+                    <RaceResultLogo name={status}/>
+                    {` ${status}`}
+                </div>
         },
         {
             title: 'Points',
