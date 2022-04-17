@@ -14,6 +14,7 @@ import {ReactComponent as ForceIndia} from './force-india.svg'
 import {ReactComponent as Williams} from './williams.svg'
 import {ReactComponent as Renault} from './renault.svg'
 import {ReactComponent as Sauber} from './sauber.svg'
+import {ReactComponent as Manor} from './manor.svg'
 
 export const LOGO_MAP = {
     'red_bull': RedBull,
@@ -31,5 +32,6 @@ export const LOGO_MAP = {
     'renault': Renault,
     'sauber': Sauber,
     'toro_rosso': ToroRosso,
-    'lotus_f1': Lotus
+    'lotus_f1': Lotus,
+    'manor': Manor,
 }

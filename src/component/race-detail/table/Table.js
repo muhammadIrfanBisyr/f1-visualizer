@@ -1,9 +1,11 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table as AntdTable } from 'antd';
 
-export default function TableData({dataSource, columns, loading}){
+
+export default function Table({dataSource, columns, loading}){
+    
     return(
-        <Table 
+        <AntdTable 
             className='main-table'
             dataSource={dataSource} 
             columns={columns}
@@ -11,7 +13,6 @@ export default function TableData({dataSource, columns, loading}){
             loading={loading}
             size='small'
         >
-
-        </Table>
+        </AntdTable>
     )
 }
