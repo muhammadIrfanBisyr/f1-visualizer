@@ -18,6 +18,7 @@ const apiDataToTableData = (data, session) =>{
                     constructor: item.Constructor.name,
                     constructorId: item.Constructor.constructorId,
                     laps: item.laps,
+                    time: item?.Time?.time ?? '',
                     status: item.status,
                     points: item.points,
                 }

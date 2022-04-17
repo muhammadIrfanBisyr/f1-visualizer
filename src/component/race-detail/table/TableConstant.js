@@ -45,13 +45,13 @@ export const RACE_COLUMN = [
         key: 'laps',
     },
     {
-        title: 'Status',
-        dataIndex: 'status',
-        key: 'status',
-        render: (status) => 
+        title: 'Time/Status',
+        dataIndex: 'time',
+        key: 'time',
+        render: (time, record) => 
             <div> 
-                <RaceResultLogo name={status}/>
-                {` ${status}`}
+                <RaceResultLogo name={record.status}/>
+                { time ? ` ${time}` : ` ${record.status}` }
             </div>
     },
     {
