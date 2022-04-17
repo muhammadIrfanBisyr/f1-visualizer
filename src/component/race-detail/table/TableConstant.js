@@ -12,6 +12,10 @@ export const RACE_COLUMN = [
         title: 'Grid',
         dataIndex: 'grid',
         key: 'grid',
+        render: (grid) => 
+        <div> 
+            {grid === '0' ? 'Pit' : grid}
+        </div>
     },
     {
         title: 'No.',
