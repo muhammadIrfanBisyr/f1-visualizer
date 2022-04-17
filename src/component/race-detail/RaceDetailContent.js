@@ -7,24 +7,43 @@ import RaceDetailContext from './context/RaceDetailContext';
 import TableData from '../TableData';
 import YearSelect from '../YearSelect';
 import TrackSelect from '../TrackSelect';
-import RaceSessionSelect from '../RaceSessionSelect';
+import SessionSelect from '../SessionSelect';
 
-import { apiToTableData } from '../../helper/utils'
+import { apiToTableData, apiToTableDataQ } from '../../helper/utils'
 
 export default function RaceDetailContent() {
 
-    const {year, track} = useContext(RaceDetailContext);
+    const {year, track, session} = useContext(RaceDetailContext);
 
     const [allData, setAllData] = useState('');
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() =>{
         setLoading(true);
-        axios.get(`http://ergast.com/api/f1/${year}/${track}/results.json`)
+        if (session === 'R') {
+            axios.get(`http://ergast.com/api/f1/${year}/${track}/results.json`)
+                .then(res => {
+                    try{
+                        if(res.status === 200)
+                            setAllData(apiToTableData(res));
+                        else {
+                            message('Error Fetching Data');
+                        }
+                    }
+                    catch {
+                        setAllData([]);
+                    }
+                    finally {
+                        setLoading(false);
+                    }
+                })
+        }
+        else {
+            axios.get(`http://ergast.com/api/f1/${year}/${track}/qualifying.json`)
             .then(res => {
                 try{
-                    if(res.status === 200)
-                        setAllData(apiToTableData(res));
+                    if(res.status === 200) 
+                        setAllData(apiToTableDataQ(res))
                     else {
                         message('Error Fetching Data');
                     }
@@ -36,7 +55,8 @@ export default function RaceDetailContent() {
                     setLoading(false);
                 }
             })
-    },[year, track])
+        }
+    },[year, track, session])
 
     return (
         <>
@@ -48,7 +68,7 @@ export default function RaceDetailContent() {
                 <Space>
                     <YearSelect />
                     <TrackSelect />
-                    <RaceSessionSelect/>
+                    <SessionSelect/>
                 </Space>
             </div>
         </>

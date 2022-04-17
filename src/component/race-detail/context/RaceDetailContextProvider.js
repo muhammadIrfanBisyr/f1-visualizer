@@ -4,6 +4,7 @@ import RaceDetailContext, {initialState} from './RaceDetailContext'
 const ACTION = {
     SET_TRACK: 'SET_TRACK',
     SET_YEAR: 'SET_YEAR',
+    SET_SESSION: 'SET_SESSION',
 };
 
 function reducer(state, {type, payload}){
@@ -12,6 +13,8 @@ function reducer(state, {type, payload}){
             return {...state, year: payload, track: '1' };
         case ACTION.SET_TRACK:
             return {...state, track: payload };
+        case ACTION.SET_SESSION:
+            return {...state, session: payload };
         default:
             return state;
     }
@@ -29,6 +32,10 @@ export default function RaceDetailContextProvider({children}){
     const setYear = (data) => {
         dispatch({ type: ACTION.SET_YEAR, payload: data});
     }
+
+    const setSession = (data) => {
+        dispatch({ type: ACTION.SET_SESSION, payload: data});
+    }
         
     return(
         <RaceDetailContext.Provider 
@@ -36,7 +43,8 @@ export default function RaceDetailContextProvider({children}){
                 ...state,
                 actions: {
                     setTrack,
-                    setYear
+                    setYear,
+                    setSession
                 }
 
             }}>

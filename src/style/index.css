@@ -14,6 +14,7 @@
 .main-table-container thead > tr > th {
   background-color: #399df0 !important;
   color: #f3f1f1;
+  text-align: center;
 }
 .main-table-container .ant-table-cell {
   padding: 2px !important;
