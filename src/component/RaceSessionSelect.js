@@ -6,7 +6,7 @@ const { Option } = Select;
 export default function RaceSessionSelect() {
 
     return(
-        <Select defaultValue='R'>
+        <Select defaultValue='R' className='session-select'>
             <Option value='Q'>Qualifying</Option>
             <Option value='R'>Race</Option>
         </Select>

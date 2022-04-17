@@ -23,4 +23,7 @@
   margin: 16px auto 0 auto;
   text-align: center;
 }
+.main-select-group .session-select {
+  width: 120px;
+}
 /*# sourceMappingURL=index.css.map */
