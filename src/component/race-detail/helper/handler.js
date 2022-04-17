@@ -27,7 +27,29 @@ const apiDataToTableData = (data, session) =>{
         });
     }
     else {
-        data.data.MRData.RaceTable.Races[0].QualifyingResults.forEach((item) => {
+        
+        // Warning: Lazy lap time comparison
+        const fastestQ1 = ['99:99.999', -1];
+        const fastestQ2 = ['99:99.999', -1];
+        const fastestQ3 = ['99:99.999', -1];
+    
+        data.data.MRData.RaceTable.Races[0].QualifyingResults.forEach((item, index) => {
+
+            if(item?.Q1 && item?.Q1 < fastestQ1[0]){
+                fastestQ1[0] = item?.Q1;
+                fastestQ1[1] = index;
+            }
+            
+            if(item?.Q2 && item?.Q2 < fastestQ2[0]){
+                fastestQ2[0] = item?.Q2;
+                fastestQ2[1] = index;
+            }
+
+            if(item?.Q3 && item?.Q3 < fastestQ3[0]){
+                fastestQ3[0] = item?.Q3;
+                fastestQ3[1] = index;
+            }
+
             resData.push(
                 {
                     pos: item.position,
@@ -42,6 +64,12 @@ const apiDataToTableData = (data, session) =>{
                 }
             )
         });
+
+        if(resData.length > 0){
+            resData[fastestQ1[1]].fQ1 = fastestQ1[0];
+            resData[fastestQ2[1]].fQ2 = fastestQ2[0];
+            resData[fastestQ3[1]].fQ3 = fastestQ3[0];
+        }
     }
     return {resData, column: session === 'R' ? RACE_COLUMN : QUALIFYING_COLUMN};
 }

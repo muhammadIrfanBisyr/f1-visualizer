@@ -101,15 +101,27 @@ export const QUALIFYING_COLUMN = [
         title: 'Q1',
         dataIndex: 'q1',
         key: 'q1',
+        render: (q1, record) => 
+        <span className={record?.fQ1 ? 'row-fastest-lap' : ''}> 
+            {q1}
+        </span>
     },
     {
         title: 'Q2',
         dataIndex: 'q2',
         key: 'q2',
+        render: (q2, record) => 
+        <span className={record?.fQ2 ? 'row-fastest-lap' : ''}> 
+            {q2}
+        </span>
     },
     {
         title: 'Q3',
         dataIndex: 'q3',
         key: 'q3',
+        render: (q3, record) => 
+        <span className={record?.fQ3 ? 'row-fastest-lap' : ''}> 
+            {q3}
+        </span>
     },
 ];

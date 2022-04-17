@@ -9,7 +9,7 @@ export default function Table({dataSource, columns, loading}){
             className='main-table'
             dataSource={dataSource} 
             columns={columns}
-            rowClassName={record => record?.fastestLapRank === '1' && "row-fastest-lap"}
+            rowClassName={record => record?.fastestLapRank === '1' && 'row-fastest-lap'}
             pagination={false}
             loading={loading}
             size='small'
