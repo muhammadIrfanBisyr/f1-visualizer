@@ -11,6 +11,17 @@
   height: 15px;
   vertical-align: middle;
 }
+.main-table-container .main-table .logo-icon {
+  font-size: 30px;
+  color: #000000;
+  vertical-align: middle;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+.main-table-container .main-table .row-fastest-lap {
+  background-color: #b249c3;
+  color: #ffffff;
+}
 .main-table-container thead > tr > th {
   background-color: #399df0 !important;
   color: #f3f1f1;

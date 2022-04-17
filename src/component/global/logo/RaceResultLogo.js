@@ -12,11 +12,9 @@ export default function RaceResultLogo({name}){
         <>
             {
                 logoComponent ?
-                <Icon 
-                    component={logoComponent} style={{ fontSize: '30px', verticalAlign: 'middle', marginTop: '-8px', marginBottom: '-8px'}}>
-                </Icon>
+                <Icon className='logo-icon' component={logoComponent}/> 
                 :
-                <CloseOutlined style={{ fontSize: '30px', verticalAlign: 'middle', marginTop: '-8px', marginBottom: '-8px'}}/>
+                <CloseOutlined className='logo-icon'/>
             }
             
         </>
