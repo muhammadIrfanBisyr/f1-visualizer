@@ -77,8 +77,8 @@ const apiDataToTableData = (data, session) =>{
 export const handleAPITable = (params, setters) => {
 
     const apiUrl = params.session === 'R' ?
-                   `http://ergast.com/api/f1/${params.year}/${params.track}/results.json` :
-                   `http://ergast.com/api/f1/${params.year}/${params.track}/qualifying.json`
+                   `https://ergast.com/api/f1/${params.year}/${params.track}/results.json` :
+                   `https://ergast.com/api/f1/${params.year}/${params.track}/qualifying.json`
 
     setters.setLoading(true);
     axios.get(apiUrl).then(res => {
@@ -94,6 +94,42 @@ export const handleAPITable = (params, setters) => {
         }
         finally {
             setters.setLoading(false);
+        }
+    })
+}
+
+const apiToLineChartData = (data) => {
+    const resData = [];
+
+    data.data.MRData.RaceTable.Races[0].Laps.forEach((item) => {
+        item.Timings.forEach((innerItem) => {
+            resData.push({
+                lapNo: parseInt(item.number),
+                driverId: innerItem.driverId,
+                pos: parseInt(innerItem.position),
+                time: innerItem.time
+            });
+        })
+    })
+    return resData;
+}
+
+
+export const handleAPILineChart = (params, setters) => {
+
+    const apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/laps.json?limit=1500`
+
+    axios.get(apiUrl).then(res => {
+        try{
+            if(res.status === 200){
+                setters.setAllData(apiToLineChartData(res));
+            }
+            else {
+                message('Error Fetching Data');
+            }
+        }
+        catch {
+            setters.setAllData([]);
         }
     })
 }

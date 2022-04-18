@@ -5,7 +5,6 @@ import {handleAPITable} from '../helper/handler';
 
 import RaceDetailContext from '../context/RaceDetailContext';
 
-
 export default function Table(){
     
     const {year, session, track} = useContext(RaceDetailContext);

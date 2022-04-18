@@ -27,6 +27,7 @@ export const LOGO_MAP = {
     'power_loss': Engine,
     'fuel': Fuel,
     'fuel_pressure': Fuel,
+    'fuel_system': Fuel,
     'gearbox': Gearbox,
     'transmission': Gearbox,
     'brakes': Brakes,
