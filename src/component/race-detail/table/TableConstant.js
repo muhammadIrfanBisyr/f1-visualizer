@@ -17,7 +17,8 @@ export const RACE_COLUMN = [
         render: (grid) => 
         <div> 
             {grid === '0' ? 'Pit' : grid}
-        </div>
+        </div>,
+        sorter: (a, b) => a.grid - b.grid,
     },
     {
         title: 'No.',

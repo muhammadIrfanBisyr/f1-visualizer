@@ -23,6 +23,10 @@
   background-color: #b249c3;
   color: #ffffff;
 }
+.main-detail-content-container .main-table .row-fastest-lap .ant-table-column-sort {
+  background-color: #b249c3;
+  color: #ffffff;
+}
 .main-detail-content-container thead > tr > th {
   background-color: #399df0 !important;
   color: #f3f1f1;
