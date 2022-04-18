@@ -21,6 +21,16 @@ export default function LineChart(){
             data={allData} 
             xField='lapNo' 
             yField= 'pos' 
+            yAxis = {{
+                label: {
+                    formatter: (v) => Math.abs(v),
+                },
+            }}
+            tooltip = {{
+                formatter: (item) => {
+                  return { name: item?.driverId, value: Math.abs(item?.pos)};
+                },
+            }}
             seriesField='driverId' 
         />
     )

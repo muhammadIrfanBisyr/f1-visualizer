@@ -106,7 +106,7 @@ const apiToLineChartData = (data) => {
             resData.push({
                 lapNo: parseInt(item.number),
                 driverId: innerItem.driverId,
-                pos: parseInt(innerItem.position),
+                pos: -parseInt(innerItem.position),
                 time: innerItem.time
             });
         })
