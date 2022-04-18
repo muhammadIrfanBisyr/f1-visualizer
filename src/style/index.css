@@ -1,33 +1,34 @@
-.main-table-container {
+.main-detail-content-container {
   font-size: 10px;
+  height: 625px;
 }
-.main-table-container .main-table {
+.main-detail-content-container .main-table {
   width: 50%;
   margin: 0 auto;
   height: 624px;
   overflow-y: auto;
 }
-.main-table-container .main-table .flag-icon {
+.main-detail-content-container .main-table .flag-icon {
   height: 15px;
   vertical-align: middle;
 }
-.main-table-container .main-table .logo-icon {
+.main-detail-content-container .main-table .logo-icon {
   font-size: 30px;
   color: #000000;
   vertical-align: middle;
   margin-top: -8px;
   margin-bottom: -8px;
 }
-.main-table-container .main-table .row-fastest-lap {
+.main-detail-content-container .main-table .row-fastest-lap {
   background-color: #b249c3;
   color: #ffffff;
 }
-.main-table-container thead > tr > th {
+.main-detail-content-container thead > tr > th {
   background-color: #399df0 !important;
   color: #f3f1f1;
   text-align: center;
 }
-.main-table-container .ant-table-cell {
+.main-detail-content-container .ant-table-cell {
   padding: 2px !important;
 }
 .main-select-group {

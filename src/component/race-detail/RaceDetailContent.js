@@ -1,31 +1,29 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useContext } from 'react';
 import { Space } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
 
 import Table from './table/Table';
+import LineChart from './line-chart/LineChart';
+
 import YearSelect from '../YearSelect';
 import TrackSelect from '../TrackSelect';
 import SessionSelect from '../SessionSelect';
 import ChartTypeSelect from '../ChartTypeSelect';
 
-import { handleAPI } from './helper/handler';
-
 export default function RaceDetailContent() {
 
-    const {year, track, session} = useContext(RaceDetailContext);
-
-    const [allData, setAllData] = useState([]);
-    const [isLoading, setLoading] = useState(false);
-
-    useEffect(() => {
-        handleAPI({session, track, year}, {setAllData, setLoading});
-    },[year, track, session])
-
+    const {chartType} = useContext(RaceDetailContext);
+   
     return (
         <>
-            <div className='main-table-container'>
-                <Table dataSource={allData.resData} columns={allData.column} loading={isLoading}/>
+            <div className='main-detail-content-container'>
+            {
+                chartType === 'T' ?
+                <Table/>
+                :
+                <LineChart/>
+            }
             </div>
 
             <div className='main-select-group'>

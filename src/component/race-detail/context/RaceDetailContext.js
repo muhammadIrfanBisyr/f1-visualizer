@@ -4,6 +4,7 @@ export const initialState = {
     year: '2022',
     track: '1',
     session: 'R',
+    chartType: 'T',
     actions: {}
 }
 

@@ -74,7 +74,7 @@ const apiDataToTableData = (data, session) =>{
     return {resData, column: session === 'R' ? RACE_COLUMN : QUALIFYING_COLUMN};
 }
 
-export const handleAPI = (params, setters) => {
+export const handleAPITable = (params, setters) => {
 
     const apiUrl = params.session === 'R' ?
                    `http://ergast.com/api/f1/${params.year}/${params.track}/results.json` :

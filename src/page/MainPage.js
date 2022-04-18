@@ -12,7 +12,7 @@ export default function MainPage(){
 
     return(
         <>
-            <Title>
+            <Title style={{'textAlign': 'center'}}>
                 F1 Visualizer
             </Title>
             
