@@ -10,9 +10,10 @@ export default function LineChart(){
     const {track, year} = useContext(RaceDetailContext);
 
     const [allData, setAllData] = useState([]);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        handleAPILineChart({track, year}, {setAllData})
+        handleAPILineChart({track, year}, {setAllData, setLoading})
     }, [track, year])
 
     return (
@@ -31,7 +32,8 @@ export default function LineChart(){
                   return { name: item?.driverId, value: Math.abs(item?.pos)};
                 },
             }}
-            seriesField='driverId' 
+            seriesField='driverId'
+            loading={isLoading}
         />
     )
 }

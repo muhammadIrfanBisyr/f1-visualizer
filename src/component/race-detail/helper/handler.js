@@ -118,6 +118,7 @@ const apiToLineChartData = (data) => {
 export const handleAPILineChart = (params, setters) => {
 
     const apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/laps.json?limit=1500`
+    setters.setLoading(true);
 
     axios.get(apiUrl).then(res => {
         try{
@@ -130,6 +131,9 @@ export const handleAPILineChart = (params, setters) => {
         }
         catch {
             setters.setAllData([]);
+        }
+        finally{
+            setters.setLoading(false);
         }
     })
 }
