@@ -1,3 +1,5 @@
+import {FallOutlined, RiseOutlined, MinusOutlined } from '@ant-design/icons';
+
 import CountryFlag from "../../CountryFlag";
 import TeamLogo from "../../global/logo/TeamLogo";
 import RaceResultLogo from "../../global/logo/RaceResultLogo";
@@ -62,6 +64,29 @@ export const RACE_COLUMN = [
         title: 'Points',
         dataIndex: 'points',
         key: 'points',
+    },
+    {
+        title: 'Changes',
+        key: 'points',
+        render: (_, record) => {
+            const start = record.grid === '0' ? 20 : parseInt(record.grid);
+            const changes = parseInt(record.pos) - start;
+            return(
+                <>
+                    <span> 
+                    {
+                        changes < 0 ?
+                        <RiseOutlined style={{'color': '#03fc2c'}}/> :
+                        changes === 0 ?
+                        <MinusOutlined /> :
+                        <FallOutlined style={{'color': '#ff0000'}}/>
+                    }
+                    </span>
+                    {` ${Math.abs(changes)}`}
+                </>
+            )
+        }
+       
     },
 ];
 

@@ -7,6 +7,7 @@ import Table from './table/Table';
 import YearSelect from '../YearSelect';
 import TrackSelect from '../TrackSelect';
 import SessionSelect from '../SessionSelect';
+import ChartTypeSelect from '../ChartTypeSelect';
 
 import { handleAPI } from './helper/handler';
 
@@ -17,7 +18,7 @@ export default function RaceDetailContent() {
     const [allData, setAllData] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
-    useEffect(() =>{
+    useEffect(() => {
         handleAPI({session, track, year}, {setAllData, setLoading});
     },[year, track, session])
 
@@ -32,6 +33,7 @@ export default function RaceDetailContent() {
                     <YearSelect />
                     <TrackSelect />
                     <SessionSelect/>
+                    <ChartTypeSelect />
                 </Space>
             </div>
         </>
