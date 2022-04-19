@@ -4,12 +4,13 @@ import { Line } from '@ant-design/plots';
 import RaceDetailContext from '../context/RaceDetailContext';
 
 import {handleAPILineChart} from '../helper/handler';
+import { TEAM_CONST } from '../../global/constant/Teams'
 
 export default function LineChart(){
 
     const {track, year} = useContext(RaceDetailContext);
 
-    const [allData, setAllData] = useState([]);
+    const [allData, setAllData] = useState({});
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -19,7 +20,7 @@ export default function LineChart(){
     return (
         <Line 
             className='main-line-chart'
-            data={allData} 
+            data={allData?.chartData ?? []} 
             xField='lapNo' 
             yField= 'pos' 
             yAxis = {{
@@ -34,6 +35,11 @@ export default function LineChart(){
             }}
             seriesField='driverId'
             loading={isLoading}
+            colorField='driverId' 
+            color= {({driverId}) => {
+                const color = TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000';
+                return color;
+            }}
         />
     )
 }

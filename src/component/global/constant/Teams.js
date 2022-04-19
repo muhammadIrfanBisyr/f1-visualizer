@@ -1,4 +1,4 @@
-const TEAM_CONST = {
+export const TEAM_CONST = {
     'red_bull': {
         color: '#010694'
     },

@@ -117,18 +117,23 @@ const apiToLineChartData = (data) => {
 }
 
 
-const appendTablDataToLineData = (tableData, lineData) => {
+const appendTableDataToLineData = (tableData, lineData) => {
     const res = [];
+    const driverTable = {}
+
     tableData.forEach((item) => {
         const startGrid = item.grid === '0' ? -20 : -parseInt(item.grid);
         res.push({
             lapNo: 0,
             driverId: item.driverId,
             pos: startGrid,
-            time: '00:00.000'
+            time: '00:00.000',
+            constructorId: item.constructorId
         })
+        driverTable[item.driverId] = item.constructorId;
     })
-    return res.concat(lineData);
+
+    return {chartData :res.concat(lineData), driverTable};
 }
 
 export const handleAPILineChart = (params, setters) => {
@@ -148,16 +153,16 @@ export const handleAPILineChart = (params, setters) => {
         try {
             const processedTable = apiDataToTableData(resTable, 'R');
             const processedLine = apiToLineChartData(resLine);
-            setters.setAllData(appendTablDataToLineData(processedTable.resData, processedLine));
+            setters.setAllData(appendTableDataToLineData(processedTable.resData, processedLine));
         }
         catch (err) {
-            setters.setAllData([]);
+            setters.setAllData({});
         }
         finally{
             setters.setLoading(false);
         }
     })).catch((err) => {
-        setters.setAllData([]);
+        setters.setAllData({});
         message(`Error fetching API data: ${err}`);
     }).finally(() => {
         setters.setLoading(false);
