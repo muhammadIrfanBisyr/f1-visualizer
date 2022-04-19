@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { message } from 'antd';
+
 import { RACE_COLUMN, QUALIFYING_COLUMN } from '../table/TableConstant';
 
-import axios from 'axios';
+import {lapTimeToMiliseconds} from './utils';
 
 const apiDataToTableData = (data, session) =>{
     const resData = [];
@@ -109,7 +111,7 @@ const apiToLineChartData = (data) => {
                 lapNo: parseInt(item.number),
                 driverId: innerItem.driverId,
                 pos: -parseInt(innerItem.position),
-                time: innerItem.time
+                time: -lapTimeToMiliseconds(innerItem.time)
             });
         })
     })
@@ -127,7 +129,6 @@ const appendTableDataToLineData = (tableData, lineData) => {
             lapNo: 0,
             driverId: item.driverId,
             pos: startGrid,
-            time: '00:00.000',
             constructorId: item.constructorId
         })
         driverTable[item.driverId] = item.constructorId;
