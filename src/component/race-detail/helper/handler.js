@@ -14,6 +14,7 @@ const apiDataToTableData = (data, session) =>{
                     grid: item.grid,
                     carNo: item.number,
                     driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
+                    driverId: item.Driver.driverId,
                     nationality: item.Driver.nationality,
                     constructor: item.Constructor.name,
                     constructorId: item.Constructor.constructorId,
@@ -82,12 +83,8 @@ export const handleAPITable = (params, setters) => {
 
     setters.setLoading(true);
     axios.get(apiUrl).then(res => {
-        try{
-            if(res.status === 200)
-                setters.setAllData(apiDataToTableData(res, params.session));
-            else {
-                message('Error Fetching Data');
-            }
+        try {
+            setters.setAllData(apiDataToTableData(res, params.session));
         }
         catch {
             setters.setAllData([]);
@@ -95,7 +92,12 @@ export const handleAPITable = (params, setters) => {
         finally {
             setters.setLoading(false);
         }
-    })
+    }).catch((err) => {
+        setters.setAllData([]);
+        message(`Error fetching API data: ${err}`);
+    }).finally(() => {
+        setters.setLoading(false)
+    });
 }
 
 const apiToLineChartData = (data) => {
@@ -115,25 +117,49 @@ const apiToLineChartData = (data) => {
 }
 
 
+const appendTablDataToLineData = (tableData, lineData) => {
+    const res = [];
+    tableData.forEach((item) => {
+        const startGrid = item.grid === '0' ? -20 : -parseInt(item.grid);
+        res.push({
+            lapNo: 0,
+            driverId: item.driverId,
+            pos: startGrid,
+            time: '00:00.000'
+        })
+    })
+    return res.concat(lineData);
+}
+
 export const handleAPILineChart = (params, setters) => {
 
-    const apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/laps.json?limit=1500`
+    const apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/laps.json?limit=1500`;
+    const apiUrlStart = `https://ergast.com/api/f1/${params.year}/${params.track}/results.json`;
+
     setters.setLoading(true);
 
-    axios.get(apiUrl).then(res => {
-        try{
-            if(res.status === 200){
-                setters.setAllData(apiToLineChartData(res));
-            }
-            else {
-                message('Error Fetching Data');
-            }
+    const requestLineData = axios.get(apiUrl);
+    const requestTableData = axios.get(apiUrlStart);
+
+    axios.all([requestLineData, requestTableData]).then(axios.spread((...responses) => {
+
+        const resLine = responses[0];
+        const resTable = responses[1];
+        try {
+            const processedTable = apiDataToTableData(resTable, 'R');
+            const processedLine = apiToLineChartData(resLine);
+            setters.setAllData(appendTablDataToLineData(processedTable.resData, processedLine));
         }
-        catch {
+        catch (err) {
             setters.setAllData([]);
         }
         finally{
             setters.setLoading(false);
         }
-    })
+    })).catch((err) => {
+        setters.setAllData([]);
+        message(`Error fetching API data: ${err}`);
+    }).finally(() => {
+        setters.setLoading(false);
+    });
 }
