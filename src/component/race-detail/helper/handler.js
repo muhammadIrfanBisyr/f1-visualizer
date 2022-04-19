@@ -104,18 +104,25 @@ export const handleAPITable = (params, setters) => {
 
 const apiToLineChartData = (data) => {
     const resData = [];
+    let maxLap = Number.MIN_SAFE_INTEGER;
+    let minLap = Number.MAX_SAFE_INTEGER
 
-    data.data.MRData.RaceTable.Races[0].Laps.forEach((item) => {
+    data.data.MRData.RaceTable.Races[0].Laps.forEach((item) => {        
         item.Timings.forEach((innerItem) => {
+            
+            const lapTime = lapTimeToMiliseconds(innerItem.time);
+            maxLap = lapTime > maxLap ? lapTime : maxLap;
+            minLap = lapTime < minLap ? lapTime : minLap;
+
             resData.push({
                 lapNo: parseInt(item.number),
                 driverId: innerItem.driverId,
                 pos: -parseInt(innerItem.position),
-                time: -lapTimeToMiliseconds(innerItem.time)
+                time: -lapTime
             });
         })
     })
-    return resData;
+    return {resData, chartLimit: [-maxLap, -minLap]};
 }
 
 
@@ -154,7 +161,10 @@ export const handleAPILineChart = (params, setters) => {
         try {
             const processedTable = apiDataToTableData(resTable, 'R');
             const processedLine = apiToLineChartData(resLine);
-            setters.setAllData(appendTableDataToLineData(processedTable.resData, processedLine));
+            setters.setAllData(
+                {...appendTableDataToLineData(processedTable.resData, processedLine.resData), 
+                    chartLimit: processedLine.chartLimit}
+            );
         }
         catch (err) {
             setters.setAllData({});

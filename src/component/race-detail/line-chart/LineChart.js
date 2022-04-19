@@ -37,6 +37,9 @@ export default function LineChart(){
                             return formatted;
                         },
                     },
+                    ...( yAxis === 'pos' ? {tickInterval: 1} : {tickInterval: 5000}),
+                    ...( yAxis === 'time' ? {max: allData?.chartLimit[1]} : {max: null}),
+                    ...( yAxis === 'time' ? {min: allData?.chartLimit[0]} : {min: null}),
                 }}
                 tooltip={{
                     formatter: (item) => {
@@ -47,10 +50,7 @@ export default function LineChart(){
                 seriesField='driverId'
                 loading={isLoading}
                 colorField='driverId' 
-                color= {({driverId}) => {
-                    const color = TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000';
-                    return color;
-                }}
+                color= {({driverId}) => TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000'}
             />
 
             <Select 
