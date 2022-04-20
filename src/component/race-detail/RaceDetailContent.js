@@ -5,6 +5,7 @@ import RaceDetailContext from './context/RaceDetailContext';
 
 import Table from './table/Table';
 import LineChart from './line-chart/LineChart';
+import LineChartD3 from './line-chart/LineChartD3';
 
 import YearSelect from '../YearSelect';
 import TrackSelect from '../TrackSelect';
@@ -22,7 +23,7 @@ export default function RaceDetailContent() {
                 chartType === 'T' ?
                 <Table/>
                 :
-                <LineChart/>
+                <LineChartD3/>
             }
             </div>
 
