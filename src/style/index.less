@@ -1,4 +1,6 @@
 @main-color: #399df0;
+@fastest-lap-color: #b249c3;
+@fastest-lap-color-hover:rgb(134, 29, 151);
 
 .main-detail-content-container {    
     
@@ -25,12 +27,16 @@
         }
 
         .row-fastest-lap {
-            background-color: #b249c3;
+            background-color: @fastest-lap-color;
             color: #ffffff;
             
             .ant-table-column-sort {
-                background-color: #b249c3;
+                background-color: @fastest-lap-color;
                 color: #ffffff;
+            }
+
+            .ant-table-cell-row-hover {
+                background-color: @fastest-lap-color-hover;
             }
         }
     }

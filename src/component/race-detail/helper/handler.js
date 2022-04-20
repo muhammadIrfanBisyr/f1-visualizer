@@ -25,6 +25,8 @@ const apiDataToTableData = (data, session) =>{
                     status: item.status,
                     points: item.points,
                     fastestLapRank: item?.FastestLap?.rank ?? '',
+                    fastestLapTime: item?.FastestLap?.Time?.time ?? '',
+                    fastestLapOnLap: item?.FastestLap?.lap ?? '',
                 }
             )
         });

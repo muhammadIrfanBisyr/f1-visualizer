@@ -27,6 +27,9 @@
   background-color: #b249c3;
   color: #ffffff;
 }
+.main-detail-content-container .main-table .row-fastest-lap .ant-table-cell-row-hover {
+  background-color: #861d97;
+}
 .main-detail-content-container thead > tr > th {
   background-color: #399df0 !important;
   color: #f3f1f1;
