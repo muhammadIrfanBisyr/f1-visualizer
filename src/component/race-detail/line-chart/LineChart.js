@@ -18,10 +18,38 @@ export default function LineChart(){
     const [isLoading, setLoading] = useState(false);
     
     const [yAxis, setYAxis] = useState('pos');
+    const [chartConfig, setChartConfig] = useState({
+        title: 'Position',
+        tickInterval: 1,
+        max: null,
+        min: null
+    });
 
     useEffect(() => {
         handleAPILineChart({track, year}, {setAllData, setLoading})
     }, [track, year])
+
+    useEffect(() => {
+        switch(yAxis){
+            case 'time':
+                setChartConfig({
+                    title: 'Lap Time',
+                    tickInterval: 5000,
+                    max: allData?.chartLimit?.[1],
+                    min: allData?.chartLimit?.[0]
+                }) 
+                break;
+            case 'pos':
+            default:
+                setChartConfig({
+                    title: 'Position',
+                    tickInterval: 1,
+                    max: null,
+                    min: null
+                })
+                break;
+        }
+    }, [yAxis, allData])
 
     return (
         <>
@@ -30,16 +58,24 @@ export default function LineChart(){
                 data={allData?.chartData ?? []} 
                 xField='lapNo' 
                 yField={yAxis}
+                xAxis={{
+                    title:{
+                        text: 'Lap Number'
+                    }
+                }}
                 yAxis={{
+                    title: {
+                        text: chartConfig.title
+                    },  
                     label: {
                         formatter: (item) => {
                             const formatted = yAxis === 'pos' ?  Math.abs(item) : milisecondsToLapTime(-item);
                             return formatted;
                         },
                     },
-                    ...( yAxis === 'pos' ? {tickInterval: 1} : {tickInterval: 5000}),
-                    ...( yAxis === 'time' ? {max: allData?.chartLimit[1]} : {max: null}),
-                    ...( yAxis === 'time' ? {min: allData?.chartLimit[0]} : {min: null}),
+                    tickInterval: chartConfig.tickInterval,
+                    max: chartConfig.max,
+                    min: chartConfig.min
                 }}
                 tooltip={{
                     formatter: (item) => {
