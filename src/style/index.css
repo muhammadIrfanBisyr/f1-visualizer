@@ -46,6 +46,7 @@
   width: 760px;
   margin: 0 auto;
   display: inline-block;
+  text-align: left;
 }
 .main-detail-content-container .main-line-chart-container .chart-data-type-select {
   display: inline-block;
@@ -62,5 +63,20 @@
 }
 .main-select-group .chart-type-select {
   width: 125px;
+}
+.track-info-container {
+  width: 300px;
+  text-align: center;
+}
+.track-info-container .track-image {
+  width: 200px;
+}
+.track-info-container .flag-icon {
+  height: 15px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+.track-info-container .track-info-text-container {
+  text-align: left;
 }
 /*# sourceMappingURL=index.css.map */

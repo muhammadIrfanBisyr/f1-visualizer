@@ -5,6 +5,7 @@ import RaceDetailContext from './context/RaceDetailContext';
 
 import Table from './table/Table';
 import LineChart from './line-chart/LineChart';
+import TrackInfo from './TrackInfo';
 
 import YearSelect from '../YearSelect';
 import TrackSelect from '../TrackSelect';
@@ -17,7 +18,7 @@ export default function RaceDetailContent() {
    
     return (
         <Row>
-            <Col span={20}>
+            <Col span={19}>
                 <div className='main-detail-content-container'>
                 {
                     chartType === 'T' ?
@@ -36,8 +37,8 @@ export default function RaceDetailContent() {
                     </Space>
                 </div>
             </Col>
-            <Col>
-                <div style={{'width': '100px', height: '100px', backgroundColor: '#00ffff'}}></div>
+            <Col span={5}>
+                <TrackInfo/>
             </Col>
         </Row>
     )

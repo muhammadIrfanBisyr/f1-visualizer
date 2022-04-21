@@ -3,10 +3,21 @@ import { message } from 'antd';
 
 import { RACE_COLUMN, QUALIFYING_COLUMN } from '../table/TableConstant';
 
-import {lapTimeToMiliseconds} from './utils';
+import { lapTimeToMiliseconds } from './utils';
 
 const apiDataToTableData = (data, session) =>{
+    
     const resData = [];
+
+    // Set Track Information
+    const trackData = {};
+    trackData.raceName = data.data.MRData.RaceTable.Races[0].raceName;
+    trackData.time = data.data.MRData.RaceTable.Races[0].time;
+    trackData.date = data.data.MRData.RaceTable.Races[0].date;
+    trackData.trackId = data.data.MRData.RaceTable.Races[0].Circuit.circuitId;
+    trackData.trackName = data.data.MRData.RaceTable.Races[0].Circuit.circuitName;
+    trackData.locality = data.data.MRData.RaceTable.Races[0].Circuit.Location.locality;
+    trackData.country = data.data.MRData.RaceTable.Races[0].Circuit.Location.country;
 
     if (session === 'R') {
         const year = data.data.MRData.RaceTable.Races[0].season;
@@ -78,7 +89,11 @@ const apiDataToTableData = (data, session) =>{
             resData[fastestQ3[1]].fQ3 = fastestQ3[0];
         }
     }
-    return {resData, column: session === 'R' ? RACE_COLUMN : QUALIFYING_COLUMN};
+    return {
+        resData, 
+        column: session === 'R' ? RACE_COLUMN : QUALIFYING_COLUMN,
+        trackData
+    };
 }
 
 export const handleAPITable = (params, setters) => {
@@ -90,7 +105,9 @@ export const handleAPITable = (params, setters) => {
     setters.setLoading(true);
     axios.get(apiUrl).then(res => {
         try {
-            setters.setAllData(apiDataToTableData(res, params.session));
+            const {resData, column, trackData} = apiDataToTableData(res, params.session);
+            setters.setTrackInfo(trackData);
+            setters.setAllData({resData, column});
         }
         catch {
             setters.setAllData([]);
@@ -168,6 +185,8 @@ export const handleAPILineChart = (params, setters) => {
         try {
             const processedTable = apiDataToTableData(resTable, 'R');
             const processedLine = apiToLineChartData(resLine);
+
+            setters.setTrackInfo(processedTable.trackData);
             setters.setAllData(
                 {...appendTableDataToLineData(processedTable.resData, processedLine.resData), 
                     chartLimit: processedLine.chartLimit}

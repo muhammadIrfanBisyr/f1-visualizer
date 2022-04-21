@@ -6,6 +6,7 @@ const ACTION = {
     SET_YEAR: 'SET_YEAR',
     SET_SESSION: 'SET_SESSION',
     SET_CHART_TYPE: 'SET_CHART_TYPE',
+    SET_TRACK_INFO: 'SET_TRACK_INFO'
 };
 
 function reducer(state, {type, payload}){
@@ -18,6 +19,8 @@ function reducer(state, {type, payload}){
             return {...state, session: payload.session, chartType: payload.chartType };
         case ACTION.SET_CHART_TYPE:
             return {...state, chartType: payload };
+        case ACTION.SET_TRACK_INFO:
+            return {...state, trackInfo: {...payload} };
         default:
             return state;
     }
@@ -44,6 +47,10 @@ export default function RaceDetailContextProvider({children}){
     const setChartType = (data) => {
         dispatch({ type: ACTION.SET_CHART_TYPE, payload: data});
     }
+
+    const setTrackInfo = (data) => {
+        dispatch({ type: ACTION.SET_TRACK_INFO, payload: data});
+    } 
         
     return(
         <RaceDetailContext.Provider 
@@ -53,7 +60,8 @@ export default function RaceDetailContextProvider({children}){
                     setTrack,
                     setYear,
                     setSession,
-                    setChartType
+                    setChartType,
+                    setTrackInfo
                 }
 
             }}>

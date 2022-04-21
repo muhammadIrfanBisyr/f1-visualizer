@@ -12,7 +12,7 @@ const { Option } = Select;
 
 export default function LineChart(){
 
-    const {track, year} = useContext(RaceDetailContext);
+    const {track, year, actions:{setTrackInfo}} = useContext(RaceDetailContext);
 
     const [allData, setAllData] = useState({});
     const [isLoading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ export default function LineChart(){
     });
 
     useEffect(() => {
-        handleAPILineChart({track, year}, {setAllData, setLoading})
+        handleAPILineChart({track, year}, {setAllData, setLoading, setTrackInfo})
     }, [track, year])
 
     useEffect(() => {

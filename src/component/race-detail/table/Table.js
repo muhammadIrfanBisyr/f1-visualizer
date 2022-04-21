@@ -32,13 +32,13 @@ const FastestLapPopover = (props) => {
 
 export default function Table(){
     
-    const {year, session, track} = useContext(RaceDetailContext);
+    const {year, session, track, actions:{setTrackInfo}} = useContext(RaceDetailContext);
 
     const [allData, setAllData] = useState([]);
     const [isLoading, setLoading] = useState(false);
     
     useEffect(() => {
-        handleAPITable({session, track, year}, {setAllData, setLoading});
+        handleAPITable({session, track, year}, {setAllData, setLoading, setTrackInfo});
     },[year, track, session])
 
     return(
