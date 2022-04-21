@@ -90,9 +90,9 @@ export default function LineChart(){
             />
 
             <Select 
+                className='chart-data-type-select'
                 defaultValue={yAxis} 
                 value={yAxis}
-                className='chart-type-select'
                 onChange={(val) => {setYAxis(val)}}
             >
                 <Option value='pos'> Position Changes </Option>
