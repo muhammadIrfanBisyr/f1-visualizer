@@ -65,6 +65,14 @@ export const RACE_COLUMN = [
         title: 'Points',
         dataIndex: 'points',
         key: 'points',
+        render: (points, record) => 
+            <span>
+                {
+                    record.fastestLapRank === '1' && parseInt(record.year) >= 2019 ? 
+                    `${parseInt(points)-1} + 1` : 
+                    points 
+                }
+            </span>
     },
     {
         title: 'Changes',

@@ -9,6 +9,7 @@ const apiDataToTableData = (data, session) =>{
     const resData = [];
 
     if (session === 'R') {
+        const year = data.data.MRData.RaceTable.Races[0].season;
         data.data.MRData.RaceTable.Races[0].Results.forEach((item) => {
             resData.push(
                 {
@@ -27,6 +28,7 @@ const apiDataToTableData = (data, session) =>{
                     fastestLapRank: item?.FastestLap?.rank ?? '',
                     fastestLapTime: item?.FastestLap?.Time?.time ?? '',
                     fastestLapOnLap: item?.FastestLap?.lap ?? '',
+                    year
                 }
             )
         });
