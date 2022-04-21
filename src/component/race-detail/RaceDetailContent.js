@@ -18,7 +18,7 @@ export default function RaceDetailContent() {
    
     return (
         <Row>
-            <Col span={19}>
+            <Col span={18}>
                 <div className='main-detail-content-container'>
                 {
                     chartType === 'T' ?
@@ -37,7 +37,7 @@ export default function RaceDetailContent() {
                     </Space>
                 </div>
             </Col>
-            <Col span={5}>
+            <Col span={6}>
                 <TrackInfo/>
             </Col>
         </Row>

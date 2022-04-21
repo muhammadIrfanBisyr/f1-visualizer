@@ -79,4 +79,7 @@
 .track-info-container .track-info-text-container {
   text-align: left;
 }
+.ant-layout .content-layout {
+  background-color: #ffffff;
+}
 /*# sourceMappingURL=index.css.map */
