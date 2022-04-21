@@ -1,6 +1,6 @@
 import {FallOutlined, RiseOutlined, MinusOutlined } from '@ant-design/icons';
 
-import CountryFlag from "../../CountryFlag";
+import CountryFlag from '../../global/flag/CountryFlag';
 import TeamLogo from "../../global/logo/TeamLogo";
 import RaceResultLogo from "../../global/logo/RaceResultLogo";
 

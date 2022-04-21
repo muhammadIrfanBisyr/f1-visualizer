@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { Select } from 'antd';
 
-import RaceDetailContext from './race-detail/context/RaceDetailContext';
+import RaceDetailContext from '../context/RaceDetailContext';
 
 const { Option } = Select;
 
@@ -13,6 +13,7 @@ export default function YearSelect() {
 
     return (
         <Select
+            className='detail-title-selectable'
             showSearch
             placeholder="Select Year"
             optionFilterProp="children"

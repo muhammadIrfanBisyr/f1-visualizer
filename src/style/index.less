@@ -2,14 +2,23 @@
 @fastest-lap-color: #b249c3;
 @fastest-lap-color-hover:rgb(134, 29, 151);
 
+@card-padding: 8px;
+@card-border-radius: 8px;
+
 .main-detail-content-container {    
     
     font-size: 10px;
-    height: 625px;
+    width: 90%;
+    height: 585px;
     text-align: center;
+    margin: 0 auto !important;
+    border-radius: @card-border-radius !important;
+
+    .ant-card-body {
+        padding: @card-padding;
+    }
 
     .main-table {
-        width: 65%;
         margin: 0 auto;
         height: 624px;
         overflow-y: auto;
@@ -88,8 +97,13 @@
 
 .track-info-container {
 
-    width: 300px;
+    width: 90%;
     text-align: center;
+    border-radius: @card-border-radius !important;
+
+    .ant-card-body {
+        padding: @card-padding;
+    }
 
     .track-image {
         width: 200px;
@@ -103,8 +117,21 @@
     .track-info-text-container {
         text-align: left;
     }
+
+    .detail-title-selectable {
+        margin-bottom: 8px;
+    }
+
+    .track-select {
+        text-align: left;
+        width: 220px;
+    }
+
+    .ant-select-selection-item {
+        font-weight: 500;
+    }
 }
 
 .ant-layout .content-layout{
-    background-color: #ffffff;
+    background-color: #ececec;
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Select } from 'antd';
 
-import RaceDetailContext from './race-detail/context/RaceDetailContext';
+import RaceDetailContext from '../context/RaceDetailContext';
 
 const { Option } = Select;
 

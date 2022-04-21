@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {TableOutlined, LineChartOutlined} from '@ant-design/icons';
 
-import RaceDetailContext from './race-detail/context/RaceDetailContext';
+import RaceDetailContext from '../context/RaceDetailContext';
 
 import { Select } from 'antd';
 

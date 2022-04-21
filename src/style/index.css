@@ -1,10 +1,15 @@
 .main-detail-content-container {
   font-size: 10px;
-  height: 625px;
+  width: 90%;
+  height: 585px;
   text-align: center;
+  margin: 0 auto !important;
+  border-radius: 8px !important;
+}
+.main-detail-content-container .ant-card-body {
+  padding: 8px;
 }
 .main-detail-content-container .main-table {
-  width: 65%;
   margin: 0 auto;
   height: 624px;
   overflow-y: auto;
@@ -65,8 +70,12 @@
   width: 125px;
 }
 .track-info-container {
-  width: 300px;
+  width: 90%;
   text-align: center;
+  border-radius: 8px !important;
+}
+.track-info-container .ant-card-body {
+  padding: 8px;
 }
 .track-info-container .track-image {
   width: 200px;
@@ -79,7 +88,17 @@
 .track-info-container .track-info-text-container {
   text-align: left;
 }
+.track-info-container .detail-title-selectable {
+  margin-bottom: 8px;
+}
+.track-info-container .track-select {
+  text-align: left;
+  width: 220px;
+}
+.track-info-container .ant-select-selection-item {
+  font-weight: 500;
+}
 .ant-layout .content-layout {
-  background-color: #ffffff;
+  background-color: #ececec;
 }
 /*# sourceMappingURL=index.css.map */

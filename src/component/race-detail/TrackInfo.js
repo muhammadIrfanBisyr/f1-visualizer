@@ -1,8 +1,12 @@
 import React, {useContext} from 'react';
+import {Card, Space} from 'antd';
+import { EnvironmentOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
 import RaceDetailContext from './context/RaceDetailContext';
+import TrackSelect from './select/TrackSelect';
+import YearSelect from './select/YearSelect';
 
-import CountryFlag from '../CountryFlag';
+import CountryFlag from '../global/flag/CountryFlag';
 import image from '../../asset/track-map/bahrain.png'
 
 export default function TrackInfo(){
@@ -10,14 +14,16 @@ export default function TrackInfo(){
     const {trackInfo} = useContext(RaceDetailContext);
  
     return (
-        <div className='track-info-container'>
+        <Card className='track-info-container'>
+            <Space><YearSelect/><TrackSelect/></Space>
+            
+
             <img src={image} alt='track' className='track-image'/>
             <div className='track-info-text-container'>
-                <div>{`Grand Prix Name: ${trackInfo.raceName}`}</div>
-                <div>{`Track Name     : ${trackInfo.trackName}`}</div>
-                <div>{`Location       : ${trackInfo.locality}, ${trackInfo.country}`}<CountryFlag name='australian'/></div>
-                <div>{`Local Time     : ${trackInfo.date} ${trackInfo.time} `}</div>
+                <p style={{'textAlign': 'center'}}>{`${trackInfo.trackName}`}</p>
+                <div><EnvironmentOutlined/> <CountryFlag name='australian'/>{` ${trackInfo.locality}, ${trackInfo.country} `}</div>
+                <div><ClockCircleOutlined/>{` ${trackInfo.date} ${trackInfo.time} `}</div>
             </div>
-        </div>
+        </Card>
     )
 }

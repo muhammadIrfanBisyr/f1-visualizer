@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Space, Row, Col } from 'antd';
+import { Space, Row, Col, Card } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
 
@@ -7,10 +7,10 @@ import Table from './table/Table';
 import LineChart from './line-chart/LineChart';
 import TrackInfo from './TrackInfo';
 
-import YearSelect from '../YearSelect';
-import TrackSelect from '../TrackSelect';
-import SessionSelect from '../SessionSelect';
-import ChartTypeSelect from '../ChartTypeSelect';
+import YearSelect from './select/YearSelect';
+import TrackSelect from './select/TrackSelect';
+import SessionSelect from './select/SessionSelect';
+import ChartTypeSelect from './select/ChartTypeSelect';
 
 export default function RaceDetailContent() {
 
@@ -18,15 +18,15 @@ export default function RaceDetailContent() {
    
     return (
         <Row>
-            <Col span={18}>
-                <div className='main-detail-content-container'>
+            <Col span={17}>
+                <Card className='main-detail-content-container'>
                 {
                     chartType === 'T' ?
                     <Table/>
                     :
                     <LineChart/>
                 }
-                </div>
+                </Card>
 
                 <div className='main-select-group'>
                     <Space>
@@ -37,7 +37,7 @@ export default function RaceDetailContent() {
                     </Space>
                 </div>
             </Col>
-            <Col span={6}>
+            <Col span={7}>
                 <TrackInfo/>
             </Col>
         </Row>

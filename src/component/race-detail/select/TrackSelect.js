@@ -2,7 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import { Select, message } from 'antd';
 import axios from 'axios';
 
-import RaceDetailContext from './race-detail/context/RaceDetailContext';
+import RaceDetailContext from '../context/RaceDetailContext';
 
 const {Option} = Select;
 
@@ -35,6 +35,7 @@ export default function TrackSelect(){
             defaultValue={track}
             value={track}
             onChange={(e) => {setTrack(e)}}
+            className='detail-title-selectable track-select'
         >
             {
                 tracks.map((item, i) => {

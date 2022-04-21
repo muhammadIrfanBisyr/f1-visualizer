@@ -20,7 +20,7 @@ export default function MainPage(){
             </Sider>
             <Layout className="content-layout">
                 <>
-                    <Title style={{'textAlign': 'center'}}>
+                    <Title>
                         F1 Visualizer
                     </Title>
                     
