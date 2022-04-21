@@ -114,7 +114,10 @@ const apiToLineChartData = (data) => {
     data.data.MRData.RaceTable.Races[0].Laps.forEach((item) => {        
         item.Timings.forEach((innerItem) => {
             
-            const lapTime = lapTimeToMiliseconds(innerItem.time);
+            let lapTime = lapTimeToMiliseconds(innerItem.time);
+            if (lapTime >  300000) // if laptime > 5 minutes, assuming it is a red flag period.
+                lapTime = 0;
+
             maxLap = lapTime > maxLap ? lapTime : maxLap;
             minLap = lapTime < minLap ? lapTime : minLap;
 
