@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Space } from 'antd';
+import { Space, Row, Col } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
 
@@ -16,24 +16,29 @@ export default function RaceDetailContent() {
     const {chartType} = useContext(RaceDetailContext);
    
     return (
-        <>
-            <div className='main-detail-content-container'>
-            {
-                chartType === 'T' ?
-                <Table/>
-                :
-                <LineChart/>
-            }
-            </div>
+        <Row>
+            <Col span={20}>
+                <div className='main-detail-content-container'>
+                {
+                    chartType === 'T' ?
+                    <Table/>
+                    :
+                    <LineChart/>
+                }
+                </div>
 
-            <div className='main-select-group'>
-                <Space>
-                    <YearSelect />
-                    <TrackSelect />
-                    <SessionSelect/>
-                    <ChartTypeSelect />
-                </Space>
-            </div>
-        </>
+                <div className='main-select-group'>
+                    <Space>
+                        <YearSelect />
+                        <TrackSelect />
+                        <SessionSelect/>
+                        <ChartTypeSelect />
+                    </Space>
+                </div>
+            </Col>
+            <Col>
+                <div style={{'width': '100px', height: '100px', backgroundColor: '#00ffff'}}></div>
+            </Col>
+        </Row>
     )
 }

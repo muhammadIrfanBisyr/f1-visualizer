@@ -52,7 +52,7 @@ export default function LineChart(){
     }, [yAxis, allData])
 
     return (
-        <>
+        <div className='main-line-chart-container'>
             <Line 
                 className='main-line-chart'
                 data={allData?.chartData ?? []} 
@@ -98,6 +98,6 @@ export default function LineChart(){
                 <Option value='pos'> Position Changes </Option>
                 <Option value='time'> Lap Times </Option>
             </Select>
-        </>
+        </div>
     )
 }

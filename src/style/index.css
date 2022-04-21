@@ -4,7 +4,7 @@
   text-align: center;
 }
 .main-detail-content-container .main-table {
-  width: 50%;
+  width: 65%;
   margin: 0 auto;
   height: 624px;
   overflow-y: auto;
@@ -39,12 +39,15 @@
 .main-detail-content-container .ant-table-cell {
   padding: 2px !important;
 }
-.main-detail-content-container .main-line-chart {
+.main-detail-content-container .main-line-chart-container {
+  height: inherit;
+}
+.main-detail-content-container .main-line-chart-container .main-line-chart {
   width: 760px;
   margin: 0 auto;
   display: inline-block;
 }
-.main-detail-content-container .chart-data-type-select {
+.main-detail-content-container .main-line-chart-container .chart-data-type-select {
   display: inline-block;
   margin-left: 8px;
   width: 155px;
