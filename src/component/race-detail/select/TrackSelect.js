@@ -14,10 +14,15 @@ export default function TrackSelect(){
 
     const [ trackOptions, setTracksOptions ] = useState([]);
 
-    useEffect(() =>{
+    useEffect(() => {
         if(setLoading)
             handleAPITracks({year}, {setTracksOptions, setLoading});
     },[year])
+
+    useEffect(() => {
+        if(setTrackInfo)
+            setTrackInfo(trackOptions[0])
+    }, [trackOptions])
     
     return(
         <Select 
