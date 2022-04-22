@@ -2,23 +2,12 @@ import axios from 'axios';
 import { message } from 'antd';
 
 import { RACE_COLUMN, QUALIFYING_COLUMN } from '../table/TableConstant';
-import { CONTEXT_INITIAL_STATE } from '../context/RaceDetailContext';
 
 import { lapTimeToMiliseconds } from './utils';
 
 const apiDataToTableData = (data, session) =>{
     
     const resData = [];
-
-    // Set Track Information
-    const trackData = {};
-    trackData.raceName = data.data.MRData.RaceTable.Races[0].raceName;
-    trackData.time = data.data.MRData.RaceTable.Races[0].time;
-    trackData.date = data.data.MRData.RaceTable.Races[0].date;
-    trackData.trackId = data.data.MRData.RaceTable.Races[0].Circuit.circuitId;
-    trackData.trackName = data.data.MRData.RaceTable.Races[0].Circuit.circuitName;
-    trackData.locality = data.data.MRData.RaceTable.Races[0].Circuit.Location.locality;
-    trackData.country = data.data.MRData.RaceTable.Races[0].Circuit.Location.country;
 
     if (session === 'R') {
         const year = data.data.MRData.RaceTable.Races[0].season;
@@ -93,7 +82,6 @@ const apiDataToTableData = (data, session) =>{
     return {
         resData, 
         column: session === 'R' ? RACE_COLUMN : QUALIFYING_COLUMN,
-        trackData
     };
 }
 
@@ -106,13 +94,11 @@ export const handleAPITable = (params, setters) => {
     setters.setLoading(true);
     axios.get(apiUrl).then(res => {
         try {
-            const {resData, column, trackData} = apiDataToTableData(res, params.session);
-            setters.setTrackInfo(trackData);
+            const {resData, column} = apiDataToTableData(res, params.session);
             setters.setAllData({resData, column});
         }
         catch {
             setters.setAllData([]);
-            setters.setTrackInfo(CONTEXT_INITIAL_STATE);
         }
         finally {
             setters.setLoading(false);
@@ -188,7 +174,6 @@ export const handleAPILineChart = (params, setters) => {
             const processedTable = apiDataToTableData(resTable, 'R');
             const processedLine = apiToLineChartData(resLine);
 
-            setters.setTrackInfo(processedTable.trackData);
             setters.setAllData(
                 {...appendTableDataToLineData(processedTable.resData, processedLine.resData), 
                     chartLimit: processedLine.chartLimit}
@@ -196,7 +181,6 @@ export const handleAPILineChart = (params, setters) => {
         }
         catch (err) {
             setters.setAllData({});
-            setters.setTrackInfo(CONTEXT_INITIAL_STATE);
         }
         finally{
             setters.setLoading(false);
@@ -207,4 +191,41 @@ export const handleAPILineChart = (params, setters) => {
     }).finally(() => {
         setters.setLoading(false);
     });
+}
+
+export const handleAPITracks = (params, setters) => {
+
+    const apiUrl = `http://ergast.com/api/f1/${params.year}.json`;
+    setters.setLoading(true);
+
+    axios.get(apiUrl).then(res => {
+        try {
+            const retVar = [];
+            res.data.MRData.RaceTable.Races.forEach((item)=>{
+                retVar.push({
+                    round: item.round, 
+                    raceName:item.raceName,
+                    time:item.time,
+                    date:item.date,
+                    trackId:item.Circuit.circuitId,
+                    trackName:item.Circuit.circuitName,
+                    locality:item.Circuit.Location.locality,
+                    country:item.Circuit.Location.country,   
+                })
+            })
+    
+            setters.setTracksOptions(retVar)
+        }
+        catch {       
+            setters.setTracksOptions([]);
+        }
+        finally {
+            setters.setLoading(false);
+        }
+    }).catch((err) => {
+        setters.setTracksOptions([]);
+        message(`Error fetching API data: ${err}`);
+    }).finally(() => {
+        setters.setLoading(false)
+    })
 }

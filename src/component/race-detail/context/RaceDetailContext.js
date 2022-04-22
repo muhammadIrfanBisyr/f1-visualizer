@@ -5,15 +5,6 @@ export const CONTEXT_INITIAL_STATE = {
     track: '1',
     session: 'R',
     chartType: 'T',
-    trackInfo: {
-        trackId: '',
-        trackName: '',
-        raceName: '',
-        locality: '',
-        country: '',
-        date: '',
-        time: '',
-    },
     actions: {}
 }
 

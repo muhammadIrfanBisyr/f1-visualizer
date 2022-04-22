@@ -2,13 +2,12 @@ import React, { useContext } from 'react';
 import { Space, Row, Col, Card } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
+import TrackInfoContextProvider from './context/TrackInfoContextProvider';
 
 import Table from './table/Table';
 import LineChart from './line-chart/LineChart';
 import TrackInfo from './TrackInfo';
 
-import YearSelect from './select/YearSelect';
-import TrackSelect from './select/TrackSelect';
 import SessionSelect from './select/SessionSelect';
 import ChartTypeSelect from './select/ChartTypeSelect';
 
@@ -30,15 +29,15 @@ export default function RaceDetailContent() {
 
                 <div className='main-select-group'>
                     <Space>
-                        <YearSelect />
-                        <TrackSelect />
                         <SessionSelect/>
                         <ChartTypeSelect />
                     </Space>
                 </div>
             </Col>
             <Col span={7}>
-                <TrackInfo/>
+                <TrackInfoContextProvider>
+                    <TrackInfo/>
+                </TrackInfoContextProvider>
             </Col>
         </Row>
     )
