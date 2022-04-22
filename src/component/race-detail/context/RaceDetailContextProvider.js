@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import RaceDetailContext, {initialState} from './RaceDetailContext'
+import RaceDetailContext, {CONTEXT_INITIAL_STATE} from './RaceDetailContext'
 
 const ACTION = {
     SET_TRACK: 'SET_TRACK',
@@ -29,7 +29,7 @@ function reducer(state, {type, payload}){
 
 export default function RaceDetailContextProvider({children}){
     
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, CONTEXT_INITIAL_STATE);
 
     const setTrack = (data) => {
         dispatch({ type: ACTION.SET_TRACK, payload: data});

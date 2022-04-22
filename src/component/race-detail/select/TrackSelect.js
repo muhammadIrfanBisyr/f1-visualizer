@@ -23,7 +23,7 @@ const processData = (res, setOpt) => {
 export default function TrackSelect(){
 
     const { track, year, actions: {setTrack} } = useContext(RaceDetailContext);
-    const [tracks, setTracks] = useState([]);
+    const [ tracks, setTracks ] = useState([]);
 
     useEffect(() =>{
         axios.get(`http://ergast.com/api/f1/${year}.json`)

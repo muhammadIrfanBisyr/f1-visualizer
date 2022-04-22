@@ -7,7 +7,6 @@ import TrackSelect from './select/TrackSelect';
 import YearSelect from './select/YearSelect';
 
 import CountryFlag from '../global/flag/CountryFlag';
-import image from '../../asset/track-map/bahrain.png'
 
 export default function TrackInfo(){
 
@@ -16,13 +15,13 @@ export default function TrackInfo(){
     return (
         <Card className='track-info-container'>
             <Space><YearSelect/><TrackSelect/></Space>
-            
-
-            <img src={image} alt='track' className='track-image'/>
+            <img src={`${process.env.PUBLIC_URL}/assets/track-map/${trackInfo.trackId}.png`} alt='track' className='track-image'/>
             <div className='track-info-text-container'>
                 <p style={{'textAlign': 'center'}}>{`${trackInfo.trackName}`}</p>
-                <div><EnvironmentOutlined/> <CountryFlag name='australian'/>{` ${trackInfo.locality}, ${trackInfo.country} `}</div>
-                <div><ClockCircleOutlined/>{` ${trackInfo.date} ${trackInfo.time} `}</div>
+                <div style={{'marginLeft': '10px'}}>
+                    <EnvironmentOutlined/> <CountryFlag name='australian'/>{` ${trackInfo.locality}, ${trackInfo.country} `} <br/>
+                    <ClockCircleOutlined/>{` ${trackInfo.date} ${trackInfo.time} `} <br/>
+                </div>
             </div>
         </Card>
     )

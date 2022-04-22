@@ -1,9 +1,9 @@
 .main-detail-content-container {
   font-size: 10px;
-  width: 90%;
+  width: 95%;
   height: 585px;
   text-align: center;
-  margin: 0 auto !important;
+  margin-left: 30px !important;
   border-radius: 8px !important;
 }
 .main-detail-content-container .ant-card-body {
@@ -70,7 +70,7 @@
   width: 125px;
 }
 .track-info-container {
-  width: 90%;
+  width: 320px;
   text-align: center;
   border-radius: 8px !important;
 }
@@ -79,6 +79,7 @@
 }
 .track-info-container .track-image {
   width: 200px;
+  height: 140px;
 }
 .track-info-container .flag-icon {
   height: 15px;

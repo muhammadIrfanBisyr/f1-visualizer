@@ -2,6 +2,7 @@ import axios from 'axios';
 import { message } from 'antd';
 
 import { RACE_COLUMN, QUALIFYING_COLUMN } from '../table/TableConstant';
+import { CONTEXT_INITIAL_STATE } from '../context/RaceDetailContext';
 
 import { lapTimeToMiliseconds } from './utils';
 
@@ -111,6 +112,7 @@ export const handleAPITable = (params, setters) => {
         }
         catch {
             setters.setAllData([]);
+            setters.setTrackInfo(CONTEXT_INITIAL_STATE);
         }
         finally {
             setters.setLoading(false);
@@ -194,6 +196,7 @@ export const handleAPILineChart = (params, setters) => {
         }
         catch (err) {
             setters.setAllData({});
+            setters.setTrackInfo(CONTEXT_INITIAL_STATE);
         }
         finally{
             setters.setLoading(false);

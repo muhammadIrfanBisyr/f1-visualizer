@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 
-export const initialState = {
+export const CONTEXT_INITIAL_STATE = {
     year: '2022',
     track: '1',
     session: 'R',
@@ -17,6 +17,6 @@ export const initialState = {
     actions: {}
 }
 
-const RaceDetailContext = createContext(initialState)
+const RaceDetailContext = createContext(CONTEXT_INITIAL_STATE)
 
 export default RaceDetailContext;
