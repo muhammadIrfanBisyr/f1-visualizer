@@ -69,8 +69,8 @@ export const RACE_COLUMN = [
             <span>
                 {
                     record.fastestLapRank === '1' && parseInt(record.year) >= 2019 ? 
-                    `${parseInt(points)-1} + 1` : 
-                    points 
+                    parseInt(record.pos) <= 10 ? `${parseInt(points)-1} + 1` : points : 
+                    points
                 }
             </span>
     },
