@@ -5,6 +5,8 @@
 @card-padding: 8px;
 @card-border-radius: 8px;
 
+@right-side-card-width: 320px; 
+
 .main-detail-content-container {    
     
     font-size: 10px;
@@ -97,7 +99,7 @@
 
 .track-info-container {
 
-    width: 320px;
+    width: @right-side-card-width;
     height: 277px;
     text-align: center;
     border-radius: @card-border-radius !important;
@@ -131,6 +133,29 @@
 
     .ant-select-selection-item {
         font-weight: 500;
+    }
+}
+
+.race-result-container{
+    width: @right-side-card-width;
+    height: 180px;
+    margin-top: 16px !important;
+    border-radius: @card-border-radius !important;
+
+    .podium-container {
+        text-align: center;
+        margin-top: 16px;
+        height: 100px;
+
+        .podium-stage {
+            position: absolute;
+            bottom: 16px;
+            transform: translate(75%, 0);
+            
+            .logo-icon{
+                font-size: 45px;
+            }
+        } 
     }
 }
 

@@ -100,6 +100,25 @@
 .track-info-container .ant-select-selection-item {
   font-weight: 500;
 }
+.race-result-container {
+  width: 320px;
+  height: 180px;
+  margin-top: 16px !important;
+  border-radius: 8px !important;
+}
+.race-result-container .podium-container {
+  text-align: center;
+  margin-top: 16px;
+  height: 100px;
+}
+.race-result-container .podium-container .podium-stage {
+  position: absolute;
+  bottom: 16px;
+  transform: translate(75%, 0);
+}
+.race-result-container .podium-container .podium-stage .logo-icon {
+  font-size: 45px;
+}
 .ant-layout .content-layout {
   background-color: #ececec;
 }

@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Space, Row, Col, Card } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
-import TrackInfoContextProvider from './context/TrackInfoContextProvider';
 
 import Table from './table/Table';
 import LineChart from './line-chart/LineChart';
 import TrackInfo from './TrackInfo';
+import Podium from './Podium';
 
 import SessionSelect from './select/SessionSelect';
 import ChartTypeSelect from './select/ChartTypeSelect';
@@ -35,9 +35,16 @@ export default function RaceDetailContent() {
                 </div>
             </Col>
             <Col span={7}>
-                <TrackInfoContextProvider>
-                    <TrackInfo/>
-                </TrackInfoContextProvider>
+                <Row>
+                    <Col>
+                        <TrackInfo/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Podium/>
+                    </Col>
+                </Row>
             </Col>
         </Row>
     )

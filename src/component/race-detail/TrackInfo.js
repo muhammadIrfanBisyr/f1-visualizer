@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {Card, Space, Skeleton} from 'antd';
 import { EnvironmentOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
+import TrackInfoContextProvider from './context/TrackInfoContextProvider';
 import TrackInfoContext from './context/TrackInfoContext';
 
 import TrackSelect from './select/TrackSelect';
@@ -9,11 +10,12 @@ import YearSelect from './select/YearSelect';
 
 import CountryFlag from '../global/flag/CountryFlag';
 
-export default function TrackInfo(){
+
+function TrackInfoInnerComponent(){
 
     const {trackId, trackName, locality, country, date, time, isLoading} = useContext(TrackInfoContext);
- 
-    return (
+
+    return(
         <Card className='track-info-container'>
             <Space><YearSelect/><TrackSelect/></Space>
             {
@@ -32,5 +34,13 @@ export default function TrackInfo(){
                 </>
             }
         </Card>
+    )
+}
+
+export default function TrackInfo(){
+    return (
+        <TrackInfoContextProvider>
+            <TrackInfoInnerComponent/>
+        </TrackInfoContextProvider>
     )
 }
