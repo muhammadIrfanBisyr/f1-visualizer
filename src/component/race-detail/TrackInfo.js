@@ -21,11 +21,11 @@ export default function TrackInfo(){
                 <Skeleton active/>
                 :
                 <>
-                    <img src={`${process.env.PUBLIC_URL}/assets/track-map/${trackId}.png`} alt='track' className='track-image'/>
+                    <img src={`${process.env.PUBLIC_URL}/assets/track-map/${trackId.toLowerCase()}.png`} alt='track' className='track-image'/>
                     <div className='track-info-text-container'>
                         <p style={{'textAlign': 'center'}}>{`${trackName}`}</p>
                         <div style={{'marginLeft': '10px'}}>
-                            <EnvironmentOutlined/> <CountryFlag name='australian'/>{` ${locality}, ${country} `} <br/>
+                            <EnvironmentOutlined/> <CountryFlag country={country} />{` ${locality}, ${country} `} <br/>
                             <ClockCircleOutlined/>{` ${date} ${time} `} <br/>
                         </div>
                     </div>

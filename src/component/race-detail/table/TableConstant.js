@@ -31,7 +31,7 @@ export const RACE_COLUMN = [
         key: 'driver',
         render: (driver, record) => 
             <div> 
-                <CountryFlag name={record.nationality}/>
+                <CountryFlag nationality={record.nationality}/>
                 {` ${driver}`}
             </div>
     },
@@ -116,7 +116,7 @@ export const QUALIFYING_COLUMN = [
         key: 'driver',
         render: (driver, record) => 
             <div> 
-                <CountryFlag name={record.nationality}/>
+                <CountryFlag nationality={record.nationality}/>
                 {` ${driver}`}
             </div>
     },

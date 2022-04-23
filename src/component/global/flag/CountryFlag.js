@@ -1,37 +1,11 @@
 import Flags from "country-flag-icons/react/3x2";
 
-const nationality = {
-    'monegasque': 'MC',
-    'spanish': 'ES',
-    'british': 'GB',
-    'danish': 'DK',
-    'finnish': 'FI',
-    'french': 'FR',
-    'japanese': 'JP',
-    'chinese': 'CN',
-    'german': 'DE',
-    'australian': 'AU',
-    'canadian': 'CA',
-    'mexican': 'MX',
-    'dutch': 'NL',
-    'thai': 'TH',
-    'russian': 'RU',
-    'italian': 'IT',
-    'brazilian': 'BR',
-    'swedish': 'SE',
-    'indonesian': 'ID',
-    'polish': 'PL',
-    'indian': 'IN',
-    'swiss': 'CH',
-    'venezuelan': 'VE',
-    'new zealander': 'NZ',
-    'belgian': 'BE',
-}
+import { COUNTRY_NAME_TO_ISO, NATIONALITY_TO_ISO  } from "../constant/Country";
 
-export default function CountryFlag({name}){
+export default function CountryFlag({country = '', nationality = ''}){
    
-    const unicode = nationality?.[name.toLowerCase()];
-    const Flag = unicode ? Flags[unicode] : Flags['US'];
+    const unicode = country ? COUNTRY_NAME_TO_ISO?.[country.toLowerCase()] : NATIONALITY_TO_ISO?.[nationality.toLowerCase()];
+    const Flag = unicode ? Flags[unicode] : Flags.TV;
 
     return(<Flag className='flag-icon'/>)
 }
