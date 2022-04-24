@@ -88,10 +88,6 @@
     margin: 16px auto 0 auto;
     text-align: center;
 
-    .session-select{
-        width: 120px;
-    }
-
     .chart-type-select{
         width: 125px;
     }
@@ -138,9 +134,25 @@
 
 .race-result-container{
     width: @right-side-card-width;
-    height: 180px;
+    height: 200px;
     margin-top: 16px !important;
     border-radius: @card-border-radius !important;
+
+    .ant-card-body {
+        padding: @card-padding;
+    }
+
+    .ant-select-selection-item {
+        font-weight: 500;
+    }
+
+    .card-title {
+        font-weight: 500;
+    }
+
+    .session-select{
+        width: 120px;
+    }
 
     .podium-container {
         text-align: center;
@@ -154,6 +166,12 @@
             
             .logo-icon{
                 font-size: 45px;
+            }
+
+            .flag-icon {
+                display: block;
+                margin: 0 auto;
+                height: 15px;
             }
         } 
     }

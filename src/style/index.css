@@ -63,9 +63,6 @@
   margin: 16px auto 0 auto;
   text-align: center;
 }
-.main-select-group .session-select {
-  width: 120px;
-}
 .main-select-group .chart-type-select {
   width: 125px;
 }
@@ -102,9 +99,21 @@
 }
 .race-result-container {
   width: 320px;
-  height: 180px;
+  height: 200px;
   margin-top: 16px !important;
   border-radius: 8px !important;
+}
+.race-result-container .ant-card-body {
+  padding: 8px;
+}
+.race-result-container .ant-select-selection-item {
+  font-weight: 500;
+}
+.race-result-container .card-title {
+  font-weight: 500;
+}
+.race-result-container .session-select {
+  width: 120px;
 }
 .race-result-container .podium-container {
   text-align: center;
@@ -118,6 +127,11 @@
 }
 .race-result-container .podium-container .podium-stage .logo-icon {
   font-size: 45px;
+}
+.race-result-container .podium-container .podium-stage .flag-icon {
+  display: block;
+  margin: 0 auto;
+  height: 15px;
 }
 .ant-layout .content-layout {
   background-color: #ececec;

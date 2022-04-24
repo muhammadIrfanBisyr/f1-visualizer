@@ -29,7 +29,6 @@ export default function RaceDetailContent() {
 
                 <div className='main-select-group'>
                     <Space>
-                        <SessionSelect/>
                         <ChartTypeSelect />
                     </Space>
                 </div>

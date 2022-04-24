@@ -1,11 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { Card } from 'antd';
+import { Card, Space } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
+import SessionSelect from './select/SessionSelect';
 import TeamLogo from '../global/logo/TeamLogo';
+import CountryFlag from '../global/flag/CountryFlag';
 import { TEAM_CONST } from '../global/constant/Teams';
 
-const PODIUM_HEIGHT = [110,85,60];
+const PODIUM_HEIGHT = [100,75,50];
 const PODIUM_WIDTH = 70;
 
 function Stage({place, displayOrder}) {
@@ -16,29 +18,31 @@ function Stage({place, displayOrder}) {
     const [ curHeight, setCurheight] = useState(40);
     const [ constructorName, setConstructorName ] = useState('')
     const [ driverName, setDriverName ] = useState('')
+    const [ nationality, setNationality ] = useState('')
 
     useEffect(() => {
-        const interval = setInterval(() => {  
+        setTimeout(() => {
             if(curHeight < PODIUM_HEIGHT[place])
                 setCurheight(curr => ++curr);
-        })
-        return () => { clearInterval(interval) }
-    },[place, curHeight])
+        }, 3);
+    },[curHeight])
 
     useEffect(() => {
         if(resultData.length !== 0){
             setCurheight(0);
             setPodiumColor(TEAM_CONST[resultData[place].constructorId].color);
             setConstructorName(resultData[place].constructorId);
-            setDriverName(resultData[place].driver.split(' ')[1])
+            setDriverName(resultData[place].driver.split(' ')[1]);
+            setNationality(resultData[place].nationality);
         } else {
             setPodiumColor('#ffffff');
             setCurheight(0);
             setConstructorName('');
             setDriverName('');
+            setNationality('');
         }
 
-    },[place, resultData])
+    },[resultData])
 
     return (
         <div
@@ -50,7 +54,10 @@ function Stage({place, displayOrder}) {
                 width: PODIUM_WIDTH,
             }}
         >
-            <div style={{position: 'absolute', textAlign: 'center', width: 'inherit', top: '-20px', fontWeight: 'bold'}}>{driverName}</div>
+            <div style={{position: 'absolute', textAlign: 'center', width: 'inherit', top: '-35px', fontWeight: 'bold'}}>
+                <CountryFlag nationality={nationality}/>
+                {driverName}
+            </div>
             <TeamLogo name={constructorName}/>
         </div>
     );
@@ -59,6 +66,7 @@ function Stage({place, displayOrder}) {
 export default function Podium() {
     return (
         <Card className='race-result-container'>
+            <Space><SessionSelect/> <div className='card-title'> Session Result </div></Space>
             <div className='podium-container'>
                 <Stage place={1} displayOrder={0}/>
                 <Stage place={0} displayOrder={1}/>
