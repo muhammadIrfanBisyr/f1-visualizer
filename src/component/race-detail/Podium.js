@@ -20,7 +20,7 @@ function Stage({place, displayOrder}) {
                 setCurheight(curr => ++curr);
         }, 3)
         return () => { clearInterval(interval) }
-    },[curHeight])
+    },[place, curHeight])
 
     return (
         <div 

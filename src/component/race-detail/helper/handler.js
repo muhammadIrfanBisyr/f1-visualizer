@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { message } from 'antd';
 
-import { RACE_COLUMN, QUALIFYING_COLUMN } from '../table/TableConstant';
-
 import { lapTimeToMiliseconds } from './utils';
 
 const apiDataToTableData = (data, session) =>{
@@ -79,10 +77,7 @@ const apiDataToTableData = (data, session) =>{
             resData[fastestQ3[1]].fQ3 = fastestQ3[0];
         }
     }
-    return {
-        resData, 
-        column: session === 'R' ? RACE_COLUMN : QUALIFYING_COLUMN,
-    };
+    return resData;
 }
 
 export const handleAPITable = (params, setters) => {
@@ -94,17 +89,16 @@ export const handleAPITable = (params, setters) => {
     setters.setLoading(true);
     axios.get(apiUrl).then(res => {
         try {
-            const {resData, column} = apiDataToTableData(res, params.session);
-            setters.setAllData({resData, column});
+            setters.setResultData(apiDataToTableData(res, params.session));
         }
         catch {
-            setters.setAllData([]);
+            setters.setResultData([]);
         }
         finally {
             setters.setLoading(false);
         }
     }).catch((err) => {
-        setters.setAllData([]);
+        setters.setResultData([]);
         message(`Error fetching API data: ${err}`);
     }).finally(() => {
         setters.setLoading(false)
@@ -201,7 +195,7 @@ export const handleAPITracks = (params, setters) => {
     axios.get(apiUrl).then(res => {
         try {
             const retVar = [];
-            res.data.MRData.RaceTable.Races.forEach((item)=>{
+            res.data.MRData.RaceTable.Races.forEach((item) => {
                 retVar.push({
                     round: item.round, 
                     raceName:item.raceName,

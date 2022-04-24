@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Table as AntdTable, Popover } from 'antd';
 
+import RaceDetailContext from '../context/RaceDetailContext';
+import { QUALIFYING_COLUMN, RACE_COLUMN  } from './TableConstant';
 import {handleAPITable} from '../helper/handler';
 
-import RaceDetailContext from '../context/RaceDetailContext';
 
 const FastestLapContent = ({time, lap}) => {
     return(
@@ -32,20 +33,31 @@ const FastestLapPopover = (props) => {
 
 export default function Table(){
     
-    const {year, session, track} = useContext(RaceDetailContext);
-
-    const [allData, setAllData] = useState([]);
-    const [isLoading, setLoading] = useState(false);
     
+    const {year, session, track, resultData, actions:{setResultData}} = useContext(RaceDetailContext);
+    
+    const [isLoading, setLoading] = useState(false);
+    const [column, setColumn] = useState([]);
+
+
     useEffect(() => {
-        handleAPITable({session, track, year}, {setAllData, setLoading});
+        handleAPITable({session, track, year}, {setResultData, setLoading});
     },[year, track, session])
+
+    useEffect(() => {
+        if (resultData.length > 0){
+            if (session === 'R')
+                setColumn(RACE_COLUMN);
+            else
+                setColumn(QUALIFYING_COLUMN);
+        }
+    },[session,resultData])
 
     return(
         <AntdTable 
             className='main-table'
-            dataSource={allData.resData} 
-            columns={allData.column}
+            dataSource={resultData} 
+            columns={column}
             rowClassName={record => record?.fastestLapRank === '1' && 'row-fastest-lap'}
             components={{
                 body: {
