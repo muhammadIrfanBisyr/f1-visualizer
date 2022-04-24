@@ -20,9 +20,9 @@ export default function MainPage(){
             </Sider>
             <Layout className="content-layout">
                 <>
-                    <Title>
+                    {/* <Title>
                         F1 Visualizer
-                    </Title>
+                    </Title> */}
                     
                     <RaceDetailContextProvider>
                         <RaceDetailContent/>
