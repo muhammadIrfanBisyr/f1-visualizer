@@ -46,17 +46,13 @@
   padding: 2px !important;
 }
 .main-detail-content-container .main-line-chart-container {
-  height: inherit;
-}
-.main-detail-content-container .main-line-chart-container .main-line-chart {
-  width: 760px;
-  margin: 0 auto;
-  display: inline-block;
   text-align: left;
 }
+.main-detail-content-container .main-line-chart-container .main-line-chart {
+  margin-top: 16px;
+  height: 520px !important;
+}
 .main-detail-content-container .main-line-chart-container .chart-data-type-select {
-  display: inline-block;
-  margin-left: 8px;
   width: 155px;
 }
 .main-select-group {

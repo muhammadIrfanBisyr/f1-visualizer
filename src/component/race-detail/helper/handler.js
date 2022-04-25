@@ -169,7 +169,7 @@ export const handleAPILineChart = (params, setters) => {
             const processedLine = apiToLineChartData(resLine);
 
             setters.setAllData(
-                {...appendTableDataToLineData(processedTable.resData, processedLine.resData), 
+                {...appendTableDataToLineData(processedTable, processedLine.resData), 
                     chartLimit: processedLine.chartLimit}
             );
         }

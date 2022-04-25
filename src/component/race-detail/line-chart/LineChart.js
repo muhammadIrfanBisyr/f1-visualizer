@@ -53,6 +53,16 @@ export default function LineChart(){
 
     return (
         <div className='main-line-chart-container'>
+            <Select 
+                className='chart-data-type-select'
+                defaultValue={yAxis} 
+                value={yAxis}
+                onChange={(val) => {setYAxis(val)}}
+            >
+                <Option value='pos'> Position Changes </Option>
+                <Option value='time'> Lap Times </Option>
+            </Select>
+
             <Line 
                 className='main-line-chart'
                 data={allData?.chartData ?? []} 
@@ -88,16 +98,6 @@ export default function LineChart(){
                 colorField='driverId' 
                 color= {({driverId}) => TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000'}
             />
-
-            <Select 
-                className='chart-data-type-select'
-                defaultValue={yAxis} 
-                value={yAxis}
-                onChange={(val) => {setYAxis(val)}}
-            >
-                <Option value='pos'> Position Changes </Option>
-                <Option value='time'> Lap Times </Option>
-            </Select>
         </div>
     )
 }
