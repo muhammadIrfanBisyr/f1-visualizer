@@ -8,7 +8,6 @@ import LineChart from './line-chart/LineChart';
 import TrackInfo from './TrackInfo';
 import Podium from './Podium';
 
-import SessionSelect from './select/SessionSelect';
 import ChartTypeSelect from './select/ChartTypeSelect';
 
 export default function RaceDetailContent() {

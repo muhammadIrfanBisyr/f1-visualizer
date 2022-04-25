@@ -10,36 +10,38 @@ import { TEAM_CONST } from '../global/constant/Teams';
 const PODIUM_HEIGHT = [100,75,50];
 const PODIUM_WIDTH = 70;
 
+const PODIUM_INITIAL_STATE = {
+    podiumColor: '#ffffff',
+    height: 40,
+    constructorName: '',
+    driverName: '',
+    nationality: ''
+}
+
 function Stage({place, displayOrder}) {
 
     const { resultData } = useContext(RaceDetailContext);
 
-    const [ podiumColor, setPodiumColor] = useState('#ffffff');
-    const [ curHeight, setCurheight] = useState(40);
-    const [ constructorName, setConstructorName ] = useState('')
-    const [ driverName, setDriverName ] = useState('')
-    const [ nationality, setNationality ] = useState('')
+    const [state, setState] = useState(PODIUM_INITIAL_STATE);
 
     useEffect(() => {
         setTimeout(() => {
-            if(curHeight < PODIUM_HEIGHT[place])
-                setCurheight(curr => ++curr);
+            if(state.height < PODIUM_HEIGHT[place])
+                setState((prevState) => ({...prevState, height: ++prevState.height}));
         }, 3);
-    },[curHeight])
+    },[state.height])
 
     useEffect(() => {
         if(resultData.length !== 0){
-            setCurheight(0);
-            setPodiumColor(TEAM_CONST[resultData[place].constructorId].color);
-            setConstructorName(resultData[place].constructorId);
-            setDriverName(resultData[place].driver.split(' ')[1]);
-            setNationality(resultData[place].nationality);
+            setState({
+                podiumColor: TEAM_CONST[resultData[place].constructorId].color,
+                height: 0,
+                constructorName: resultData[place].constructorId,
+                driverName: resultData[place].driver.split(' ')[1],
+                nationality: resultData[place].nationality
+            });
         } else {
-            setPodiumColor('#ffffff');
-            setCurheight(0);
-            setConstructorName('');
-            setDriverName('');
-            setNationality('');
+            setState({...PODIUM_INITIAL_STATE, height: 0})
         }
 
     },[resultData])
@@ -49,16 +51,16 @@ function Stage({place, displayOrder}) {
             class='podium-stage' 
             style={{
                 left: displayOrder * PODIUM_WIDTH,
-                backgroundColor: podiumColor, 
-                height: curHeight, 
+                backgroundColor: state.podiumColor, 
+                height: state.height, 
                 width: PODIUM_WIDTH,
             }}
         >
             <div style={{position: 'absolute', textAlign: 'center', width: 'inherit', top: '-35px', fontWeight: 'bold'}}>
-                <CountryFlag nationality={nationality}/>
-                {driverName}
+                <CountryFlag nationality={state.nationality}/>
+                {state.driverName}
             </div>
-            <TeamLogo name={constructorName}/>
+            <TeamLogo name={state.constructorName}/>
         </div>
     );
 }
