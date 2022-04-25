@@ -9,14 +9,13 @@ const {Option} = Select;
 
 export default function TrackSelect(){
 
-    const { actions: {setLoading, setTrackInfo}} = useContext(TrackInfoContext);
+    const { actions: {setTrackInfo}} = useContext(TrackInfoContext);
     const { track, year, actions: {setTrack} } = useContext(RaceDetailContext);
 
     const [ trackOptions, setTracksOptions ] = useState([]);
 
     useEffect(() => {
-        if(setLoading)
-            handleAPITracks({year}, {setTracksOptions, setLoading});
+        handleAPITracks({year}, {setTracksOptions});
     },[year])
 
     useEffect(() => {

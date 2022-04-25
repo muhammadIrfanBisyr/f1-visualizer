@@ -34,11 +34,8 @@ const FastestLapPopover = (props) => {
 export default function Table(){
     
     
-    const {year, session, track, resultData, actions:{setResultData}} = useContext(RaceDetailContext);
-    
-    const [isLoading, setLoading] = useState(false);
+    const {year, session, track, resultData, loading, actions:{setResultData, setLoading}} = useContext(RaceDetailContext);
     const [column, setColumn] = useState([]);
-
 
     useEffect(() => {
         handleAPITable({session, track, year}, {setResultData, setLoading});
@@ -65,7 +62,7 @@ export default function Table(){
                 }
             }}
             pagination={false}
-            loading={isLoading}
+            loading={loading}
             size='small'
         >
         </AntdTable>

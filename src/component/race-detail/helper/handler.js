@@ -190,7 +190,6 @@ export const handleAPILineChart = (params, setters) => {
 export const handleAPITracks = (params, setters) => {
 
     const apiUrl = `http://ergast.com/api/f1/${params.year}.json`;
-    setters.setLoading(true);
 
     axios.get(apiUrl).then(res => {
         try {
@@ -213,13 +212,8 @@ export const handleAPITracks = (params, setters) => {
         catch {       
             setters.setTracksOptions([]);
         }
-        finally {
-            setters.setLoading(false);
-        }
     }).catch((err) => {
         setters.setTracksOptions([]);
         message(`Error fetching API data: ${err}`);
-    }).finally(() => {
-        setters.setLoading(false)
     })
 }

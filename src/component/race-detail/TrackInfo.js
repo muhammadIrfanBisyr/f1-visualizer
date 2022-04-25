@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {Card, Space, Skeleton} from 'antd';
 import { EnvironmentOutlined, ClockCircleOutlined } from '@ant-design/icons'
 
+import RaceDetailContext from './context/RaceDetailContext';
 import TrackInfoContextProvider from './context/TrackInfoContextProvider';
 import TrackInfoContext from './context/TrackInfoContext';
 
@@ -13,13 +14,14 @@ import CountryFlag from '../global/flag/CountryFlag';
 
 function TrackInfoInnerComponent(){
 
-    const {trackId, trackName, locality, country, date, time, isLoading} = useContext(TrackInfoContext);
+    const {trackId, trackName, locality, country, date, time} = useContext(TrackInfoContext);
+    const {loading} = useContext(RaceDetailContext);
 
     return(
         <Card className='track-info-container'>
             <Space><YearSelect/><TrackSelect/></Space>
             {
-                isLoading ?
+                loading ?
                 <Skeleton active/>
                 :
                 <>

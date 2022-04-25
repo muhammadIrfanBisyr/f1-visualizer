@@ -9,7 +9,6 @@ export const TRACK_INFO_INITIAL_STATE = {
     country: '',
     date: '',
     time: '',  
-    isLoading: false,
     actions: {}
 }
 

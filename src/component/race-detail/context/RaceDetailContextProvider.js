@@ -6,6 +6,7 @@ const ACTION = {
     SET_YEAR: 'SET_YEAR',
     SET_SESSION: 'SET_SESSION',
     SET_CHART_TYPE: 'SET_CHART_TYPE',
+    SET_LOADING: 'SET_LOADING',
     SET_RESULT_DATA: 'SET_RESULT_DATA',
 };
 
@@ -19,6 +20,8 @@ function reducer(state, {type, payload}){
             return {...state, session: payload.session, chartType: payload.chartType, resultData: payload.resultData };
         case ACTION.SET_CHART_TYPE:
             return {...state, chartType: payload };
+        case ACTION.SET_LOADING:
+            return {...state, loading: payload };
         case ACTION.SET_RESULT_DATA:
             return {...state, resultData: payload };
         default:
@@ -48,6 +51,10 @@ export default function RaceDetailContextProvider({children}){
         dispatch({ type: ACTION.SET_CHART_TYPE, payload: data});
     }
 
+    const setLoading = (data) => {
+        dispatch({ type: ACTION.SET_LOADING, payload: data});
+    }
+
     const setResultData = (data) => {
         dispatch({ type: ACTION.SET_RESULT_DATA, payload: data});
     }
@@ -61,6 +68,7 @@ export default function RaceDetailContextProvider({children}){
                     setYear,
                     setSession,
                     setChartType,
+                    setLoading,
                     setResultData
                 }
 

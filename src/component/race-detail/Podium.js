@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { Card, Space } from 'antd';
+import { Card, Skeleton, Space } from 'antd';
 
 import RaceDetailContext from './context/RaceDetailContext';
 import SessionSelect from './select/SessionSelect';
@@ -66,14 +66,21 @@ function Stage({place, displayOrder}) {
 }
 
 export default function Podium() {
+
+    const { loading } = useContext(RaceDetailContext);
+
     return (
         <Card className='race-result-container'>
             <Space><SessionSelect/> <div className='card-title'> Session Result </div></Space>
-            <div className='podium-container'>
-                <Stage place={1} displayOrder={0}/>
-                <Stage place={0} displayOrder={1}/>
-                <Stage place={2} displayOrder={2}/>
-            </div>
+            {
+                loading ? 
+                <Skeleton active/> :
+                <div className='podium-container'>
+                    <Stage place={1} displayOrder={0}/>
+                    <Stage place={0} displayOrder={1}/>
+                    <Stage place={2} displayOrder={2}/>
+                </div>
+            }
         </Card>
     );
 }

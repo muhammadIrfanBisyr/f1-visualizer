@@ -5,6 +5,7 @@ export const CONTEXT_INITIAL_STATE = {
     track: '1',
     session: 'R',
     chartType: 'T',
+    loading: false,
     resultData: [],
     actions: {}
 }
