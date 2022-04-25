@@ -5,6 +5,7 @@
   text-align: center;
   margin-left: 30px !important;
   border-radius: 8px !important;
+  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .main-detail-content-container .ant-card-body {
   padding: 8px;
@@ -71,6 +72,7 @@
   height: 277px;
   text-align: center;
   border-radius: 8px !important;
+  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .track-info-container .ant-card-body {
   padding: 8px;
@@ -102,6 +104,7 @@
   height: 200px;
   margin-top: 16px !important;
   border-radius: 8px !important;
+  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .race-result-container .ant-card-body {
   padding: 8px;
