@@ -71,7 +71,7 @@ export default function Podium() {
 
     return (
         <Card className='race-result-container'>
-            <Space><SessionSelect/> <div className='card-title'> Session Result </div></Space>
+            <div className='card-title'> Session Summary </div>
             {
                 loading ? 
                 <Skeleton active/> :

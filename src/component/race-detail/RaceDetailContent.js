@@ -8,6 +8,7 @@ import LineChart from './line-chart/LineChart';
 import TrackInfo from './TrackInfo';
 import Podium from './Podium';
 
+import SessionSelect from './select/SessionSelect';
 import ChartTypeSelect from './select/ChartTypeSelect';
 
 export default function RaceDetailContent() {
@@ -18,19 +19,25 @@ export default function RaceDetailContent() {
         <Row>
             <Col span={18}>
                 <Card className='main-detail-content-container'>
-                {
-                    chartType === 'T' ?
-                    <Table/>
-                    :
-                    <LineChart/>
-                }
+                    <Row>
+                        <Col span={21}>
+                            <Space style={{'marginBottom': '16px'}}>
+                                <SessionSelect/> <div className='card-title'> Session Result </div>
+                            </Space> 
+                        </Col>
+                        <Col span={3}>
+                            <Row justify='end'>
+                                <ChartTypeSelect />
+                            </Row>
+                        </Col>
+                    </Row>
+                    {
+                        chartType === 'T' ?
+                        <Table/>
+                        :
+                        <LineChart/>
+                    }
                 </Card>
-
-                <div className='main-select-group'>
-                    <Space>
-                        <ChartTypeSelect />
-                    </Space>
-                </div>
             </Col>
             <Col span={6}>
                 <Row>

@@ -1,14 +1,25 @@
 .main-detail-content-container {
   font-size: 10px;
   width: 95%;
-  height: 585px;
-  text-align: center;
+  height: 640px;
   margin-left: 30px !important;
   border-radius: 8px !important;
   box-shadow: 3px 3px 3px 1px #cecece;
 }
 .main-detail-content-container .ant-card-body {
   padding: 8px;
+}
+.main-detail-content-container .session-select {
+  width: 120px;
+}
+.main-detail-content-container .chart-type-select {
+  width: 125px;
+}
+.main-detail-content-container .ant-select-selection-item {
+  font-weight: 500;
+}
+.main-detail-content-container .card-title {
+  font-weight: 500;
 }
 .main-detail-content-container .main-table {
   margin: 0 auto;
@@ -55,14 +66,6 @@
 .main-detail-content-container .main-line-chart-container .chart-data-type-select {
   width: 155px;
 }
-.main-select-group {
-  width: 50%;
-  margin: 16px auto 0 auto;
-  text-align: center;
-}
-.main-select-group .chart-type-select {
-  width: 125px;
-}
 .track-info-container {
   width: 320px;
   height: 277px;
@@ -105,14 +108,8 @@
 .race-result-container .ant-card-body {
   padding: 8px;
 }
-.race-result-container .ant-select-selection-item {
-  font-weight: 500;
-}
 .race-result-container .card-title {
   font-weight: 500;
-}
-.race-result-container .session-select {
-  width: 120px;
 }
 .race-result-container .podium-container {
   text-align: center;
