@@ -107,7 +107,7 @@
 }
 .race-result-container {
   width: 320px;
-  height: 200px;
+  height: 300px;
   margin-top: 16px !important;
   border-radius: 8px !important;
   box-shadow: 3px 3px 3px 1px #cecece;
@@ -121,11 +121,11 @@
 .race-result-container .podium-container {
   text-align: center;
   margin-top: 16px;
-  height: 100px;
+  height: 140px;
 }
 .race-result-container .podium-container .podium-stage {
   position: absolute;
-  bottom: 16px;
+  bottom: 120px;
   transform: translate(75%, 0);
 }
 .race-result-container .podium-container .podium-stage .logo-icon {

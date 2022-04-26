@@ -75,11 +75,19 @@ export default function Podium() {
             {
                 loading ? 
                 <Skeleton active/> :
-                <div className='podium-container'>
-                    <Stage place={1} displayOrder={0}/>
-                    <Stage place={0} displayOrder={1}/>
-                    <Stage place={2} displayOrder={2}/>
-                </div>
+                <>
+                    <div className='podium-container'>
+                        <Stage place={1} displayOrder={0}/>
+                        <Stage place={0} displayOrder={1}/>
+                        <Stage place={2} displayOrder={2}/>
+                    </div>
+                    <div>Fastest Lap: Leclerc On Lap 53 1:30.999</div>
+                    <div>Most Gain: Hamilton 5 Position</div>
+                    <div>Most Lost: Magnussen 1 Position</div>
+                    <div>Most Lap Led: Magnussen 30 Laps</div>
+
+                </>
+                
             }
         </Card>
     );
