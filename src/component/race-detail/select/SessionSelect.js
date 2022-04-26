@@ -5,7 +5,7 @@ import RaceDetailContext from '../context/RaceDetailContext';
 
 const { Option } = Select;
 
-const SPRINT_RACE_CONST = new Set([
+export const SPRINT_RACE_CONST = new Set([
     '2021_silverstone', '2021_monza', '2021_interlagos', '2022_imola'
 ])
 

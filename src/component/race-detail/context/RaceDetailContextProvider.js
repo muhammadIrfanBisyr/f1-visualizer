@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import RaceDetailContext, {CONTEXT_INITIAL_STATE} from './RaceDetailContext'
+import { SPRINT_RACE_CONST } from '../select/SessionSelect'
 
 const ACTION = {
     SET_TRACK: 'SET_TRACK',
@@ -14,11 +15,11 @@ const ACTION = {
 function reducer(state, {type, payload}){
     switch (type) {
         case ACTION.SET_YEAR:
-            return {...state, year: payload, track: '1' };
+            return {...state, year: payload.year, track: '1', session: payload.session};
         case ACTION.SET_TRACK:
             return {...state, track: payload };
         case ACTION.SET_TRACK_ID:
-            return {...state, trackId: payload };
+            return {...state, trackId: payload.trackId, session: payload.session };
         case ACTION.SET_SESSION:
             return {...state, session: payload.session, chartType: payload.chartType, resultData: payload.resultData };
         case ACTION.SET_CHART_TYPE:
@@ -32,6 +33,9 @@ function reducer(state, {type, payload}){
     }
 }
 
+const getCheckSession = (session, year, trackId) => {
+    return session === 'S' && SPRINT_RACE_CONST.has(`${year}_${trackId}`) ? session : 'R';
+}
 
 export default function RaceDetailContextProvider({children}){
     
@@ -42,11 +46,13 @@ export default function RaceDetailContextProvider({children}){
     }
 
     const setTrackId = (data) => {
-        dispatch({ type: ACTION.SET_TRACK_ID, payload: data});
+        const session = getCheckSession(state.session, state.year, data);
+        dispatch({ type: ACTION.SET_TRACK_ID, payload: {trackId: data, session}});
     }
 
     const setYear = (data) => {
-        dispatch({ type: ACTION.SET_YEAR, payload: data});
+        const session = getCheckSession(state.session, data, state.trackId);
+        dispatch({ type: ACTION.SET_YEAR, payload: {year: data, session}});
     }
 
     const setSession = (data) => {
