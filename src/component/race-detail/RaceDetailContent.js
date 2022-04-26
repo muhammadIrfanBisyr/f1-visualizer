@@ -18,19 +18,23 @@ export default function RaceDetailContent() {
     return (
         <Row>
             <Col span={18}>
-                <Card className='main-detail-content-container'>
-                    <Row>
-                        <Col span={21}>
-                            <Space style={{'marginBottom': '16px'}}>
-                                <SessionSelect/> <div className='card-title'> Session Result </div>
-                            </Space> 
-                        </Col>
-                        <Col span={3}>
-                            <Row justify='end'>
-                                <ChartTypeSelect />
-                            </Row>
-                        </Col>
-                    </Row>
+                <Card 
+                    className='main-detail-content-container'
+                    title={
+                        <Row>
+                            <Col span={21}>
+                                <Space>
+                                    <SessionSelect/> <div className='card-title'> Session Result </div>
+                                </Space> 
+                            </Col>
+                            <Col span={3}>
+                                <Row justify='end'>
+                                    <ChartTypeSelect />
+                                </Row>
+                            </Col>
+                        </Row>
+                    }    
+                >
                     {
                         chartType === 'T' ?
                         <Table/>
