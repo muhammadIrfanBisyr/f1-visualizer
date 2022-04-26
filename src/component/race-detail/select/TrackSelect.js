@@ -10,7 +10,7 @@ const {Option} = Select;
 export default function TrackSelect(){
 
     const { actions: {setTrackInfo}} = useContext(TrackInfoContext);
-    const { track, year, actions: {setTrack} } = useContext(RaceDetailContext);
+    const { track, year, actions: {setTrack, setTrackId} } = useContext(RaceDetailContext);
 
     const [ trackOptions, setTracksOptions ] = useState([]);
 
@@ -27,7 +27,7 @@ export default function TrackSelect(){
         <Select 
             defaultValue={track}
             value={track}
-            onChange={(e) => {setTrack(e); setTrackInfo(trackOptions[e-1])}}
+            onChange={(e) => {setTrack(e); setTrackId(trackOptions?.[e-1]?.trackId); setTrackInfo(trackOptions[e-1])}}
             className='detail-title-selectable track-select'
         >
             {

@@ -20,7 +20,7 @@ export default function MainPage(){
             </Sider>
             <Layout className="content-layout">
                 <>
-                    <Title>
+                    <Title level={3}>
                         F1 Visualizer
                     </Title>
                     

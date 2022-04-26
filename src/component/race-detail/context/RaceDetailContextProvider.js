@@ -3,6 +3,7 @@ import RaceDetailContext, {CONTEXT_INITIAL_STATE} from './RaceDetailContext'
 
 const ACTION = {
     SET_TRACK: 'SET_TRACK',
+    SET_TRACK_ID: 'SET_TRACK_ID',
     SET_YEAR: 'SET_YEAR',
     SET_SESSION: 'SET_SESSION',
     SET_CHART_TYPE: 'SET_CHART_TYPE',
@@ -16,6 +17,8 @@ function reducer(state, {type, payload}){
             return {...state, year: payload, track: '1' };
         case ACTION.SET_TRACK:
             return {...state, track: payload };
+        case ACTION.SET_TRACK_ID:
+            return {...state, trackId: payload };
         case ACTION.SET_SESSION:
             return {...state, session: payload.session, chartType: payload.chartType, resultData: payload.resultData };
         case ACTION.SET_CHART_TYPE:
@@ -36,6 +39,10 @@ export default function RaceDetailContextProvider({children}){
 
     const setTrack = (data) => {
         dispatch({ type: ACTION.SET_TRACK, payload: data});
+    }
+
+    const setTrackId = (data) => {
+        dispatch({ type: ACTION.SET_TRACK_ID, payload: data});
     }
 
     const setYear = (data) => {
@@ -65,6 +72,7 @@ export default function RaceDetailContextProvider({children}){
                 ...state,
                 actions: {
                     setTrack,
+                    setTrackId,
                     setYear,
                     setSession,
                     setChartType,

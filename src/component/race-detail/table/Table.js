@@ -43,10 +43,10 @@ export default function Table(){
 
     useEffect(() => {
         if (resultData.length > 0){
-            if (session === 'R')
-                setColumn(RACE_COLUMN);
-            else
+            if (session === 'Q')
                 setColumn(QUALIFYING_COLUMN);
+            else
+                setColumn(RACE_COLUMN);
         }
     },[session,resultData])
 

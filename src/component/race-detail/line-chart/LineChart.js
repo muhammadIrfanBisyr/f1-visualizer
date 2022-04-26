@@ -97,6 +97,7 @@ export default function LineChart(){
                 loading={isLoading}
                 colorField='driverId' 
                 color= {({driverId}) => TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000'}
+                smooth
             />
         </div>
     )

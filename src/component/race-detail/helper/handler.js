@@ -6,34 +6,7 @@ import { lapTimeToMiliseconds } from './utils';
 const apiDataToTableData = (data, session) =>{
     
     const resData = [];
-
-    if (session === 'R') {
-        const year = data.data.MRData.RaceTable.Races[0].season;
-        data.data.MRData.RaceTable.Races[0].Results.forEach((item) => {
-            resData.push(
-                {
-                    pos: item.position,
-                    grid: item.grid,
-                    carNo: item.number,
-                    driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
-                    driverId: item.Driver.driverId,
-                    nationality: item.Driver.nationality,
-                    constructor: item.Constructor.name,
-                    constructorId: item.Constructor.constructorId,
-                    laps: item.laps,
-                    time: item?.Time?.time ?? '',
-                    status: item.status,
-                    points: item.points,
-                    fastestLapRank: item?.FastestLap?.rank ?? '',
-                    fastestLapTime: item?.FastestLap?.Time?.time ?? '',
-                    fastestLapOnLap: item?.FastestLap?.lap ?? '',
-                    year
-                }
-            )
-        });
-    }
-    else {
-        
+    if (session === 'Q') {
         // Warning: Lazy lap time comparison
         const fastestQ1 = ['99:99.999', -1];
         const fastestQ2 = ['99:99.999', -1];
@@ -77,14 +50,52 @@ const apiDataToTableData = (data, session) =>{
             resData[fastestQ3[1]].fQ3 = fastestQ3[0];
         }
     }
+    else {
+        const resArrName = session === 'R' ? 'Results' : 'SprintResults';
+
+        const year = data.data.MRData.RaceTable.Races[0].season;
+        data.data.MRData.RaceTable.Races[0][resArrName].forEach((item) => {
+            resData.push(
+                {
+                    pos: item.position,
+                    grid: item.grid,
+                    carNo: item.number,
+                    driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
+                    driverId: item.Driver.driverId,
+                    nationality: item.Driver.nationality,
+                    constructor: item.Constructor.name,
+                    constructorId: item.Constructor.constructorId,
+                    laps: item.laps,
+                    time: item?.Time?.time ?? '',
+                    status: item.status,
+                    points: item.points,
+                    fastestLapRank: item?.FastestLap?.rank ?? '',
+                    fastestLapTime: item?.FastestLap?.Time?.time ?? '',
+                    fastestLapOnLap: item?.FastestLap?.lap ?? '',
+                    year
+                }
+            )
+        });
+    }
     return resData;
 }
 
 export const handleAPITable = (params, setters) => {
 
-    const apiUrl = params.session === 'R' ?
-                   `https://ergast.com/api/f1/${params.year}/${params.track}/results.json` :
-                   `https://ergast.com/api/f1/${params.year}/${params.track}/qualifying.json`
+    let apiUrl = ''
+
+    switch (params.session){
+        case 'Q':
+            apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/qualifying.json`;
+            break;
+        case 'S':
+            apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/sprint.json`;
+            break;
+        case 'R':
+        default:
+            apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/results.json`;
+            break;
+    }
 
     setters.setLoading(true);
     axios.get(apiUrl).then(res => {
