@@ -12,7 +12,7 @@ export default function Main(){
         <Router>
             <MainSidebar>   
                 <Routes>
-                    <Route path='/' element={<Detail/>}/>
+                    <Route path='/' element={<Summary/>}/>
                     <Route path='/detail' element={<Detail/>}/>
                     <Route path='/summary' element={<Summary/>}/>
                 </Routes>

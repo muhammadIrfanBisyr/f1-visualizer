@@ -162,4 +162,14 @@
   height: 15px;
   vertical-align: middle;
 }
+.main-summary-content-container thead > tr > th {
+  text-align: center;
+}
+.main-summary-content-container .table-header-country {
+  line-height: 16px;
+  padding: 4px 0 4px 0;
+}
+.main-summary-content-container .table-result {
+  text-align: center;
+}
 /*# sourceMappingURL=index.css.map */

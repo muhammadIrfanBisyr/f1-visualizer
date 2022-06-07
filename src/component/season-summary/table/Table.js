@@ -10,7 +10,7 @@ export default function Table() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        handleAPITable({year: 2022}, {setResultData, setLoading})
+        handleAPITable({year: 2021}, {setResultData, setLoading})
     },[])
 
     return (

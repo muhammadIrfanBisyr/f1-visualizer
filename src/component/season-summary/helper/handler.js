@@ -33,7 +33,7 @@ const apiDataToTableData = (data) => {
     data.data.MRData.RaceTable.Races.forEach((item) => {      
         
         const countryInitial = item?.raceName?.substring(0,3).toUpperCase() ?? '';
-        resCol.push(generateCountryColumn(countryInitial))
+        resCol.push(generateCountryColumn(countryInitial, item.Circuit.Location.country))
 
         item.Results.forEach((resultItem) => {
             const driverId = resultItem.Driver.driverId;

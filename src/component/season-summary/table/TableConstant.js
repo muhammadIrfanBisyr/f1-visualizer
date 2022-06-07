@@ -1,16 +1,21 @@
 import CountryFlag from '../../global/flag/CountryFlag';
 
-export const generateCountryColumn = (countryInitial) => ({
+export const generateCountryColumn = (countryInitial, country) => ({
     key: countryInitial,
-    title: countryInitial,
+    title: () => (
+        <div className='table-header-country'> 
+            {` ${countryInitial}`}
+            <CountryFlag country={country}/>
+        </div>    
+    ),
     dataIndex: countryInitial,
     render: (countryInitial) => {
         return (
-            <div> 
+            <div className='table-result' > 
                 {countryInitial?.result}
             </div>
         )
-    }
+    },
 });
 
 
@@ -23,5 +28,6 @@ export const DRIVER_COLUMN =  {
             <CountryFlag nationality={record.nationality}/>
             {` ${driverName}`}
         </div>
-    )
+    ),
+    width: 150
 }

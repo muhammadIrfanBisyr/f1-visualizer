@@ -5,7 +5,7 @@ import { Layout, Typography, Menu } from 'antd';
 import {PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
-const { Sider } = Layout;
+const { Header, Sider, Footer, Content } = Layout;
 
 export default function MainSidebar({children}) {
     
@@ -27,19 +27,17 @@ export default function MainSidebar({children}) {
 
     return (
         <Layout className="main-layout">
-            <Sider collapsible>
-                <div className="logo" />
-                <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
-            </Sider>
-            <Layout className="content-layout">
-                <>
-                    <Title level={3}>
-                        F1 Visualizer
-                    </Title>
+            <Header>header</Header>
+            <Layout>
+                <Sider collapsible>
+                    <div className="logo" />
+                    <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
+                </Sider>
+                <Content className="content-layout">
                     {children}
-                </>
+                </Content>
             </Layout>
+            <Footer> ASDADASDADASDfe </Footer>
         </Layout>
-
     )
 }
