@@ -29,7 +29,7 @@ export default function MainSidebar({children}) {
         <Layout className="main-layout">
             <Header>header</Header>
             <Layout>
-                <Sider collapsible>
+                <Sider collapsible theme='light'>
                     <div className="logo" />
                     <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
                 </Sider>
@@ -37,7 +37,7 @@ export default function MainSidebar({children}) {
                     {children}
                 </Content>
             </Layout>
-            <Footer> ASDADASDADASDfe </Footer>
+            <Footer className='main-footer'> Created By Irfan, Using Ergast API and Ant Design </Footer>
         </Layout>
     )
 }
