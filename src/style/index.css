@@ -31,7 +31,15 @@
 .main-detail-content-container .main-table {
   margin: 0 auto;
   height: 575px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge */
+  scrollbar-width: none;
+  /* for Firefox */
+}
+.main-detail-content-container .main-table::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
 }
 .main-detail-content-container .main-table .flag-icon {
   height: 15px;
