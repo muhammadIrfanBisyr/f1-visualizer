@@ -11,7 +11,7 @@ import Podium from './Podium';
 import SessionSelect from './select/SessionSelect';
 import ChartTypeSelect from './select/ChartTypeSelect';
 
-export default function RaceDetailContent() {
+export default function Content() {
 
     const {chartType} = useContext(RaceDetailContext);
    
