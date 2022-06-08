@@ -5,10 +5,8 @@ import RaceDetailContextProvider from '../component/race-detail/context/RaceDeta
 
 export default function Detail({match: {params}}) {
 
-    console.log(params, 'a')
-
     return (
-        <RaceDetailContextProvider>
+        <RaceDetailContextProvider initValue={params}>
             <Content/>
         </RaceDetailContextProvider>
     )

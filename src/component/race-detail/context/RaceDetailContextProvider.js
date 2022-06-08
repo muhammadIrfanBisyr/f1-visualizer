@@ -37,7 +37,7 @@ const getCheckSession = (session, year, trackId) => {
     return session === 'S' && SPRINT_RACE_CONST.has(`${year}_${trackId}`) ? session : 'R';
 }
 
-export default function RaceDetailContextProvider({children}){
+export default function RaceDetailContextProvider({initValue, children}){
     
     const [state, dispatch] = useReducer(reducer, CONTEXT_INITIAL_STATE);
 
@@ -84,8 +84,9 @@ export default function RaceDetailContextProvider({children}){
                     setChartType,
                     setLoading,
                     setResultData
-                }
-
+                },
+                year: initValue?.year ?? CONTEXT_INITIAL_STATE.year,
+                track: initValue?.round ?? CONTEXT_INITIAL_STATE.track
             }}>
             {children}
         </RaceDetailContext.Provider>

@@ -29,11 +29,15 @@ const apiDataToTableData = (data) => {
 
     const resCol = [DRIVER_COLUMN];
     const driverResults = {};
- 
-    data.data.MRData.RaceTable.Races.forEach((item) => {      
-        
+
+    data.data.MRData.RaceTable.Races.forEach((item) => {  
+
+        const round =  item.round;
+        const country =  item.Circuit.Location.country; 
+        const year = item.season;
+
         const countryInitial = item?.raceName?.substring(0,3).toUpperCase() ?? '';
-        resCol.push(generateCountryColumn(countryInitial, item.Circuit.Location.country))
+        resCol.push(generateCountryColumn(countryInitial, country, year, round))
 
         item.Results.forEach((resultItem) => {
             const driverId = resultItem.Driver.driverId;
@@ -49,8 +53,8 @@ const apiDataToTableData = (data) => {
                 point: resultItem.points,
                 result: resultItem.position,
                 status: resultItem.status,
-                round: item.round,
-                country: item.Circuit.Location.country
+                round,
+                country
             }
         })
     })  

@@ -1,10 +1,10 @@
 import CountryFlag from '../../global/flag/CountryFlag';
 import { Link } from 'react-router-dom';
 
-export const generateCountryColumn = (countryInitial, country) => ({
+export const generateCountryColumn = (countryInitial, country, year, round) => ({
     key: countryInitial,
     title: () => (
-        <Link to={'../detail'}>
+        <Link to={`../detail/${year}/${round}`}>
             <div className='table-header-country'> 
                 {` ${countryInitial}`}
                 <CountryFlag country={country}/>
