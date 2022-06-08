@@ -7,7 +7,7 @@ import {PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined } from '@a
 const { Title } = Typography;
 const { Header, Sider, Footer, Content } = Layout;
 
-export default function MainSidebar({children}) {
+export default function MainLayout({children}) {
     
     function getItem(label, key, icon, children) {
         return {
@@ -29,7 +29,7 @@ export default function MainSidebar({children}) {
         <Layout className="main-layout">
             <Header>header</Header>
             <Layout>
-                <Sider collapsible theme='light'>
+                <Sider collapsible theme='light' width={240}>
                     <div className="logo" />
                     <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
                 </Sider>
@@ -37,7 +37,7 @@ export default function MainSidebar({children}) {
                     {children}
                 </Content>
             </Layout>
-            <Footer className='main-footer'> Created By Irfan, Using Ergast API and Ant Design </Footer>
+            <Footer className='main-footer'> Created by Irfan, using Ergast API and Ant Design </Footer>
         </Layout>
     )
 }

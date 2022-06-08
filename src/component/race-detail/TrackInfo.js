@@ -7,7 +7,7 @@ import TrackInfoContextProvider from './context/TrackInfoContextProvider';
 import TrackInfoContext from './context/TrackInfoContext';
 
 import TrackSelect from './select/TrackSelect';
-import YearSelect from './select/YearSelect';
+import YearSelect from '../global/select/YearSelect';
 
 import CountryFlag from '../global/flag/CountryFlag';
 
@@ -19,7 +19,7 @@ function TrackInfoInnerComponent(){
 
     return(
         <Card className='track-info-container'>
-            <Space><YearSelect/><TrackSelect/></Space>
+            <Space><YearSelect context={RaceDetailContext}/><TrackSelect/></Space>
             {
                 loading ?
                 <Skeleton active/>

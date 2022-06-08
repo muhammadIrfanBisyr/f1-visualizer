@@ -1,13 +1,11 @@
 import React, {useContext} from 'react';
 import { Select } from 'antd';
 
-import RaceDetailContext from '../context/RaceDetailContext';
-
 const { Option } = Select;
 
-export default function YearSelect() {
+export default function YearSelect({context}) {
     
-    const { year, actions: {setYear} } = useContext(RaceDetailContext);
+    const { year, actions: {setYear} } = useContext(context);
 
     const yearStart = Array.from({length: 13}, (_, i) => i + 2010)
 
