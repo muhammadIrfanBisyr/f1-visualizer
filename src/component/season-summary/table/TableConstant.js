@@ -6,19 +6,17 @@ export const generateCountryColumn = (countryInitial, country, year, round) => (
     title: () => (
         <Link to={`../detail/${year}/${round}`}>
             <div className='table-header-country'> 
-                {` ${countryInitial}`}
+                <div>{countryInitial}</div>
                 <CountryFlag country={country}/>
             </div>   
         </Link> 
     ),
     dataIndex: countryInitial,
-    render: (countryInitial) => {
-        return (
-            <div className='table-result' > 
-                {countryInitial?.result}
-            </div>
-        )
-    },
+    render: (countryInitial) => (
+        <div className='table-result' > 
+            {countryInitial?.result}
+        </div>
+    )
 });
 
 
@@ -33,4 +31,18 @@ export const DRIVER_COLUMN =  {
         </div>
     ),
     width: 150
+}
+
+export const TOTAL_POINT_COLUMN =  {
+    key: 'points',
+    title: 'Points',
+    dataIndex: 'points',
+    render: (points) => (
+        <div className='table-result'> 
+            {points}
+        </div>
+    ),
+    width: 50,
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.points - b.points,
 }

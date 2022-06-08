@@ -1,6 +1,6 @@
 import axios from "axios";
 import { message } from 'antd';
-import {generateCountryColumn, DRIVER_COLUMN} from '../table/TableConstant'
+import {generateCountryColumn, DRIVER_COLUMN, TOTAL_POINT_COLUMN} from '../table/TableConstant'
 
 export const handleAPITable = (params, setters) => {
 
@@ -29,6 +29,7 @@ const apiDataToTableData = (data) => {
 
     const resCol = [DRIVER_COLUMN];
     const driverResults = {};
+    const totalPoints = {};
 
     data.data.MRData.RaceTable.Races.forEach((item) => {  
 
@@ -50,14 +51,19 @@ const apiDataToTableData = (data) => {
             }
 
             driverResults[driverId][countryInitial] = {
-                point: resultItem.points,
                 result: resultItem.position,
                 status: resultItem.status,
-                round,
-                country
             }
-        })
-    })  
 
-    return {columns: resCol, dataSource: Object.values(driverResults)};
+            totalPoints[driverId] = (totalPoints[driverId] + parseInt(resultItem.points)) || parseInt(resultItem.points);
+        });
+    });
+
+    Object.keys(driverResults).forEach((key) => {
+        driverResults[key] = {...driverResults[key], points: totalPoints[key]}
+    })
+
+    console.log(Object.values(driverResults))
+
+    return {columns: [...resCol, TOTAL_POINT_COLUMN], dataSource: Object.values(driverResults)};
 }
