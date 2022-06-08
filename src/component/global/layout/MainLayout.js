@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Layout, Typography, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 import {PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined } from '@ant-design/icons';
 
-const { Title } = Typography;
 const { Header, Sider, Footer, Content } = Layout;
 
 export default function MainLayout({children}) {

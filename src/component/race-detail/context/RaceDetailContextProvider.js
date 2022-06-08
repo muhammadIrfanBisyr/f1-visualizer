@@ -38,8 +38,12 @@ const getCheckSession = (session, year, trackId) => {
 }
 
 export default function RaceDetailContextProvider({initValue, children}){
+
+    const _initValue = {...CONTEXT_INITIAL_STATE, 
+                        year: initValue?.year ?? CONTEXT_INITIAL_STATE.year,
+                        track: initValue?.round ?? CONTEXT_INITIAL_STATE.track}
     
-    const [state, dispatch] = useReducer(reducer, CONTEXT_INITIAL_STATE);
+    const [state, dispatch] = useReducer(reducer, _initValue);
 
     const setTrack = (data) => {
         dispatch({ type: ACTION.SET_TRACK, payload: data});
@@ -84,9 +88,7 @@ export default function RaceDetailContextProvider({initValue, children}){
                     setChartType,
                     setLoading,
                     setResultData
-                },
-                year: initValue?.year ?? CONTEXT_INITIAL_STATE.year,
-                track: initValue?.round ?? CONTEXT_INITIAL_STATE.track
+                }
             }}>
             {children}
         </RaceDetailContext.Provider>

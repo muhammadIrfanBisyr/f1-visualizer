@@ -20,7 +20,7 @@ export default function TrackSelect(){
 
     useEffect(() => {
         if(setTrackInfo)
-            setTrackInfo(trackOptions[0])
+            setTrackInfo(trackOptions[parseInt(track)-1])
     }, [trackOptions])
     
     return(
