@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import '../style/index.css';
 
@@ -11,11 +11,11 @@ export default function Main(){
     return(
         <Router>
             <MainLayout>   
-                <Routes>
-                    <Route path='/' element={<Summary/>}/>
-                    <Route path='/detail' element={<Detail/>}/>
-                    <Route path='/summary' element={<Summary/>}/>
-                </Routes>
+                <Switch>
+                    <Route path='/' exact component={Summary}/>
+                    <Route path='/summary'component={Summary}/>
+                    <Route path='/detail/:year?/:round?' component={Detail}/>
+                </Switch>
             </MainLayout>
         </Router>
     )
