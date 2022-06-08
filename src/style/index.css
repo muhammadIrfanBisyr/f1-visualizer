@@ -175,4 +175,16 @@
 .main-summary-content-container .table-result {
   text-align: center;
 }
+.main-summary-content-container .table-result-first {
+  background-color: #ffdd34;
+}
+.main-summary-content-container .table-result-second {
+  background-color: #e2e2e2;
+}
+.main-summary-content-container .table-result-third {
+  background-color: #d3a230;
+}
+.main-summary-content-container .table-result-points {
+  background-color: #bff5c9;
+}
 /*# sourceMappingURL=index.css.map */

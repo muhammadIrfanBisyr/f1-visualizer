@@ -22,7 +22,7 @@ export default function YearSelect({context}) {
             defaultValue={year}
         >
             {
-                yearStart.map((num) => (<Option value={num}>{num}</Option>))
+                yearStart.map((num) => (<Option key={num} value={num}>{num}</Option>))
             }
         </Select>
     )
