@@ -37,12 +37,15 @@ const apiDataToTableData = (data) => {
         const country =  item.Circuit.Location.country; 
         const year = item.season;
 
-        const countryInitial = item?.raceName?.substring(0,3).toUpperCase() ?? '';
-        resCol.push(generateCountryColumn(countryInitial, country, year, round))
+        const countryInitialKey = `${item?.raceName?.substring(0,3)?.toUpperCase() ?? ''}_${item.Circuit.circuitId}`;
+
+        resCol.push(generateCountryColumn(countryInitialKey, country, year, round))
 
         item.Results.forEach((resultItem) => {
+
             const driverId = resultItem.Driver.driverId;
-            
+            const points = parseInt(resultItem.points);
+
             if (driverId in driverResults === false) {
                 driverResults[driverId] = {
                     driverName: `${resultItem.Driver.givenName} ${resultItem.Driver.familyName}`,
@@ -50,20 +53,18 @@ const apiDataToTableData = (data) => {
                 }
             }
 
-            driverResults[driverId][countryInitial] = {
-                result: resultItem.position,
+            driverResults[driverId][countryInitialKey] = {
+                result: parseInt(resultItem.position),
                 status: resultItem.status,
             }
 
-            totalPoints[driverId] = (totalPoints[driverId] + parseInt(resultItem.points)) || parseInt(resultItem.points);
+            totalPoints[driverId] = (totalPoints[driverId] + points) || points;
         });
     });
 
     Object.keys(driverResults).forEach((key) => {
         driverResults[key] = {...driverResults[key], points: totalPoints[key]}
     })
-
-    console.log(Object.values(driverResults))
 
     return {columns: [...resCol, TOTAL_POINT_COLUMN], dataSource: Object.values(driverResults)};
 }
