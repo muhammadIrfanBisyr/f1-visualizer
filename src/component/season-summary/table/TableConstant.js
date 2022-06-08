@@ -30,7 +30,7 @@ export const DRIVER_COLUMN =  {
             {` ${driverName}`}
         </div>
     ),
-    width: 150
+    width: 160
 }
 
 export const TOTAL_POINT_COLUMN =  {
@@ -43,6 +43,6 @@ export const TOTAL_POINT_COLUMN =  {
         </div>
     ),
     width: 50,
-    defaultSortOrder: 'descend',
+    sortOrder: 'descend',
     sorter: (a, b) => a.points - b.points,
 }
