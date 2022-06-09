@@ -2,7 +2,7 @@
 
 See the site here: https://muhammadirfanbisyr.github.io/f1-visualizer
 
-A small project to show and visualize the qualifying and the race result of F1 races, data provided by Ergast Developer API. Currently support visualization for 2010 seasons onward. 
+A small project to show and visualize the qualifying and the race result of Formula 1 races, data provided by Ergast Developer API. Currently support visualization for 2010 seasons onward. 
 
 <b>Credits:</b><br/>
 *   Country Flag Icons: <br/>
