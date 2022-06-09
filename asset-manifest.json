@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/f1-visualizer/static/css/main.26ec963b.css",
+    "main.js": "/f1-visualizer/static/js/main.96ac2632.js",
+    "static/media/manor.svg": "/f1-visualizer/static/media/manor.e63dfca699d4ec2c171361d735f8e247.svg",
+    "static/media/ferrari.svg": "/f1-visualizer/static/media/ferrari.31e64be4e889f0a6d606f453577bd8dc.svg",
+    "static/media/toro-rosso.svg": "/f1-visualizer/static/media/toro-rosso.a093912db4d0699ce04abf098882403b.svg",
+    "static/media/alfa-romeo.svg": "/f1-visualizer/static/media/alfa-romeo.f613bf0b149f0b523aebf0faab2fd8c1.svg",
+    "static/media/red-bull.svg": "/f1-visualizer/static/media/red-bull.4e2a73161ea8e6af9298b3e39c78a1f3.svg",
+    "static/media/mercedes.svg": "/f1-visualizer/static/media/mercedes.c169da71bd83bc546f81e469757a25f5.svg",
+    "static/media/aston-martin.svg": "/f1-visualizer/static/media/aston-martin.6a24766dbd5405015ec5835c0a5caaa8.svg",
+    "static/media/renault.svg": "/f1-visualizer/static/media/renault.14767bf3c4a863f384e6099a06091c27.svg",
+    "static/media/lotus.svg": "/f1-visualizer/static/media/lotus.66ab561a98b14302594ae84f6ebee326.svg",
+    "static/media/alphatauri.svg": "/f1-visualizer/static/media/alphatauri.31752d1c0a9dd661ecceb502a045a8ca.svg",
+    "static/media/brakes.svg": "/f1-visualizer/static/media/brakes.cbc6116bee543506bb1295136e507f2d.svg",
+    "static/media/force-india.svg": "/f1-visualizer/static/media/force-india.8e9476a1ae20a39034f8ea954c6aa802.svg",
+    "static/media/checkered-flag.svg": "/f1-visualizer/static/media/checkered-flag.2b097eed899d0fea5a472af424a7c181.svg",
+    "static/media/mechanical.svg": "/f1-visualizer/static/media/mechanical.1417a033a34473bcb584ee955b33f958.svg",
+    "static/media/collision.svg": "/f1-visualizer/static/media/collision.412af301ad5ef8771a3d912ca5d6d2bd.svg",
+    "static/media/sauber.svg": "/f1-visualizer/static/media/sauber.5e3558be35fdb6d56a6363098e96f2e4.svg",
+    "static/media/engine.svg": "/f1-visualizer/static/media/engine.c295600c9434ae7777c3bb5a4737dee5.svg",
+    "static/media/electrical.svg": "/f1-visualizer/static/media/electrical.08b2f1396e3a89deb46c3bcd68b71b3d.svg",
+    "static/media/williams.svg": "/f1-visualizer/static/media/williams.a6d7865f438fc5190bf2227e59760b03.svg",
+    "static/media/accident.svg": "/f1-visualizer/static/media/accident.b68de727637799845e45252d8b75f79b.svg",
+    "static/media/haas.svg": "/f1-visualizer/static/media/haas.b1061affca0945e86f3a5bff00c9c9c2.svg",
+    "static/media/fuel.svg": "/f1-visualizer/static/media/fuel.f70b7bcba0124dd5fa6c093b0e719270.svg",
+    "static/media/gearbox.svg": "/f1-visualizer/static/media/gearbox.3a3f94465b46dc8a1b5b04061aadf8a1.svg",
+    "index.html": "/f1-visualizer/index.html",
+    "static/media/steering-wheel.svg": "/f1-visualizer/static/media/steering-wheel.53f33efc1ad3c1e51152a5cab04776e4.svg",
+    "static/media/racing-point.svg": "/f1-visualizer/static/media/racing-point.ee93373c2075398b9a22d18d826bc917.svg",
+    "static/media/alpine.svg": "/f1-visualizer/static/media/alpine.97e38e530b1acb12d83f8aff2349008d.svg",
+    "static/media/mclaren.svg": "/f1-visualizer/static/media/mclaren.fa3c16d5ceb2f5972c40e5c9de56005b.svg",
+    "static/media/blue-flag.svg": "/f1-visualizer/static/media/blue-flag.51d6e88b51e9a482b9d4c78d3d8dd0c9.svg",
+    "static/media/black-flag.svg": "/f1-visualizer/static/media/black-flag.1fb6405703ace09ba2f4e09e358a913b.svg",
+    "main.26ec963b.css.map": "/f1-visualizer/static/css/main.26ec963b.css.map",
+    "main.96ac2632.js.map": "/f1-visualizer/static/js/main.96ac2632.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.26ec963b.css",
+    "static/js/main.96ac2632.js"
+  ]
+}
