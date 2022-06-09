@@ -6,6 +6,7 @@ import '../style/index.css';
 import MainLayout from '../component/global/layout/MainLayout';
 import Detail from './Detail';
 import Summary from './Summary';
+import Driver from './Driver';
 
 export default function Main(){
     return(
@@ -15,6 +16,7 @@ export default function Main(){
                     <Route path='/' exact component={Summary}/>
                     <Route path='/summary/:year?'component={Summary}/>
                     <Route path='/detail/:year?/:round?' component={Detail}/>
+                    <Route path='/driver/:driverId?' component={Driver}/>
                 </Switch>
             </MainLayout>
         </Router>
