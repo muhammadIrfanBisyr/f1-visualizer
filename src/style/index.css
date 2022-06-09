@@ -32,6 +32,7 @@
 }
 .main-detail-content-container .main-table {
   margin: 0 auto;
+  min-height: 600px;
   -ms-overflow-style: none;
   /* for Internet Explorer, Edge */
   scrollbar-width: none;
@@ -108,10 +109,20 @@
 }
 .track-info-container .track-select {
   text-align: left;
-  width: 220px;
+  width: 215px;
 }
 .track-info-container .ant-select-selection-item {
   font-weight: 500;
+}
+.track-info-container .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  padding: 0 8px;
+}
+.track-info-container .ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+.track-info-container .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+  padding-right: 16px;
+}
+.track-info-container .year-info {
+  font-size: 12px;
 }
 .race-result-container {
   width: 320px;
@@ -166,6 +177,7 @@
 }
 .main-summary-content-container .main-table {
   margin: 0 auto;
+  min-height: 600px;
 }
 .main-summary-content-container .main-table .ant-table-cell {
   padding: 2px !important;

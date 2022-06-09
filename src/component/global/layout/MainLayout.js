@@ -28,7 +28,7 @@ export default function MainLayout({children}) {
         <Layout className="main-layout">
             <Header>header</Header>
             <Layout>
-                <Sider collapsible theme='light' width={240}>
+                <Sider collapsible theme='light' width={220}>
                     <div className="logo" />
                     <Menu defaultSelectedKeys={['1']} mode="inline" items={items}/>
                 </Sider>

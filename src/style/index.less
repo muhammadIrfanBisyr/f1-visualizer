@@ -8,6 +8,8 @@
 
 @right-side-card-width: 320px; 
 
+@main-content-height: 600px;
+
 .main-footer {
     text-align: center;
 }
@@ -52,7 +54,7 @@
 
     .main-table {
         margin: 0 auto;
-        // height: 575px;
+        min-height: @main-content-height;
         // overflow-y: scroll;
         
         -ms-overflow-style: none; /* for Internet Explorer, Edge */
@@ -147,12 +149,24 @@
 
     .track-select {
         text-align: left;
-        width: 220px;
+        width: 215px;
     }
 
     .ant-select-selection-item {
         font-weight: 500;
     }
+    
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+        padding: 0 8px;
+    }
+    .ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+        padding-right: 16px;
+    }
+
+    .year-info{
+        font-size: 12px;
+    }
+
 }
 
 .race-result-container{
@@ -219,6 +233,7 @@
 
     .main-table {
         margin: 0 auto;
+        min-height: @main-content-height;
 
         .ant-table-cell {
             padding: 2px !important;

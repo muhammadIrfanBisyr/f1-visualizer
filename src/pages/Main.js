@@ -13,7 +13,7 @@ export default function Main(){
             <MainLayout>   
                 <Switch>
                     <Route path='/' exact component={Summary}/>
-                    <Route path='/summary'component={Summary}/>
+                    <Route path='/summary/:year?'component={Summary}/>
                     <Route path='/detail/:year?/:round?' component={Detail}/>
                 </Switch>
             </MainLayout>

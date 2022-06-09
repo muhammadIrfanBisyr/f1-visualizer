@@ -14,8 +14,11 @@ function reducer(state, {type, payload}){
     }
 }
 
-export default function SeasonSummaryContextProvider({children}) {
-    const [state, dispatch] = useReducer(reducer, SEASON_SUMMARY_INIT_VALUE);
+export default function SeasonSummaryContextProvider({initValue, children}) {
+
+    const _initValue = {...SEASON_SUMMARY_INIT_VALUE, year: initValue?.year ?? SEASON_SUMMARY_INIT_VALUE.year};
+
+    const [state, dispatch] = useReducer(reducer, _initValue);
 
     const setYear = (data) => {
         dispatch({ type: ACTION.SET_YEAR, payload: data});
