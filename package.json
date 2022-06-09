@@ -2,6 +2,7 @@
   "name": "f1-visualizer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://muhammadirfanbisyr.github.io/f1-visualizer",
   "dependencies": {
     "@ant-design/charts": "^1.3.6",
     "@testing-library/jest-dom": "^5.16.1",
@@ -18,6 +19,8 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "concurrently --kill-others \"less-watch-compiler --config less-watcher.config.json\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,6 +46,7 @@
   },
   "devDependencies": {
     "concurrently": "^7.1.0",
+    "gh-pages": "^4.0.0",
     "less": "^4.1.2",
     "less-watch-compiler": "^1.16.3"
   }
