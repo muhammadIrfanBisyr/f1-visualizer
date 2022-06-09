@@ -16,7 +16,7 @@
     
     font-size: 10px;
     width: 95%;
-    height: 640px;
+    // height: 640px;
     margin-left: 30px !important;
     border-radius: @card-border-radius !important;
     box-shadow: @card-box-shadow;
@@ -52,8 +52,8 @@
 
     .main-table {
         margin: 0 auto;
-        height: 575px;
-        overflow-y: scroll;
+        // height: 575px;
+        // overflow-y: scroll;
         
         -ms-overflow-style: none; /* for Internet Explorer, Edge */
         scrollbar-width: none; /* for Firefox */
@@ -204,42 +204,59 @@
     border-radius: @card-border-radius !important;
     box-shadow: @card-box-shadow;
 
-    .ant-table-cell {
-        padding: 2px !important;
-        font-size: 10pt;
+    .ant-card-body {
+        padding: @card-padding;
     }
 
-    .flag-icon {
-        height: 15px;
-        vertical-align: middle;
-    }
+    .ant-card-head {
+        padding: 0 @card-padding;
 
-    thead > tr > th {
-        text-align: center;
-    }
-
-    .table-header-country{
-        line-height: 16px;
-        padding: 4px 0 4px 0;
-    }
-
-    .table-result {
-        text-align: center;
-        
-        &-first{
-            background-color: #ffdd34;
+        .ant-card-head-title {
+            padding-bottom: 2px;
+            padding-top: @card-padding;
         }
+    }
 
-        &-second{
-            background-color: #e2e2e2;
-        }
-        
-        &-third{
-            background-color: #d3a230;
-        }
+    .main-table {
+        margin: 0 auto;
 
-        &-points{
-            background-color: #bff5c9;
+        .ant-table-cell {
+            padding: 2px !important;
+            font-size: 10pt;
+        }
+    
+        .flag-icon {
+            height: 15px;
+            vertical-align: middle;
+        }
+    
+        thead > tr > th {
+            text-align: center;
+        }
+    
+        .table-header-country{
+            line-height: 16px;
+            padding: 4px 0 4px 0;
+        }
+    
+        .table-result {
+            text-align: center;
+            
+            &-first{
+                background-color: #ffdd34;
+            }
+    
+            &-second{
+                background-color: #e2e2e2;
+            }
+            
+            &-third{
+                background-color: #d3a230;
+            }
+    
+            &-points{
+                background-color: #bff5c9;
+            }
         }
     }
 }

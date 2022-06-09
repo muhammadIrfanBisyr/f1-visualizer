@@ -18,6 +18,7 @@ export default function Table() {
 
     return (        
         <AntdTable
+            className='main-table'
             columns={resultData?.columns}
             dataSource={resultData?.dataSource}
             loading={loading}

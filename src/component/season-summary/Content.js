@@ -10,7 +10,7 @@ export default function Content(){
     return (
 
         <Row>
-            <Col span={20}>
+            <Col span={19}>
                 <Card className='main-summary-content-container'
                     title={
                         <Space>
@@ -21,7 +21,7 @@ export default function Content(){
                     <Table/>
                 </Card>
             </Col>
-            <Col span={4}/>
+            <Col span={5}/>
         </Row>
     )
 }
