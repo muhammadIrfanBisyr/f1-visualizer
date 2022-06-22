@@ -1,17 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import '../style/index.css';
+import '../style/index.css'
 
-import MainLayout from '../component/global/layout/MainLayout';
-import Detail from './Detail';
-import Summary from './Summary';
-import Driver from './Driver';
+import MainLayout from '../component/global/layout/MainLayout'
+import Detail from './Detail'
+import Summary from './Summary'
+import Driver from './Driver'
 
-export default function Main(){
-    return(
-        <Router>
-            <MainLayout>   
+export default function Main () {
+  return (
+        <Router basename='/f1-visualizer'>
+            <MainLayout>
                 <Switch>
                     <Route path='/' exact component={Summary}/>
                     <Route path='/summary/:year?'component={Summary}/>
@@ -20,5 +20,5 @@ export default function Main(){
                 </Switch>
             </MainLayout>
         </Router>
-    )
+  )
 }

@@ -1,30 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { Layout, Menu } from 'antd';
-import {PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined } from '@ant-design/icons';
+import { Layout, Menu } from 'antd'
+import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined } from '@ant-design/icons'
 
-const { Header, Sider, Footer, Content } = Layout;
+const { Header, Sider, Footer, Content } = Layout
 
-export default function MainLayout({children}) {
-    
-    function getItem(label, key, icon, children) {
-        return {
-          key,
-          icon,
-          children,
-          label,
-        };
-      }
-    
-    const items = [
-        getItem(<Link to='/summary'>Season Summary</Link>, '1', <PieChartOutlined />),
-        getItem(<Link to='/detail'>Race Detail</Link>, '2', <DesktopOutlined />),
-        getItem(<Link to='/driver'>Driver Information</Link>, '3', <UserOutlined /> ),
-        getItem('Constructor Information', '4', <TeamOutlined /> )
-    ];
+export default function MainLayout ({ children }) {
+  const getItem = (label, key, icon, _children) => {
+    return {
+      key,
+      icon,
+      _children,
+      label
+    }
+  }
 
-    return (
+  const items = [
+    getItem(<Link to='/summary'>Season Summary</Link>, '1', <PieChartOutlined />),
+    getItem(<Link to='/detail'>Race Detail</Link>, '2', <DesktopOutlined />),
+    getItem(<Link to='/driver'>Driver Information</Link>, '3', <UserOutlined />),
+    getItem('Constructor Information', '4', <TeamOutlined />)
+  ]
+
+  return (
         <Layout className="main-layout">
             <Header>header</Header>
             <Layout>
@@ -38,5 +37,5 @@ export default function MainLayout({children}) {
             </Layout>
             <Footer className='main-footer'> Created by Irfan, using Ergast API and Ant Design </Footer>
         </Layout>
-    )
+  )
 }
