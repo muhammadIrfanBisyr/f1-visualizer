@@ -4,8 +4,9 @@ import { message } from 'antd'
 import { lapTimeToMiliseconds } from './utils'
 
 const apiDataToTableData = (data, session) => {
-  const resData = []
   if (session === 'Q') {
+    const resData = []
+
     // Warning: Lazy lap time comparison
     const fastestQ1 = ['99:99.999', -1]
     const fastestQ2 = ['99:99.999', -1]
@@ -47,34 +48,33 @@ const apiDataToTableData = (data, session) => {
       resData[fastestQ2[1]].fQ2 = fastestQ2[0]
       resData[fastestQ3[1]].fQ3 = fastestQ3[0]
     }
+
+    return resData
   } else {
     const resArrName = session === 'R' ? 'Results' : 'SprintResults'
 
     const year = data.data.MRData.RaceTable.Races[0].season
-    data.data.MRData.RaceTable.Races[0][resArrName].forEach((item) => {
-      resData.push(
-        {
-          pos: item.position,
-          grid: item.grid,
-          carNo: item.number,
-          driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
-          driverId: item.Driver.driverId,
-          nationality: item.Driver.nationality,
-          constructor: item.Constructor.name,
-          constructorId: item.Constructor.constructorId,
-          laps: item.laps,
-          time: item?.Time?.time ?? '',
-          status: item.status,
-          points: item.points,
-          fastestLapRank: item?.FastestLap?.rank ?? '',
-          fastestLapTime: item?.FastestLap?.Time?.time ?? '',
-          fastestLapOnLap: item?.FastestLap?.lap ?? '',
-          year
-        }
-      )
-    })
+    return data.data.MRData.RaceTable.Races[0][resArrName].map((item) => (
+      {
+        pos: item.position,
+        grid: item.grid,
+        carNo: item.number,
+        driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
+        driverId: item.Driver.driverId,
+        nationality: item.Driver.nationality,
+        constructor: item.Constructor.name,
+        constructorId: item.Constructor.constructorId,
+        laps: item.laps,
+        time: item?.Time?.time ?? '',
+        status: item.status,
+        points: item.points,
+        fastestLapRank: item?.FastestLap?.rank ?? '',
+        fastestLapTime: item?.FastestLap?.Time?.time ?? '',
+        fastestLapOnLap: item?.FastestLap?.lap ?? '',
+        year
+      }
+    ))
   }
-  return resData
 }
 
 export const handleAPITable = (params, setters) => {
@@ -118,9 +118,7 @@ const apiToLineChartData = (data) => {
   data.data.MRData.RaceTable.Races[0].Laps.forEach((item) => {
     item.Timings.forEach((innerItem) => {
       let lapTime = lapTimeToMiliseconds(innerItem.time)
-      if (lapTime > 300000) // if laptime > 5 minutes, assuming it is a red flag period.
-      { lapTime = 0 }
-
+      if (lapTime > 300000) { lapTime = 0 } // if laptime > 5 minutes, assuming it is a red flag period.
       maxLap = lapTime > maxLap ? lapTime : maxLap
       minLap = lapTime < minLap ? lapTime : minLap
 

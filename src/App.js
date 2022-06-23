@@ -1,11 +1,12 @@
-import './App.css';
-
+import React from 'react'
 import Main from './pages/Main'
 
-function App() {
-    return (
+import './App.css'
+
+function App () {
+  return (
         <Main/>
-    );
+  )
 }
 
-export default App;
+export default App

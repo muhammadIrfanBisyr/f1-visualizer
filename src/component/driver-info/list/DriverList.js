@@ -1,19 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import { List, Card } from 'antd';
+import React, { useEffect, useState } from 'react'
+import { List, Card } from 'antd'
 
-import { handleAPIDriver } from '../helper/handler';
+import { handleAPIDriver } from '../helper/handler'
 
-export default function DriverList(){
+export default function DriverList () {
+  const [driverData, setDriverData] = useState([])
+  const [year, setYear] = useState('2022')
+  const [loading, setLoading] = useState(false)
 
-    const [driverData, setDriverData] = useState([]);
-    const [year, setYear] = useState('2022');
-    const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    handleAPIDriver({ year }, { setYear, setLoading, setDriverData })
+  }, [])
 
-    useEffect(() => {
-        handleAPIDriver({year}, {setYear, setLoading, setDriverData});
-    }, [])
-
-    return (
+  return (
         <List
             loading={loading}
             grid={{ gutter: 16, column: 4 }}
@@ -29,5 +28,5 @@ export default function DriverList(){
                 </List.Item>
             )}
         />
-    )
+  )
 }

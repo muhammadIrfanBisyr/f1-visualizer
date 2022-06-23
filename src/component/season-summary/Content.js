@@ -1,13 +1,13 @@
-import React from 'react';
-import { Row, Col, Card, Space } from 'antd';
+import React from 'react'
+import { Row, Col, Card, Space } from 'antd'
 
-import YearSelect from '../global/select/YearSelect';
+import YearSelect from '../global/select/YearSelect'
 
-import SeasonSummaryContext from './context/SeasonSummaryContext';
-import Table from './table/Table';
+import SeasonSummaryContext from './context/SeasonSummaryContext'
+import Table from './table/Table'
 
-export default function Content(){
-    return (
+export default function Content () {
+  return (
 
         <Row>
             <Col span={19}>
@@ -23,5 +23,5 @@ export default function Content(){
             </Col>
             <Col span={5}/>
         </Row>
-    )
+  )
 }

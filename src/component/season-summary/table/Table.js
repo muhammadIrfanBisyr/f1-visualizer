@@ -1,22 +1,21 @@
-import React, {useEffect, useState, useContext} from "react";
-import { Table as AntdTable } from "antd";
+import React, { useEffect, useState, useContext } from 'react'
+import { Table as AntdTable } from 'antd'
 
-import SeasonSummaryContext from "../context/SeasonSummaryContext";
+import SeasonSummaryContext from '../context/SeasonSummaryContext'
 
-import { handleAPITable } from "../helper/handler";
+import { handleAPITable } from '../helper/handler'
 
-export default function Table() {
+export default function Table () {
+  const { year } = useContext(SeasonSummaryContext)
 
-    const {year} = useContext(SeasonSummaryContext);
+  const [resultData, setResultData] = useState({})
+  const [loading, setLoading] = useState(false)
 
-    const [resultData, setResultData] = useState({});
-    const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    handleAPITable({ year }, { setResultData, setLoading })
+  }, [year])
 
-    useEffect(() => {
-        handleAPITable({year}, {setResultData, setLoading})
-    },[year])
-
-    return (        
+  return (
         <AntdTable
             className='main-table'
             columns={resultData?.columns}
@@ -25,5 +24,5 @@ export default function Table() {
             pagination={false}
             size='small'
         />
-    )
+  )
 }

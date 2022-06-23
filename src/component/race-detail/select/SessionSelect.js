@@ -1,22 +1,21 @@
-import React, { useContext } from 'react';
-import { Select } from 'antd';
+import React, { useContext } from 'react'
+import { Select } from 'antd'
 
-import RaceDetailContext from '../context/RaceDetailContext';
+import RaceDetailContext from '../context/RaceDetailContext'
 
-const { Option } = Select;
+const { Option } = Select
 
 export const SPRINT_RACE_CONST = new Set([
-    '2021_silverstone', '2021_monza', '2021_interlagos', '2022_imola'
+  '2021_silverstone', '2021_monza', '2021_interlagos', '2022_imola'
 ])
 
-export default function SessionSelect() {
+export default function SessionSelect () {
+  const { session, year, trackId, actions: { setSession } } = useContext(RaceDetailContext)
 
-    const {session, year, trackId, actions : {setSession}} = useContext(RaceDetailContext);
-
-    return(
-        <Select 
-            defaultValue='R' 
-            value={session} 
+  return (
+        <Select
+            defaultValue='R'
+            value={session}
             className='session-select'
             onChange={(val) => { setSession(val) }}
         >
@@ -27,5 +26,5 @@ export default function SessionSelect() {
             }
             <Option value='R'>Race</Option>
         </Select>
-    );
+  )
 }

@@ -1,31 +1,30 @@
-import React, { useContext } from 'react';
-import { Space, Row, Col, Card } from 'antd';
+import React, { useContext } from 'react'
+import { Space, Row, Col, Card } from 'antd'
 
-import RaceDetailContext from './context/RaceDetailContext';
+import RaceDetailContext from './context/RaceDetailContext'
 
-import Table from './table/Table';
-import LineChart from './line-chart/LineChart';
-import TrackInfo from './TrackInfo';
-import Podium from './Podium';
+import Table from './table/Table'
+import LineChart from './line-chart/LineChart'
+import TrackInfo from './TrackInfo'
+import Podium from './Podium'
 
-import SessionSelect from './select/SessionSelect';
-import ChartTypeSelect from './select/ChartTypeSelect';
+import SessionSelect from './select/SessionSelect'
+import ChartTypeSelect from './select/ChartTypeSelect'
 
-export default function Content() {
+export default function Content () {
+  const { chartType } = useContext(RaceDetailContext)
 
-    const {chartType} = useContext(RaceDetailContext);
-   
-    return (
+  return (
         <Row>
             <Col span={18}>
-                <Card 
+                <Card
                     className='main-detail-content-container'
                     title={
                         <Row>
                             <Col span={21}>
                                 <Space>
                                     <SessionSelect/> <div className='card-title'> Session Result </div>
-                                </Space> 
+                                </Space>
                             </Col>
                             <Col span={3}>
                                 <Row justify='end'>
@@ -33,13 +32,12 @@ export default function Content() {
                                 </Row>
                             </Col>
                         </Row>
-                    }    
+                    }
                 >
                     {
-                        chartType === 'T' ?
-                        <Table/>
-                        :
-                        <LineChart/>
+                        chartType === 'T'
+                          ? <Table/>
+                          : <LineChart/>
                     }
                 </Card>
             </Col>
@@ -56,5 +54,5 @@ export default function Content() {
                 </Row>
             </Col>
         </Row>
-    )
+  )
 }
