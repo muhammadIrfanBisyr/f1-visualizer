@@ -238,9 +238,8 @@
   border-radius: 8px;
 }
 .driver-list .driver-card .constructor-background .logo-icon {
-  font-size: 90px;
+  font-size: 70px;
   position: absolute;
-  top: -12px;
   left: 4px;
 }
 .driver-list .driver-card .ant-divider.ant-divider-horizontal {
