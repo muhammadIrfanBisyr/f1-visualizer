@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { List, Card, Avatar, Space, Divider, Typography } from 'antd'
 import { CrownOutlined, TrophyOutlined, ThunderboltOutlined, PoundCircleOutlined } from '@ant-design/icons'
 
+import TeamLogo from '../../global/logo/TeamLogo'
 import CountryFlag from '../../global/flag/CountryFlag'
 import { handleAPIDriver } from '../helper/handler'
+import { TEAM_CONST } from '../../global/constant/Teams'
 
 const { Title, Text } = Typography
 
@@ -51,28 +53,34 @@ export default function DriverList () {
     handleAPIDriver({ year }, { setYear, setLoading, setDriverData })
   }, [])
 
+  console.log(driverData)
+
   return (
-        <List
-            loading={loading}
-            grid={{ gutter: 16, column: 4 }}
-            dataSource={driverData}
-            renderItem={(item) => (
-                <List.Item>
-                    <Card className='driver-card'>
-                        <Avatar/>
-                        <Title level={4}>{item?.name}</Title>
-                        <Space className='driver-info'>
-                          <CountryFlag nationality={item.nationality}/>
-                          <Text>{item?.number}</Text>
-                        </Space>
-                        <DriverStats statsData={{
-                          points: item.points,
-                          wins: item.wins,
-                          constructor: item.constructorId
-                        }}/>
-                    </Card>
-                </List.Item>
-            )}
-        />
+    <List
+        loading={loading}
+        grid={{ gutter: 16, column: 4 }}
+        dataSource={driverData}
+        renderItem={(item) => (
+            <List.Item>
+                <Card className='driver-card'>
+                    <div className='constructor-background' style={{ backgroundColor: TEAM_CONST[item.constructorId].color }}>
+                      <TeamLogo name={item.constructorId}/>
+                    </div>
+                    <Avatar size={75} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
+                    <Title level={4}>{item?.name}</Title>
+                    <Space className='driver-info'>
+                      <CountryFlag nationality={item.nationality}/>
+                      <Text>{item?.number}</Text>
+                    </Space>
+                    <Divider/>
+                    <DriverStats statsData={{
+                      points: item.points,
+                      wins: item.wins,
+                      constructor: item.constructorId
+                    }}/>
+                </Card>
+            </List.Item>
+        )}
+    />
   )
 }

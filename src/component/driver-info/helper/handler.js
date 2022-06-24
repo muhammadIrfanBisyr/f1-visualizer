@@ -17,7 +17,7 @@ export const handleAPIDriver = (params, setters) => {
               name: `${item.Driver.givenName} ${item.Driver.familyName}`,
               nationality: item.Driver.nationality,
               number: item.Driver?.permanentNumber,
-              constructorId: item.Constructors.constructorId
+              constructorId: item.Constructors[0].constructorId
             }
           )
         })
