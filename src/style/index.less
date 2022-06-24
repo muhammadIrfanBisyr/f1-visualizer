@@ -2,6 +2,11 @@
 @fastest-lap-color: #b249c3;
 @fastest-lap-color-hover:rgb(134, 29, 151);
 
+@first-place: #ffdd34;
+@second-place: #e2e2e2;
+@third-place: #d3a230;
+@points-place: #bff5c9;
+
 @card-padding: 8px;
 @card-border-radius: 8px;
 @card-box-shadow: 3px 3px 3px 1px #cecece;
@@ -258,19 +263,19 @@
             text-align: center;
             
             &-first{
-                background-color: #ffdd34;
+                background-color: @first-place;
             }
     
             &-second{
-                background-color: #e2e2e2;
+                background-color: @second-place;
             }
             
             &-third{
-                background-color: #d3a230;
+                background-color: @third-place;
             }
     
             &-points{
-                background-color: #bff5c9;
+                background-color: @points-place;
             }
         }
     }
@@ -278,4 +283,37 @@
 
 .driver-list {
     padding: 12px;
+
+    .driver-card {
+        text-align: center;
+        justify-content: center;
+        box-shadow: @card-box-shadow;
+        border-radius: @card-border-radius !important;
+
+        .ant-card-body {
+            padding: @card-padding;
+        }    
+
+        .driver-info {
+            font-size: 16pt;
+            vertical-align: middle;
+
+            .flag-icon {
+                height: 20px;
+            }
+        }
+        
+
+        .driver-stats-group {
+            width: 100%;
+            justify-content: center;
+            font-size: 12pt;
+
+            .ant-divider.ant-divider-vertical {
+                margin: 0 4px;
+                border: 1px solid #dededeab;
+                height: 30px;
+            }
+        }
+    }   
 }

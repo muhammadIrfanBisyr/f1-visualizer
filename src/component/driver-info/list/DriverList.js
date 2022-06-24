@@ -1,7 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { List, Card } from 'antd'
+import { List, Card, Avatar, Space, Divider, Typography } from 'antd'
+import { CrownOutlined, TrophyOutlined, ThunderboltOutlined, PoundCircleOutlined } from '@ant-design/icons'
 
+import CountryFlag from '../../global/flag/CountryFlag'
 import { handleAPIDriver } from '../helper/handler'
+
+const { Title, Text } = Typography
+
+const StatsDetail = ({ data, icon }) => {
+  return (
+    <span>
+      {icon} <br/> {data}
+    </span>
+  )
+}
+
+const DriverStats = ({ statsData }) => {
+  const statList = [
+    { data: 0, icon: <CrownOutlined/> },
+    { data: statsData.wins, icon: <TrophyOutlined/> },
+    { data: 1, icon: <TrophyOutlined/> },
+    { data: 2, icon: <TrophyOutlined/> },
+    { data: 3, icon: <ThunderboltOutlined/> },
+    { data: statsData.points, icon: <PoundCircleOutlined/> }
+  ]
+
+  return (
+    <Space className='driver-stats-group' size='small'>
+     {
+      statList.map((item, index) => (
+        <React.Fragment key={index}>
+          <StatsDetail {...item}/>
+          {
+            index < statList.length - 1 &&
+            <Divider type='vertical'></Divider>
+          }
+        </React.Fragment>
+      ))
+     }
+    </Space>
+  )
+}
 
 export default function DriverList () {
   const [driverData, setDriverData] = useState([])
@@ -19,11 +58,18 @@ export default function DriverList () {
             dataSource={driverData}
             renderItem={(item) => (
                 <List.Item>
-                    <Card>
-                        <div>{item?.driverId}</div>
-                        <div>{item?.name}</div>
-                        <div>{item?.nationality}</div>
-                        <div>{item?.number}</div>
+                    <Card className='driver-card'>
+                        <Avatar/>
+                        <Title level={4}>{item?.name}</Title>
+                        <Space className='driver-info'>
+                          <CountryFlag nationality={item.nationality}/>
+                          <Text>{item?.number}</Text>
+                        </Space>
+                        <DriverStats statsData={{
+                          points: item.points,
+                          wins: item.wins,
+                          constructor: item.constructorId
+                        }}/>
                     </Card>
                 </List.Item>
             )}

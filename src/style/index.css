@@ -212,4 +212,30 @@
 .driver-list {
   padding: 12px;
 }
+.driver-list .driver-card {
+  text-align: center;
+  justify-content: center;
+  box-shadow: 3px 3px 3px 1px #cecece;
+  border-radius: 8px !important;
+}
+.driver-list .driver-card .ant-card-body {
+  padding: 8px;
+}
+.driver-list .driver-card .driver-info {
+  font-size: 16pt;
+  vertical-align: middle;
+}
+.driver-list .driver-card .driver-info .flag-icon {
+  height: 20px;
+}
+.driver-list .driver-card .driver-stats-group {
+  width: 100%;
+  justify-content: center;
+  font-size: 12pt;
+}
+.driver-list .driver-card .driver-stats-group .ant-divider.ant-divider-vertical {
+  margin: 0 4px;
+  border: 1px solid #dededeab;
+  height: 30px;
+}
 /*# sourceMappingURL=index.css.map */

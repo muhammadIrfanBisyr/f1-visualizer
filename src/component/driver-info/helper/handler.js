@@ -2,24 +2,26 @@ import axios from 'axios'
 import { message } from 'antd'
 
 export const handleAPIDriver = (params, setters) => {
-  const apiUrl = `https://ergast.com/api/f1/${params.year}/drivers.json`
+  const apiUrl = `https://ergast.com/api/f1/${params.year}/driverStandings.json`
 
   setters.setLoading(true)
   axios.get(apiUrl).then(res => {
     try {
-      const resData = []
-      res.data.MRData.DriverTable.Drivers.forEach((item) => {
-        resData.push(
-          {
-            driverId: item.driverId,
-            name: `${item.givenName} ${item.familyName}`,
-            nationality: item.nationality,
-            number: item?.permanentNumber
-          }
-        )
-      })
-
-      setters.setDriverData(resData)
+      setters.setDriverData(
+        res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item) => {
+          return (
+            {
+              points: item.points,
+              wins: item.wins,
+              driverId: item.Driver.driverId,
+              name: `${item.Driver.givenName} ${item.Driver.familyName}`,
+              nationality: item.Driver.nationality,
+              number: item.Driver?.permanentNumber,
+              constructorId: item.Constructors.constructorId
+            }
+          )
+        })
+      )
     } catch {
       setters.setDriverData([])
     } finally {
