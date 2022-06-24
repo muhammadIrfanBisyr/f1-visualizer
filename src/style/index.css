@@ -235,6 +235,7 @@
   width: 100%;
   position: absolute;
   text-align: left;
+  border-radius: 8px;
 }
 .driver-list .driver-card .constructor-background .logo-icon {
   font-size: 90px;
