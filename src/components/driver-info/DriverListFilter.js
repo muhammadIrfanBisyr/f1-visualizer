@@ -5,7 +5,7 @@ import DriverInfoContext from './context/DriverInfoContext'
 
 export default function DriverListFilter () {
   return (
-    <Card>
+    <Card className='driver-list-filter-card'>
         <YearSelect context={DriverInfoContext}/>
     </Card>
   )

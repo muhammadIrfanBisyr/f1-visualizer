@@ -216,6 +216,10 @@
 .main-summary-content-container .main-table .table-result-points {
   background-color: #bff5c9;
 }
+.driver-list-filter-card {
+  border-radius: 8px !important;
+  margin: 0 12px;
+}
 .driver-list {
   padding: 12px;
 }
