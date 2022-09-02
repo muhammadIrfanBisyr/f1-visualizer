@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { List, Card, Avatar, Space, Divider, Typography } from 'antd'
 import { CrownOutlined, TrophyOutlined, ThunderboltOutlined, PoundCircleOutlined } from '@ant-design/icons'
 
@@ -6,6 +6,7 @@ import TeamLogo from '../../global/logo/TeamLogo'
 import CountryFlag from '../../global/flag/CountryFlag'
 import { handleAPIDriver } from '../helper/handler'
 import { TEAM_CONST } from '../../global/constant/Teams'
+import DriverInfoContext from '../context/DriverInfoContext'
 
 const { Title, Text } = Typography
 
@@ -45,28 +46,28 @@ const DriverStats = ({ statsData }) => {
 }
 
 export default function DriverList () {
+  const { year } = useContext(DriverInfoContext)
+
   const [driverData, setDriverData] = useState([])
-  const [year, setYear] = useState('2022')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    handleAPIDriver({ year }, { setYear, setLoading, setDriverData })
-  }, [])
-
-  console.log(driverData)
+    handleAPIDriver({ year }, { setLoading, setDriverData })
+  }, [year])
 
   return (
-    <List
+    <div className='driver-list'>
+      <List
         loading={loading}
         grid={{ gutter: 16, column: 4 }}
         dataSource={driverData}
         renderItem={(item) => (
             <List.Item>
                 <Card className='driver-card'>
-                    <div className='constructor-background' style={{ backgroundColor: TEAM_CONST[item.constructorId].color }}>
+                    <div className='constructor-background' style={{ backgroundColor: TEAM_CONST[item.constructorId]?.color ?? '#ffffff' }}>
                       <TeamLogo name={item.constructorId}/>
                     </div>
-                    <Avatar size={75} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
+                    <Avatar size={100} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
                     <Title level={4}>{item?.name}</Title>
                     <Space className='driver-info'>
                       <CountryFlag nationality={item.nationality}/>
@@ -82,5 +83,6 @@ export default function DriverList () {
             </List.Item>
         )}
     />
+    </div>
   )
 }
