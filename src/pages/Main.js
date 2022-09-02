@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import '../style/index.css'
 
-import MainLayout from '../component/global/layout/MainLayout'
+import MainLayout from '../components/global/layout/MainLayout'
 import Detail from './Detail'
 import Summary from './Summary'
 import Driver from './Driver'

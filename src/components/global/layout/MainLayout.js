@@ -25,7 +25,7 @@ export default function MainLayout ({ children }) {
 
   return (
         <Layout className="main-layout">
-            <Header>header</Header>
+            <Header className='main-header'> F1 Visualizer </Header>
             <Layout>
                 <Sider collapsible theme='light' width={220}>
                     <div className="logo" />

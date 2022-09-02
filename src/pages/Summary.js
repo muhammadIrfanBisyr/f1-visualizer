@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Content from '../component/season-summary/Content'
-import SeasonSummaryContextProvider from '../component/season-summary/context/SeasonSummaryContextProvider'
+import Content from '../components/season-summary/Content'
+import SeasonSummaryContextProvider from '../components/season-summary/context/SeasonSummaryContextProvider'
 
 export default function Summary ({ match: { params } }) {
   return (

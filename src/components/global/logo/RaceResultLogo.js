@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon, { CloseOutlined } from '@ant-design/icons'
 
-import { LOGO_MAP } from '../../../asset/race-result-logo'
+import { LOGO_MAP } from '../../../assets/race-result-logo'
 
 export default function RaceResultLogo ({ name = '' }) {
   const checkLapped = name?.charAt(0) === '+' ? 'lapped' : name?.toLowerCase()?.split(' ')?.join('_')

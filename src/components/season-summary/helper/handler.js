@@ -1,28 +1,6 @@
-import axios from 'axios'
-import { message } from 'antd'
 import { generateCountryColumn, DRIVER_COLUMN, TOTAL_POINT_COLUMN } from '../table/TableConstant'
 
-export const handleAPITable = (params, setters) => {
-  const apiUrl = `https://ergast.com/api/f1/${params.year}/results.json?limit=500`
-
-  setters.setLoading(true)
-  axios.get(apiUrl).then(res => {
-    try {
-      setters.setResultData(apiDataToTableData(res))
-    } catch {
-      setters.setResultData({})
-    } finally {
-      setters.setLoading(false)
-    }
-  }).catch((err) => {
-    setters.setResultData({})
-    message(`Error fetching API data: ${err}`)
-  }).finally(() => {
-    setters.setLoading(false)
-  })
-}
-
-const apiDataToTableData = (data) => {
+export const apiDataToTableData = (data) => {
   const resCol = [DRIVER_COLUMN]
   const driverResults = {}
   const totalPoints = {}

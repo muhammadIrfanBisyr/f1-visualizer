@@ -1,3 +1,9 @@
+.main-header {
+  background-color: #399df0 !important;
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: bold;
+}
 .main-footer {
   text-align: center;
 }
@@ -157,6 +163,7 @@
 }
 .ant-layout .content-layout {
   background-color: #ececec;
+  padding-top: 16px;
 }
 .main-summary-content-container {
   font-size: 8pt;

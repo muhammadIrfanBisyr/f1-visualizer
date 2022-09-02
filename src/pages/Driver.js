@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Content from '../component/driver-info/Content'
+import Content from '../components/driver-info/Content'
 
 export default function Driver () {
   return (

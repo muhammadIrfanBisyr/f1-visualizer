@@ -5,6 +5,7 @@ import YearSelect from '../global/select/YearSelect'
 
 import SeasonSummaryContext from './context/SeasonSummaryContext'
 import Table from './table/Table'
+import LeaderBoard from './Leaderboard'
 
 export default function Content () {
   return (
@@ -21,7 +22,9 @@ export default function Content () {
                     <Table/>
                 </Card>
             </Col>
-            <Col span={5}/>
+            <Col span={5}>
+                <LeaderBoard/>
+            </Col>
         </Row>
   )
 }

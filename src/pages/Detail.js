@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Content from '../component/race-detail/Content'
-import RaceDetailContextProvider from '../component/race-detail/context/RaceDetailContextProvider'
+import Content from '../components/race-detail/Content'
+import RaceDetailContextProvider from '../components/race-detail/context/RaceDetailContextProvider'
 
 export default function Detail ({ match: { params } }) {
   return (
