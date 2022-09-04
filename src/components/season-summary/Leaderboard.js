@@ -6,7 +6,7 @@ import SeasonSummaryContext from './context/SeasonSummaryContext'
 const LeaderBoardTop3 = ({ rank, driverInfo }) => {
   return (
         <Card>
-          <CrownFilled></CrownFilled>
+          <CrownFilled style={{ color: 'blue' }}></CrownFilled>
           <Avatar size={50} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
           {
             driverInfo.driverName
