@@ -1,30 +1,51 @@
-import React from 'react'
-import { Row, Col, Card, Space } from 'antd'
-
-import YearSelect from '../global/select/YearSelect'
+import React, { useState, useEffect, useContext } from 'react'
+import { Row, Col, Card, message } from 'antd'
 
 import SeasonSummaryContext from './context/SeasonSummaryContext'
-import Table from './table/Table'
-// import LeaderBoard from './Leaderboard'
+import Table from '../../components/global/table/Table'
+import LeaderBoard from './Leaderboard'
+
+import Setting from './Setting'
+
+import useFetchAPI from '../../hooks/useFetchAPI'
+import { apiDataToTableData } from './helper/handler'
 
 export default function Content () {
-  return (
+  const { dataResults, year, actions: { setDataResults } } = useContext(SeasonSummaryContext)
 
+  const [loading, setLoading] = useState(false)
+  const fetcher = useFetchAPI()
+
+  const fetchData = async () => {
+    try {
+      setLoading(true)
+      const result = await fetcher({ url: `https://ergast.com/api/f1/${year}/results.json?limit=500` })
+      setDataResults(apiDataToTableData(result))
+    } catch (e) {
+      message(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [year])
+
+  return (
         <Row>
             <Col span={19}>
                 <Card className='main-summary-content-container'
                     title={
-                        <Space>
-                            <YearSelect context={SeasonSummaryContext}/> <div>Season Result</div>
-                        </Space>
+                      <Setting title={`${year} Season Result`}/>
                     }
                 >
-                    <Table/>
+                    <Table loading={loading} {...dataResults}/>
                 </Card>
             </Col>
-            {/* <Col span={5}>
+            <Col span={5}>
                 <LeaderBoard/>
-            </Col> */}
+            </Col>
         </Row>
   )
 }

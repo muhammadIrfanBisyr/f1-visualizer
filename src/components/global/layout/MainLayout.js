@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
-import { PieChartOutlined, DesktopOutlined } from '@ant-design/icons'
+import { PieChartOutlined, DesktopOutlined, UserOutlined } from '@ant-design/icons'
 
 const { Header, Sider, Footer, Content } = Layout
 
@@ -18,8 +18,8 @@ export default function MainLayout ({ children }) {
 
   const items = [
     getItem(<Link to='/summary'>Season Summary</Link>, '1', <PieChartOutlined />),
-    getItem(<Link to='/detail'>Race Detail</Link>, '2', <DesktopOutlined />)
-    // getItem(<Link to='/driver'>Driver Information</Link>, '3', <UserOutlined />)
+    getItem(<Link to='/detail'>Race Detail</Link>, '2', <DesktopOutlined />),
+    getItem(<Link to='/driver'>Driver Information</Link>, '3', <UserOutlined />)
     // ,getItem('Constructor Information', '4', <TeamOutlined />)
   ]
 
