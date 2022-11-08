@@ -41,6 +41,7 @@ export default function Content () {
                     }
                 >
                     <Table loading={loading} {...dataResults}/>
+
                 </Card>
             </Col>
             <Col span={5}>

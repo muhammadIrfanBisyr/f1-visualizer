@@ -216,6 +216,11 @@
 .main-summary-content-container .main-table .table-result-points {
   background-color: #bff5c9;
 }
+.leaderboard {
+  width: 95%;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 3px 1px #cecece;
+}
 .leaderboard .flag-icon {
   height: 15px;
   vertical-align: middle;

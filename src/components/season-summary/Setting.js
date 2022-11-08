@@ -1,5 +1,6 @@
 import React from 'react'
-import { Collapse, Typography, Select } from 'antd'
+import { Collapse, Typography } from 'antd'
+import ChartTypeSelect from '../race-detail/select/ChartTypeSelect'
 
 import YearSelect from '../global/select/YearSelect'
 import SeasonSummaryContext from './context/SeasonSummaryContext'
@@ -12,7 +13,7 @@ export default function Setting ({ title }) {
     <Collapse bordered={false} expandIconPosition='right'>
         <Panel header={<Title level={3}>{title}</Title>} key="1">
             Year <YearSelect context={SeasonSummaryContext}/>
-            View Mode <Select />
+            View Mode <ChartTypeSelect/>
         </Panel>
     </Collapse>
   )
