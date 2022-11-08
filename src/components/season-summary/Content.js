@@ -37,14 +37,14 @@ export default function Content () {
             <Col span={19}>
                 <Card className='main-summary-content-container'
                     title={
-                      <Setting title={`${year} Season Result`}/>
+                      <Setting title={`F1 ${year} Season Summary`}/>
                     }
                 >
                     <Table loading={loading} {...dataResults}/>
                 </Card>
             </Col>
             <Col span={5}>
-                <LeaderBoard/>
+                <LeaderBoard loading={loading}/>
             </Col>
         </Row>
   )

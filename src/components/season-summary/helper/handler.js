@@ -20,6 +20,7 @@ export const apiDataToTableData = (data) => {
 
       if (driverId in driverResults === false) {
         driverResults[driverId] = {
+          driverId,
           driverName: `${resultItem.Driver.givenName} ${resultItem.Driver.familyName}`,
           nationality: resultItem.Driver.nationality
         }

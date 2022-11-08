@@ -216,6 +216,10 @@
 .main-summary-content-container .main-table .table-result-points {
   background-color: #bff5c9;
 }
+.leaderboard .flag-icon {
+  height: 15px;
+  vertical-align: middle;
+}
 .driver-list-filter-card {
   border-radius: 8px !important;
   margin: 0 12px;
