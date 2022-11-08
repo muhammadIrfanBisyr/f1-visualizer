@@ -1,26 +1,42 @@
 import React, { useContext, useMemo } from 'react'
-import { Card, List, Avatar } from 'antd'
+import { Card, List, Avatar, Row, Col, Space } from 'antd'
 import { CrownFilled } from '@ant-design/icons'
 import SeasonSummaryContext from './context/SeasonSummaryContext'
 import CountryFlag from '../global/flag/CountryFlag'
 
+const COLOR = ['#ffdd34', '#e2e2e2', '#d3a230']
+
+const CrownedAvatar = ({ rank, driverInfo }) => {
+  return (
+    <>
+      <CrownFilled style={{ fontSize: '20px', color: COLOR[rank - 1], position: 'absolute', top: '3px', left: '15px' }}></CrownFilled>
+      <Avatar size={50} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
+    </>
+  )
+}
+
 const LeaderboardTop10 = ({ rank, driverInfo }) => {
   return (
         <Card className='leaderboard-cell' bodyStyle={{ padding: '8px' }}>
-          {
-            rank <= 3 &&
-            <>
-              <CrownFilled style={{ color: 'blue' }}></CrownFilled>
-              <Avatar size={50} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
-            </>
-          }
-          <CountryFlag nationality={driverInfo.nationality}/>
-          {
-            driverInfo.driverName
-          }
-          {
-            driverInfo.points
-          }
+          <Row align='middle'>
+            <Col span={20}>
+              <Space>
+                {
+                rank <= 3 &&
+                  <CrownedAvatar driverInfo={driverInfo} rank={rank} />
+                }
+                <CountryFlag nationality={driverInfo.nationality}/>
+                {
+                  driverInfo.driverName
+                }
+              </Space>
+            </Col>
+            <Col span={4} style={{ textAlign: 'right' }}>
+            {
+                driverInfo.points
+            }
+            </Col>
+          </Row>
         </Card>
   )
 }
