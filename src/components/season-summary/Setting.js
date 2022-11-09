@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Collapse, Typography } from 'antd'
+import { Collapse, Space, Typography } from 'antd'
 import ChartTypeSelect from '../race-detail/select/ChartTypeSelect'
 
 import YearSelect from '../global/select/YearSelect'
@@ -15,9 +15,11 @@ export default function Setting ({ title }) {
   return (
     <Collapse bordered={false} expandIconPosition='right'>
         <Panel header={<Title level={3}>{title}</Title>} key="1">
+          <Space>
             Year <YearSelect defaultValue={year} onChange={(val) => setYear(val)}/>
-            Data View Type <ChartTypeSelect/>
-            View Mode <TypeSelect defaultValue={dataMode} onChange={(val) => setDataMode(val)}/>
+            View Type <ChartTypeSelect/>
+            Data Type <TypeSelect defaultValue={dataMode} onChange={(val) => setDataMode(val)}/>
+          </Space>
         </Panel>
     </Collapse>
   )
