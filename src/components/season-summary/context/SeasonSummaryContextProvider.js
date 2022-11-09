@@ -3,6 +3,7 @@ import SeasonSummaryContext, { SEASON_SUMMARY_INIT_VALUE } from './SeasonSummary
 
 const ACTION = {
   SET_YEAR: 'SET_YEAR',
+  SET_DATA_MODE: 'SET_DATA_MODE',
   SET_DATA_RESULTS: 'SET_DATA_RESULTS'
 }
 
@@ -10,6 +11,8 @@ function reducer (state, { type, payload }) {
   switch (type) {
     case ACTION.SET_YEAR:
       return { ...state, year: payload }
+    case ACTION.SET_DATA_MODE:
+      return { ...state, dataMode: payload }
     case ACTION.SET_DATA_RESULTS:
       return { ...state, dataResults: payload }
     default:
@@ -26,6 +29,10 @@ export default function SeasonSummaryContextProvider ({ initValue, children }) {
     dispatch({ type: ACTION.SET_YEAR, payload: data })
   }
 
+  const setDataMode = (data) => {
+    dispatch({ type: ACTION.SET_DATA_MODE, payload: data })
+  }
+
   const setDataResults = (data) => {
     dispatch({ type: ACTION.SET_DATA_RESULTS, payload: data })
   }
@@ -36,6 +43,7 @@ export default function SeasonSummaryContextProvider ({ initValue, children }) {
               ...state,
               actions: {
                 setYear,
+                setDataMode,
                 setDataResults
               }
             }}>

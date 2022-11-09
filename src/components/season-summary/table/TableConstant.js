@@ -1,8 +1,9 @@
 import React from 'react'
 import CountryFlag from '../../global/flag/CountryFlag'
 import { Link } from 'react-router-dom'
+import TeamLogo from '../../global/logo/TeamLogo'
 
-function RaceResultCell ({ result, status }) {
+const RaceResultCell = ({ result, status }) => {
   let className = 'table-result'
 
   if (status === 'Finished') {
@@ -50,6 +51,19 @@ export const DRIVER_COLUMN = {
   width: 160
 }
 
+export const CONSTRUCTOR_COLUMN = {
+  key: 'constructor',
+  title: 'Constructor Name',
+  dataIndex: 'constructorName',
+  render: (constructorName, record) => (
+        <div>
+            <TeamLogo name={record.constructorId}/>
+            {` ${constructorName}`}
+        </div>
+  ),
+  width: 160
+}
+
 export const TOTAL_POINT_COLUMN = {
   key: 'points',
   title: 'Points',
@@ -62,4 +76,18 @@ export const TOTAL_POINT_COLUMN = {
   width: 50,
   sortOrder: 'descend',
   sorter: (a, b) => a.points - b.points
+}
+
+export const TOTAL_CONSTRUCTOR_POINT_COLUMN = {
+  key: 'constructorPoints',
+  title: 'Points',
+  dataIndex: 'constructorPoints',
+  render: (constructorPoints) => (
+        <div className='table-result'>
+            {constructorPoints}
+        </div>
+  ),
+  width: 50,
+  sortOrder: 'descend',
+  sorter: (a, b) => a.constructorPoints - b.constructorPoints
 }

@@ -51,7 +51,7 @@ export default function LeaderBoard ({ loading }) {
   })).sort((a, b) => b.points - a.points), [dataResults])
 
   return (
-    <Card className='leaderboard' bodyStyle={{ padding: '0px' }}>
+    <Card className='leaderboard' bodyStyle={{ padding: '0px' }} title='Leaderboard'>
       <List
         loading={loading}
         dataSource={leaderboardData}

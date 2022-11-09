@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Select } from 'antd'
 
 const { Option } = Select
 
-export default function YearSelect ({ context }) {
-  const { year, actions: { setYear } } = useContext(context)
-
+export default function YearSelect ({ onChange, defaultValue }) {
   const yearStart = Array.from({ length: 13 }, (_, i) => i + 2010)
 
   return (
@@ -14,11 +12,11 @@ export default function YearSelect ({ context }) {
             showSearch
             placeholder="Select Year"
             optionFilterProp="children"
-            onChange={(val) => { setYear(val) }}
+            onChange={onChange}
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
-            defaultValue={year}
+            defaultValue={defaultValue}
         >
             {
                 yearStart.map((num) => (<Option key={num} value={num}>{num}</Option>))

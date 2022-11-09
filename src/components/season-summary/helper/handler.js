@@ -1,5 +1,14 @@
 import { generateCountryColumn, DRIVER_COLUMN, TOTAL_POINT_COLUMN } from '../table/TableConstant'
 
+const calculateConstructor = (data) => {
+  const contructors = data.reduce((acc, item) => {
+    acc[item.constructorId] = (acc[item.constructorId] + item.points) || item.points
+    return acc
+  }, {})
+
+  return data.map((item) => { return { ...item, constructorPoints: contructors[item.constructorId] } })
+}
+
 export const apiDataToTableData = (data) => {
   const resCol = [DRIVER_COLUMN]
   const driverResults = {}
@@ -20,6 +29,8 @@ export const apiDataToTableData = (data) => {
 
       if (driverId in driverResults === false) {
         driverResults[driverId] = {
+          constructorId: resultItem.Constructor.constructorId,
+          constructorName: resultItem.Constructor.name,
           driverId,
           driverName: `${resultItem.Driver.givenName} ${resultItem.Driver.familyName}`,
           nationality: resultItem.Driver.nationality
@@ -39,5 +50,5 @@ export const apiDataToTableData = (data) => {
     driverResults[key] = { ...driverResults[key], points: totalPoints[key] }
   })
 
-  return { columns: [...resCol, TOTAL_POINT_COLUMN], dataSource: Object.values(driverResults) }
+  return { columns: [...resCol, TOTAL_POINT_COLUMN], dataSource: calculateConstructor(Object.values(driverResults)) }
 }

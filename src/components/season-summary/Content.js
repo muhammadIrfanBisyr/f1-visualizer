@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useMemo } from 'react'
 import { Row, Col, Card, message } from 'antd'
 
 import SeasonSummaryContext from './context/SeasonSummaryContext'
@@ -9,12 +9,18 @@ import Setting from './Setting'
 
 import useFetchAPI from '../../hooks/useFetchAPI'
 import { apiDataToTableData } from './helper/handler'
+import { TOTAL_CONSTRUCTOR_POINT_COLUMN, CONSTRUCTOR_COLUMN } from './table/TableConstant'
 
 export default function Content () {
-  const { dataResults, year, actions: { setDataResults } } = useContext(SeasonSummaryContext)
+  const { dataResults, dataMode, year, actions: { setDataResults } } = useContext(SeasonSummaryContext)
 
   const [loading, setLoading] = useState(false)
   const fetcher = useFetchAPI()
+  const columns = useMemo(
+    () => dataMode === 'D'
+      ? dataResults?.columns
+      : [CONSTRUCTOR_COLUMN, ...dataResults?.columns.slice(1, -1), TOTAL_CONSTRUCTOR_POINT_COLUMN],
+    [dataResults, dataMode])
 
   const fetchData = async () => {
     try {
@@ -37,10 +43,10 @@ export default function Content () {
             <Col span={19}>
                 <Card className='main-summary-content-container'
                     title={
-                      <Setting title={`F1 ${year} Season Summary`}/>
+                      <Setting title={`F1 ${year} Season Summary - ${dataMode === 'D' ? 'Driver' : 'Constructor'} Standing`}/>
                     }
                 >
-                    <Table loading={loading} {...dataResults}/>
+                    <Table loading={loading} dataSource={dataResults?.dataSource} columns={columns} />
 
                 </Card>
             </Col>
