@@ -14,7 +14,7 @@ import CountryFlag from '../global/flag/CountryFlag'
 
 function TrackInfoInnerComponent () {
   const { trackId, trackName, locality, country, date, time } = useContext(TrackInfoContext)
-  const { loading, year } = useContext(RaceDetailContext)
+  const { loading, year, actions: { setYear } } = useContext(RaceDetailContext)
 
   return (
         <Card className='track-info-container'>
@@ -22,7 +22,7 @@ function TrackInfoInnerComponent () {
                 <Link to={`/summary/${year}`}>
                     <InfoCircleFilled className='year-info'/>
                 </Link>
-                <YearSelect context={RaceDetailContext}/>
+                <YearSelect onChange={setYear} defaultValue={year}/>
                 <TrackSelect/>
             </Space>
             <Spin spinning={loading}>

@@ -18,7 +18,7 @@ export default function Setting ({ title }) {
           <Space>
             Year <YearSelect defaultValue={year} onChange={(val) => setYear(val)}/>
             View Type <ChartTypeSelect/>
-            Data Type <TypeSelect defaultValue={dataMode} onChange={(val) => setDataMode(val)}/>
+            Show By <TypeSelect defaultValue={dataMode} onChange={(val) => setDataMode(val)}/>
           </Space>
         </Panel>
     </Collapse>
