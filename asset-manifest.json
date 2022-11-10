@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/f1-visualizer/static/css/main.94ad9207.css",
-    "main.js": "/f1-visualizer/static/js/main.0793f7ea.js",
+    "main.js": "/f1-visualizer/static/js/main.7c925f53.js",
     "static/media/manor.svg": "/f1-visualizer/static/media/manor.e63dfca699d4ec2c171361d735f8e247.svg",
     "static/media/ferrari.svg": "/f1-visualizer/static/media/ferrari.31e64be4e889f0a6d606f453577bd8dc.svg",
     "static/media/toro-rosso.svg": "/f1-visualizer/static/media/toro-rosso.a093912db4d0699ce04abf098882403b.svg",
@@ -33,10 +33,10 @@
     "static/media/blue-flag.svg": "/f1-visualizer/static/media/blue-flag.51d6e88b51e9a482b9d4c78d3d8dd0c9.svg",
     "static/media/black-flag.svg": "/f1-visualizer/static/media/black-flag.1fb6405703ace09ba2f4e09e358a913b.svg",
     "main.94ad9207.css.map": "/f1-visualizer/static/css/main.94ad9207.css.map",
-    "main.0793f7ea.js.map": "/f1-visualizer/static/js/main.0793f7ea.js.map"
+    "main.7c925f53.js.map": "/f1-visualizer/static/js/main.7c925f53.js.map"
   },
   "entrypoints": [
     "static/css/main.94ad9207.css",
-    "static/js/main.0793f7ea.js"
+    "static/js/main.7c925f53.js"
   ]
 }
