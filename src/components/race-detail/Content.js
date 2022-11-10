@@ -9,10 +9,10 @@ import TrackInfo from './TrackInfo'
 import Podium from './Podium'
 
 import SessionSelect from './select/SessionSelect'
-import ChartTypeSelect from './select/ChartTypeSelect'
+import ChartTypeSelect from '../global/select/ChartTypeSelect'
 
 export default function Content () {
-  const { chartType } = useContext(RaceDetailContext)
+  const { chartType, actions: { setChartType } } = useContext(RaceDetailContext)
 
   return (
         <Row>
@@ -28,7 +28,7 @@ export default function Content () {
                             </Col>
                             <Col span={3}>
                                 <Row justify='end'>
-                                    <ChartTypeSelect />
+                                    <ChartTypeSelect defaultValue={chartType} onChange={setChartType} />
                                 </Row>
                             </Col>
                         </Row>
