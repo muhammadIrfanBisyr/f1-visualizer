@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { List, Card, Avatar, Space, Divider, Typography } from 'antd'
+import { List, Card, Space, Divider, Typography } from 'antd'
 import { CrownOutlined, TrophyOutlined, ThunderboltOutlined, PoundCircleOutlined } from '@ant-design/icons'
 
 import TeamLogo from '../../global/logo/TeamLogo'
@@ -7,6 +7,7 @@ import CountryFlag from '../../global/flag/CountryFlag'
 import { handleAPIDriver } from '../helper/handler'
 import { TEAM_CONST } from '../../global/constant/Teams'
 import DriverInfoContext from '../context/DriverInfoContext'
+import DriverAvatar from '../../global/avatar/DriverAvatar'
 
 const { Title, Text } = Typography
 
@@ -67,7 +68,11 @@ export default function DriverList () {
                     <div className='constructor-background' style={{ backgroundColor: TEAM_CONST[item.constructorId]?.color ?? '#ffffff' }}>
                       <TeamLogo name={item.constructorId}/>
                     </div>
-                    <Avatar size={100} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
+                    <DriverAvatar
+                      size={100}
+                      driverId={item.driverId}
+                      style={{ marginTop: '16px', border: '3px solid #ffffff' }}
+                    />
                     <Title level={4}>{item?.name}</Title>
                     <Space className='driver-info'>
                       <CountryFlag nationality={item.nationality}/>

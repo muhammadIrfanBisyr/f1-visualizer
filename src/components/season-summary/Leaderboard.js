@@ -1,8 +1,9 @@
 import React, { useContext, useMemo } from 'react'
-import { Card, List, Avatar, Row, Col, Typography, Space } from 'antd'
+import { Card, List, Row, Col, Typography, Space } from 'antd'
 import { CrownFilled, DollarCircleFilled } from '@ant-design/icons'
 import SeasonSummaryContext from './context/SeasonSummaryContext'
 import CountryFlag from '../global/flag/CountryFlag'
+import DriverAvatar from '../global/avatar/DriverAvatar'
 
 const { Text } = Typography
 const COLOR = ['#ffdd34', '#e2e2e2', '#d3a230']
@@ -10,8 +11,8 @@ const COLOR = ['#ffdd34', '#e2e2e2', '#d3a230']
 const CrownedAvatar = ({ rank, driverInfo }) => {
   return (
     <>
-      <CrownFilled style={{ fontSize: '20px', color: COLOR[rank - 1], position: 'absolute', top: '3px', left: '15px' }}></CrownFilled>
-      <Avatar size={50} style={{ marginTop: '16px', border: '3px solid #ffffff' }}/>
+      <CrownFilled style={{ fontSize: '20px', color: COLOR[rank - 1], position: 'absolute', top: '3px', left: '13px' }}></CrownFilled>
+      <DriverAvatar driverId={driverInfo.driverId} size={45} style={{ marginTop: '16px' }}/>
     </>
   )
 }
