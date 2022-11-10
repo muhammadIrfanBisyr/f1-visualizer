@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { Card, List, Row, Col, Typography, Space } from 'antd'
+import { Card, List, Row, Col, Typography, Space, Popover } from 'antd'
 import { CrownFilled, DollarCircleFilled } from '@ant-design/icons'
 import SeasonSummaryContext from './context/SeasonSummaryContext'
 import CountryFlag from '../global/flag/CountryFlag'
@@ -17,6 +17,16 @@ const CrownedAvatar = ({ rank, driverInfo }) => {
   )
 }
 
+const PodiumStats = ({ firstTot, secondTot, thirdTot }) => {
+  return (
+    <Space>
+      <DollarCircleFilled style={{ color: COLOR[0] }}/>{firstTot}
+      <DollarCircleFilled style={{ color: COLOR[1] }}/>{secondTot}
+      <DollarCircleFilled style={{ color: COLOR[2] }}/>{thirdTot}
+    </Space>
+  )
+}
+
 const Top3Stats = ({ rank, driverInfo }) => {
   return (
     <Row align='middle'>
@@ -31,11 +41,11 @@ const Top3Stats = ({ rank, driverInfo }) => {
         </Row>
         <Row>
           <Col>
-            <Space>
-              <DollarCircleFilled style={{ color: COLOR[0] }}/> 10
-              <DollarCircleFilled style={{ color: COLOR[1] }}/> 20
-              <DollarCircleFilled style={{ color: COLOR[2] }}/> 30
-            </Space>
+            <PodiumStats
+              firstTot={driverInfo.firstPlace}
+              secondTot={driverInfo.secondPlace}
+              thirdTot={driverInfo.thirdPlace}
+            />
           </Col>
         </Row>
       </Col>
@@ -60,7 +70,17 @@ const LeaderboardTop10 = ({ rank, driverInfo }) => {
                 {
                   rank <= 3
                     ? <Top3Stats rank={rank} driverInfo={driverInfo}/>
-                    : <DriverFlagAndName nationality={driverInfo.nationality} driverName={driverInfo.driverName} />
+                    : <Popover
+                        content={
+                          <PodiumStats
+                            firstTot={driverInfo.firstPlace}
+                            secondTot={driverInfo.secondPlace}
+                            thirdTot={driverInfo.thirdPlace}
+                          />}>
+                        <div>
+                          <DriverFlagAndName nationality={driverInfo.nationality} driverName={driverInfo.driverName} />
+                        </div>
+                    </Popover>
                 }
             </Col>
             <Col span={4} style={{ textAlign: 'right' }}>
@@ -77,7 +97,10 @@ export default function LeaderBoard ({ loading }) {
     points: item.points,
     nationality: item.nationality,
     driverId: item.driverId,
-    driverName: item.driverName
+    driverName: item.driverName,
+    firstPlace: item.firstPlace,
+    secondPlace: item.secondPlace,
+    thirdPlace: item.thirdPlace
   })).sort((a, b) => b.points - a.points), [dataResults])
 
   return (

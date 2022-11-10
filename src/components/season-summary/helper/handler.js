@@ -27,14 +27,21 @@ export const apiDataToTableData = (data) => {
       const driverId = resultItem.Driver.driverId
       const points = parseInt(resultItem.points)
 
-      if (driverId in driverResults === false) {
+      if (!(driverId in driverResults)) {
         driverResults[driverId] = {
           constructorId: resultItem.Constructor.constructorId,
           constructorName: resultItem.Constructor.name,
           driverId,
           driverName: `${resultItem.Driver.givenName} ${resultItem.Driver.familyName}`,
-          nationality: resultItem.Driver.nationality
+          nationality: resultItem.Driver.nationality,
+          firstPlace: parseInt(resultItem.position) === 1 ? 1 : 0,
+          secondPlace: parseInt(resultItem.position) === 2 ? 1 : 0,
+          thirdPlace: parseInt(resultItem.position) === 3 ? 1 : 0
         }
+      } else {
+        driverResults[driverId].firstPlace += parseInt(resultItem.position) === 1 ? 1 : 0
+        driverResults[driverId].secondPlace += parseInt(resultItem.position) === 2 ? 1 : 0
+        driverResults[driverId].thirdPlace += parseInt(resultItem.position) === 3 ? 1 : 0
       }
 
       driverResults[driverId][countryInitialKey] = {
