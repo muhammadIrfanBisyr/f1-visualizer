@@ -1,9 +1,10 @@
 import React, { useContext, useMemo } from 'react'
-import { Card, List, Avatar, Row, Col, Space } from 'antd'
-import { CrownFilled } from '@ant-design/icons'
+import { Card, List, Avatar, Row, Col, Typography, Space } from 'antd'
+import { CrownFilled, DollarCircleFilled } from '@ant-design/icons'
 import SeasonSummaryContext from './context/SeasonSummaryContext'
 import CountryFlag from '../global/flag/CountryFlag'
 
+const { Text } = Typography
 const COLOR = ['#ffdd34', '#e2e2e2', '#d3a230']
 
 const CrownedAvatar = ({ rank, driverInfo }) => {
@@ -15,26 +16,54 @@ const CrownedAvatar = ({ rank, driverInfo }) => {
   )
 }
 
+const Top3Stats = ({ rank, driverInfo }) => {
+  return (
+    <Row align='middle'>
+      <Col span={7}>
+        <CrownedAvatar driverInfo={driverInfo} rank={rank} />
+      </Col>
+      <Col>
+        <Row>
+          <Col>
+            <DriverFlagAndName nationality={driverInfo.nationality} driverName={driverInfo.driverName} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Space>
+              <DollarCircleFilled style={{ color: COLOR[0] }}/> 10
+              <DollarCircleFilled style={{ color: COLOR[1] }}/> 20
+              <DollarCircleFilled style={{ color: COLOR[2] }}/> 30
+            </Space>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
+  )
+}
+
+const DriverFlagAndName = ({ nationality, driverName }) => {
+  return (
+    <Space>
+      <CountryFlag nationality={nationality}/>
+      <Text strong>{driverName}</Text>
+    </Space>
+  )
+}
+
 const LeaderboardTop10 = ({ rank, driverInfo }) => {
   return (
         <Card className='leaderboard-cell' bodyStyle={{ padding: '8px' }}>
           <Row align='middle'>
             <Col span={20}>
-              <Space>
                 {
-                rank <= 3 &&
-                  <CrownedAvatar driverInfo={driverInfo} rank={rank} />
+                  rank <= 3
+                    ? <Top3Stats rank={rank} driverInfo={driverInfo}/>
+                    : <DriverFlagAndName nationality={driverInfo.nationality} driverName={driverInfo.driverName} />
                 }
-                <CountryFlag nationality={driverInfo.nationality}/>
-                {
-                  driverInfo.driverName
-                }
-              </Space>
             </Col>
             <Col span={4} style={{ textAlign: 'right' }}>
-            {
-                driverInfo.points
-            }
+                <Text strong>{driverInfo.points}</Text>
             </Col>
           </Row>
         </Card>
