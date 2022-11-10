@@ -61,6 +61,10 @@ export const CONSTRUCTOR_COLUMN = {
             {` ${constructorName}`}
         </div>
   ),
+  onCell: (record) => {
+    console.log(record)
+    return !record.firstCol ? { rowSpan: 0 } : { rowSpan: record.rowSpan }
+  },
   width: 160
 }
 
@@ -89,5 +93,9 @@ export const TOTAL_CONSTRUCTOR_POINT_COLUMN = {
   ),
   width: 50,
   sortOrder: 'descend',
-  sorter: (a, b) => a.constructorPoints - b.constructorPoints
+  sorter: (a, b) => a.constructorPoints - b.constructorPoints,
+  onCell: (record) => {
+    console.log(record)
+    return !record.firstCol ? { rowSpan: 0 } : { rowSpan: record.rowSpan }
+  }
 }

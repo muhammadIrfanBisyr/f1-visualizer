@@ -52,3 +52,14 @@ export const apiDataToTableData = (data) => {
 
   return { columns: [...resCol, TOTAL_POINT_COLUMN], dataSource: calculateConstructor(Object.values(driverResults)) }
 }
+
+export const calculateRowSpanConstructor = (data = []) => {
+  const contructorsOccurence = data.reduce((acc, item) => {
+    acc[item.constructorId] = (acc[item.constructorId] || 0) + 1
+    return acc
+  }, {})
+
+  return data.sort((a, b) => b.constructorPoints - a.constructorPoints || b.points - a.points)
+    .map((item, index, arr) => ({ ...item, firstCol: arr[index - 1]?.constructorId !== item.constructorId, rowSpan: contructorsOccurence[item.constructorId] }
+    ))
+}
