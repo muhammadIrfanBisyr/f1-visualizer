@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Card, Skeleton } from 'antd'
 
-import RaceDetailContext from './context/RaceDetailContext'
-import TeamLogo from '../global/logo/TeamLogo'
-import CountryFlag from '../global/flag/CountryFlag'
-import { TEAM_CONST } from '../global/constant/Teams'
+import TeamLogo from '../../global/logo/TeamLogo'
+import CountryFlag from '../../global/flag/CountryFlag'
+import { TEAM_CONST } from '../../global/constant/Teams'
+
+import RaceDetailContext from '../context/RaceDetailContext'
 
 const PODIUM_HEIGHT = [100, 75, 50]
 const PODIUM_WIDTH = 70
@@ -61,7 +62,7 @@ function Stage ({ place, displayOrder }) {
   )
 }
 
-export default function Podium () {
+export default function RaceDetailPodium () {
   const { loading } = useContext(RaceDetailContext)
 
   return (

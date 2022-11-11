@@ -5,17 +5,28 @@ import { Select } from 'antd'
 
 const { Option } = Select
 
-export default function ChartTypeSelect ({ onChange, defaultValue, width }) {
-  return (
-        <Select
-            defaultValue={defaultValue}
-            className='chart-type-select'
-            onChange={onChange}
-            {...(width && { style: { width } })}
-        >
-            <Option value='T'> <TableOutlined/> Table </Option>
-            <Option value='L'> <LineChartOutlined/> Line Chart</Option>
+export const CHART_TYPE_OPTIONS = [
+  { label: 'Table', value: 'T', icon: <TableOutlined/> },
+  { label: 'Line Chart', value: 'L', icon: <LineChartOutlined/> }
+]
 
-        </Select>
+export default function ChartTypeSelect (props) {
+  const options = props?.options ?? CHART_TYPE_OPTIONS
+
+  return (
+    <Select
+        className='chart-type-select'
+        {...props}
+        {...(props?.width && { style: { width: props?.width } })}
+    >
+        {options.map((item) => (
+          <Option
+            key={item.value}
+            value={item.value}
+          >
+            {item.icon} {item.label}
+          </Option>
+        ))}
+    </Select>
   )
 }

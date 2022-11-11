@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import { Card, Space, Spin } from 'antd'
 import { EnvironmentOutlined, ClockCircleOutlined, InfoCircleFilled } from '@ant-design/icons'
 
-import RaceDetailContext from './context/RaceDetailContext'
-import TrackInfoContextProvider from './context/TrackInfoContextProvider'
-import TrackInfoContext from './context/TrackInfoContext'
+import YearSelect from '../../global/select/YearSelect'
+import CountryFlag from '../../global/flag/CountryFlag'
 
-import TrackSelect from './select/TrackSelect'
-import YearSelect from '../global/select/YearSelect'
+import RaceDetailContext from '../context/RaceDetailContext'
+import TrackInfoContext from '../context/TrackInfoContext'
+import TrackInfoContextProvider from '../context/TrackInfoContextProvider'
 
-import CountryFlag from '../global/flag/CountryFlag'
+import TrackSelect from '../select/TrackSelect'
 
 function TrackInfoInnerComponent () {
   const { trackId, trackName, locality, country, date, time } = useContext(TrackInfoContext)
@@ -39,7 +39,7 @@ function TrackInfoInnerComponent () {
   )
 }
 
-export default function TrackInfo () {
+export default function RaceDetailTrackInfo () {
   return (
         <TrackInfoContextProvider>
             <TrackInfoInnerComponent/>

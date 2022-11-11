@@ -28,13 +28,26 @@ const SettingMenu = () => {
   )
 }
 
+const ContentSwitch = ({ loading }) => {
+  const { chartType } = useContext(SeasonSummaryContext)
+
+  switch (chartType) {
+    case 'T':
+      return (<SeasonSummaryTable loading={loading}/>)
+    case 'L':
+      return (<>aaa</>)
+    default:
+      return (<></>)
+  }
+}
+
 export default function SeasonSummaryMainContent ({ loading }) {
   return (
     <Card
       className='main-summary-content-container'
       title={<SettingMenu/>}
     >
-      <SeasonSummaryTable loading={loading}/>
+      <ContentSwitch loading={loading}/>
     </Card>
   )
 }
