@@ -5,8 +5,8 @@ import SeasonSummaryContextProvider from '../components/season-summary/context/S
 
 export default function Summary ({ match: { params } }) {
   return (
-        <SeasonSummaryContextProvider initValue={params}>
-            <SeasonSummaryMain/>
-        </SeasonSummaryContextProvider>
+    <SeasonSummaryContextProvider initValue={params}>
+        <SeasonSummaryMain/>
+    </SeasonSummaryContextProvider>
   )
 }

@@ -1,15 +1,13 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import Card from 'antd/lib/card/Card'
 import { Collapse, Space, Typography } from 'antd'
 
 import ChartTypeSelect from '../global/select/ChartTypeSelect'
 import YearSelect from '../global/select/YearSelect'
 import TypeSelect from '../global/select/TypeSelect'
-import Table from '../global/table/Table'
 
 import SeasonSummaryContext from './context/SeasonSummaryContext'
-import { CONSTRUCTOR_COLUMN, TOTAL_CONSTRUCTOR_POINT_COLUMN } from './table/TableConstant'
-import { calculateRowSpanConstructor } from './helper/handler'
+import SeasonSummaryTable from './main-content/SeasonSummaryTable'
 
 const { Panel } = Collapse
 const { Title } = Typography
@@ -27,25 +25,6 @@ const SettingMenu = () => {
           </Space>
         </Panel>
     </Collapse>
-  )
-}
-
-const SeasonSummaryTable = ({ loading }) => {
-  const { dataMode, dataResults } = useContext(SeasonSummaryContext)
-
-  const tableColumns = useMemo(
-    () => dataMode === 'D'
-      ? dataResults?.columns
-      : [CONSTRUCTOR_COLUMN, ...dataResults?.columns.slice(1, -1), TOTAL_CONSTRUCTOR_POINT_COLUMN],
-    [dataResults, dataMode])
-
-  const tableData = useMemo(
-    () => dataMode === 'D'
-      ? dataResults?.dataSource
-      : calculateRowSpanConstructor(dataResults?.dataSource), [dataResults, dataMode])
-
-  return (
-    <Table loading={loading} dataSource={tableData} columns={tableColumns} />
   )
 }
 

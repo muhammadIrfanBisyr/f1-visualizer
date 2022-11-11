@@ -6,7 +6,7 @@ import SeasonSummaryContext from './context/SeasonSummaryContext'
 import SeasonSummaryLayout from './SeasonSummaryLayout'
 
 import useFetchAPI from '../../hooks/useFetchAPI'
-import { apiDataToTableData } from './helper/handler'
+import { apiDataToTableData } from './helper/SeasonSummaryAPI'
 
 export default function SeasonSummaryMain () {
   const { year, actions: { setDataResults } } = useContext(SeasonSummaryContext)
