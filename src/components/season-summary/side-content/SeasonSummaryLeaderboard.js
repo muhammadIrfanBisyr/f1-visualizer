@@ -1,9 +1,10 @@
 import React, { useContext, useMemo } from 'react'
 import { Card, List, Row, Col, Typography, Space, Popover } from 'antd'
 import { CrownFilled, DollarCircleFilled } from '@ant-design/icons'
-import SeasonSummaryContext from './context/SeasonSummaryContext'
-import CountryFlag from '../global/flag/CountryFlag'
-import DriverAvatar from '../global/avatar/DriverAvatar'
+
+import SeasonSummaryContext from '../context/SeasonSummaryContext'
+import CountryFlag from '../../global/flag/CountryFlag'
+import DriverAvatar from '../../global/avatar/DriverAvatar'
 
 const { Text } = Typography
 const COLOR = ['#ffdd34', '#e2e2e2', '#d3a230']
@@ -91,7 +92,7 @@ const LeaderboardTop10 = ({ rank, driverInfo }) => {
   )
 }
 
-export default function LeaderBoard ({ loading }) {
+export default function SeasonSummaryLeaderboard ({ loading }) {
   const { dataResults } = useContext(SeasonSummaryContext)
   const leaderboardData = useMemo(() => dataResults?.dataSource?.map((item) => ({
     points: item.points,

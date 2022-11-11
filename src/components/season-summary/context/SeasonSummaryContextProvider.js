@@ -4,7 +4,8 @@ import SeasonSummaryContext, { SEASON_SUMMARY_INIT_VALUE } from './SeasonSummary
 const ACTION = {
   SET_YEAR: 'SET_YEAR',
   SET_DATA_MODE: 'SET_DATA_MODE',
-  SET_DATA_RESULTS: 'SET_DATA_RESULTS'
+  SET_DATA_RESULTS: 'SET_DATA_RESULTS',
+  SET_CHART_TYPE: 'SET_CHART_TYPE'
 }
 
 function reducer (state, { type, payload }) {
@@ -15,6 +16,8 @@ function reducer (state, { type, payload }) {
       return { ...state, dataMode: payload }
     case ACTION.SET_DATA_RESULTS:
       return { ...state, dataResults: payload }
+    case ACTION.SET_CHART_TYPE:
+      return { ...state, chartType: payload }
     default:
       return state
   }
@@ -37,6 +40,10 @@ export default function SeasonSummaryContextProvider ({ initValue, children }) {
     dispatch({ type: ACTION.SET_DATA_RESULTS, payload: data })
   }
 
+  const setChartType = (data) => {
+    dispatch({ type: ACTION.SET_CHART_TYPE, payload: data })
+  }
+
   return (
         <SeasonSummaryContext.Provider
             value={{
@@ -44,7 +51,8 @@ export default function SeasonSummaryContextProvider ({ initValue, children }) {
               actions: {
                 setYear,
                 setDataMode,
-                setDataResults
+                setDataResults,
+                setChartType
               }
             }}>
             {children}
