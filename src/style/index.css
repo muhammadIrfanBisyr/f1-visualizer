@@ -182,6 +182,9 @@
   padding-bottom: 2px;
   padding-top: 8px;
 }
+.main-summary-content-container .ant-collapse-header {
+  padding: 4px 0px 0px 8px !important;
+}
 .main-summary-content-container .main-table {
   margin: 0 auto;
   min-height: 600px;

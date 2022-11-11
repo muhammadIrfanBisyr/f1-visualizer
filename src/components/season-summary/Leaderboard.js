@@ -30,7 +30,7 @@ const PodiumStats = ({ firstTot, secondTot, thirdTot }) => {
 const Top3Stats = ({ rank, driverInfo }) => {
   return (
     <Row align='middle'>
-      <Col span={7}>
+      <Col style={{ paddingRight: '8px' }}>
         <CrownedAvatar driverInfo={driverInfo} rank={rank} />
       </Col>
       <Col>
