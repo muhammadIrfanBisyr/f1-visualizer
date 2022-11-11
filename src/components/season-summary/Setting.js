@@ -18,8 +18,8 @@ export default function Setting ({ title }) {
         <Panel header={<Title level={3}>{title}</Title>} key="1">
           <Space>
             Year <YearSelect defaultValue={year} onChange={(val) => setYear(val)}/>
-            View Type <ChartTypeSelect defaultValue={chartType} width={110}/>
-            Show By <TypeSelect defaultValue={dataMode} onChange={(val) => setDataMode(val)} width={120}/>
+            View Type <ChartTypeSelect defaultValue={chartType} width={125}/>
+            Show By <TypeSelect defaultValue={dataMode} onChange={(val) => setDataMode(val)} width={135}/>
           </Space>
         </Panel>
     </Collapse>

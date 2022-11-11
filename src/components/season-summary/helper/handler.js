@@ -66,7 +66,10 @@ export const calculateRowSpanConstructor = (data = []) => {
     return acc
   }, {})
 
-  return data.sort((a, b) => b.constructorPoints - a.constructorPoints || b.points - a.points)
-    .map((item, index, arr) => ({ ...item, firstCol: arr[index - 1]?.constructorId !== item.constructorId, rowSpan: contructorsOccurence[item.constructorId] }
-    ))
+  return data.sort((a, b) =>
+    b.constructorPoints - a.constructorPoints ||
+    b.points - a.points ||
+    a.constructorId.localeCompare(b.constructorId)
+  ).map((item, index, arr) => ({ ...item, firstCol: arr[index - 1]?.constructorId !== item.constructorId, rowSpan: contructorsOccurence[item.constructorId] }
+  ))
 }
