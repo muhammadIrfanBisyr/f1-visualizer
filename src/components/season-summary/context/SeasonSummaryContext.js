@@ -4,6 +4,7 @@ export const SEASON_SUMMARY_INIT_VALUE = {
   year: '2022',
   dataMode: 'D',
   chartType: 'T',
+  loading: 'false',
   dataResults: [],
   actions: {}
 }

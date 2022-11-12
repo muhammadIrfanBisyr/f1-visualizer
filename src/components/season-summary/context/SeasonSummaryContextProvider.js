@@ -5,7 +5,8 @@ const ACTION = {
   SET_YEAR: 'SET_YEAR',
   SET_DATA_MODE: 'SET_DATA_MODE',
   SET_DATA_RESULTS: 'SET_DATA_RESULTS',
-  SET_CHART_TYPE: 'SET_CHART_TYPE'
+  SET_CHART_TYPE: 'SET_CHART_TYPE',
+  SET_LOADING: 'SET_LOADING'
 }
 
 function reducer (state, { type, payload }) {
@@ -18,6 +19,8 @@ function reducer (state, { type, payload }) {
       return { ...state, dataResults: payload }
     case ACTION.SET_CHART_TYPE:
       return { ...state, chartType: payload }
+    case ACTION.SET_LOADING:
+      return { ...state, loading: payload }
     default:
       return state
   }
@@ -44,6 +47,10 @@ export default function SeasonSummaryContextProvider ({ initValue, children }) {
     dispatch({ type: ACTION.SET_CHART_TYPE, payload: data })
   }
 
+  const setLoading = (data) => {
+    dispatch({ type: ACTION.SET_LOADING, payload: data })
+  }
+
   return (
         <SeasonSummaryContext.Provider
             value={{
@@ -52,7 +59,8 @@ export default function SeasonSummaryContextProvider ({ initValue, children }) {
                 setYear,
                 setDataMode,
                 setDataResults,
-                setChartType
+                setChartType,
+                setLoading
               }
             }}>
             {children}

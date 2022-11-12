@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 
 import { message } from 'antd'
 
@@ -9,8 +9,7 @@ import useFetchAPI from '../../hooks/useFetchAPI'
 import { apiDataToTableData } from './helper/SeasonSummaryAPI'
 
 export default function SeasonSummaryMain () {
-  const { year, actions: { setDataResults } } = useContext(SeasonSummaryContext)
-  const [loading, setLoading] = useState(false)
+  const { year, actions: { setDataResults, setLoading } } = useContext(SeasonSummaryContext)
   const fetcher = useFetchAPI()
 
   const fetchData = async () => {
@@ -30,6 +29,6 @@ export default function SeasonSummaryMain () {
   }, [year])
 
   return (
-    <SeasonSummaryLayout loading={loading}/>
+    <SeasonSummaryLayout/>
   )
 }

@@ -99,8 +99,8 @@ export const TOTAL_CONSTRUCTOR_POINT_COLUMN = {
   onCell: (record) => (!record.firstCol ? { rowSpan: 0 } : { rowSpan: record.rowSpan })
 }
 
-export default function SeasonSummaryTable ({ loading }) {
-  const { dataMode, dataResults } = useContext(SeasonSummaryContext)
+export default function SeasonSummaryTable () {
+  const { dataMode, dataResults, loading } = useContext(SeasonSummaryContext)
 
   const tableColumns = useMemo(
     () => dataMode === 'D'

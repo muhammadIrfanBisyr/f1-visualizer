@@ -15,7 +15,7 @@ export const apiDataToTableData = (data) => {
   const totalPoints = {}
 
   data.data.MRData.RaceTable.Races.forEach((item) => {
-    const round = item.round
+    const round = parseInt(item.round)
     const country = item.Circuit.Location.country
     const year = item.season
 
@@ -44,12 +44,14 @@ export const apiDataToTableData = (data) => {
         driverResults[driverId].thirdPlace += parseInt(resultItem.position) === 3 ? 1 : 0
       }
 
+      totalPoints[driverId] = (totalPoints[driverId] + points) || points
       driverResults[driverId][countryInitialKey] = {
         result: parseInt(resultItem.position),
+        points,
+        cumulativePoints: totalPoints[driverId],
+        round: round - 1,
         status: resultItem.status
       }
-
-      totalPoints[driverId] = (totalPoints[driverId] + points) || points
     })
   })
 
@@ -73,3 +75,17 @@ export const calculateRowSpanConstructor = (data = []) => {
   ).map((item, index, arr) => ({ ...item, firstCol: arr[index - 1]?.constructorId !== item.constructorId, rowSpan: contructorsOccurence[item.constructorId] }
   ))
 }
+
+export const generateRountList = (data = []) => (
+  data.slice(1, -1).map(item => item.key)
+)
+
+export const generateLineChartData = (data = [], colums = []) => (
+  data.reduce((acc, item) =>
+    acc.concat(generateRountList(colums).map(roundKey => ({
+      ...item[roundKey],
+      constructorId:
+      item.constructorId,
+      driverId: item.driverId
+    }))), [])
+)

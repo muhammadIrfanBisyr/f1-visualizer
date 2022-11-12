@@ -92,8 +92,8 @@ const LeaderboardTop10 = ({ rank, driverInfo }) => {
   )
 }
 
-export default function SeasonSummaryLeaderboard ({ loading }) {
-  const { dataResults } = useContext(SeasonSummaryContext)
+export default function SeasonSummaryLeaderboard () {
+  const { dataResults, loading } = useContext(SeasonSummaryContext)
   const leaderboardData = useMemo(() => dataResults?.dataSource?.map((item) => ({
     points: item.points,
     nationality: item.nationality,

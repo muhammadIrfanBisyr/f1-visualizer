@@ -8,6 +8,7 @@ import TypeSelect from '../global/select/TypeSelect'
 
 import SeasonSummaryContext from './context/SeasonSummaryContext'
 import SeasonSummaryTable from './main-content/SeasonSummaryTable'
+import SeasonSummaryLine from './main-content/SeasonSummaryLine'
 
 const { Panel } = Collapse
 const { Title } = Typography
@@ -28,26 +29,26 @@ const SettingMenu = () => {
   )
 }
 
-const ContentSwitch = ({ loading }) => {
+const ContentSwitch = () => {
   const { chartType } = useContext(SeasonSummaryContext)
 
   switch (chartType) {
     case 'T':
-      return (<SeasonSummaryTable loading={loading}/>)
+      return (<SeasonSummaryTable/>)
     case 'L':
-      return (<>aaa</>)
+      return (<SeasonSummaryLine/>)
     default:
       return (<></>)
   }
 }
 
-export default function SeasonSummaryMainContent ({ loading }) {
+export default function SeasonSummaryMainContent () {
   return (
     <Card
       className='main-summary-content-container'
       title={<SettingMenu/>}
     >
-      <ContentSwitch loading={loading}/>
+      <ContentSwitch/>
     </Card>
   )
 }
