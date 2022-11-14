@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Card, Row, Col, Space } from 'antd'
+import { Card, Space, Collapse, Typography } from 'antd'
 
 import RaceDetailContext from './context/RaceDetailContext'
 import LineChart from './line-chart/LineChart'
@@ -8,26 +8,35 @@ import SessionSelect from './select/SessionSelect'
 
 import RaceDetailTable from './main-content/RaceDetailTable'
 
+const { Panel } = Collapse
+const { Title } = Typography
+
+const SESSION = {
+  Q: 'Qualification',
+  S: 'Sprint Race',
+  R: 'Race'
+}
+
 const SettingMenu = () => {
-  const { chartType, session, actions: { setChartType } } = useContext(RaceDetailContext)
+  const { year, chartType, session, actions: { setChartType } } = useContext(RaceDetailContext)
+  const txtSession = SESSION[session]
 
   return (
-    <Row>
-      <Col span={21}>
-          <Space>
-              <SessionSelect/> <div className='card-title'> Session Result </div>
-          </Space>
-      </Col>
-      <Col span={3}>
-          <Row justify='end'>
-              <ChartTypeSelect
-                defaultValue={chartType}
-                onChange={setChartType}
-                options={session === 'R' ? CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS.slice(0, 1)}
-              />
-          </Row>
-      </Col>
-  </Row>
+    <Collapse bordered={false} expandIconPosition='right'>
+      <Panel header={<Title level={3}>{`F1 ${year} ${txtSession} Results`}</Title>} key="1">
+        <Space>
+          Session <SessionSelect/>
+          View Type
+          <ChartTypeSelect
+            value={chartType}
+            defaultValue={chartType}
+            onChange={(val) => setChartType(val)}
+            width={125}
+            options={session === 'R' ? CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS.slice(0, 1)}/>
+        </Space>
+      </Panel>
+  </Collapse>
+
   )
 }
 

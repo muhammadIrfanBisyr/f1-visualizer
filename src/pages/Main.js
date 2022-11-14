@@ -7,7 +7,7 @@ import MainLayout from '../components/global/layout/MainLayout'
 
 import Detail from './RaceDetail'
 import Summary from './Summary'
-import Driver from './Driver'
+import DriverMain from './driver/DriverMain'
 
 export default function Main () {
   return (
@@ -17,7 +17,7 @@ export default function Main () {
                     <Route path='/' exact component={Summary}/>
                     <Route path='/summary/:year?'component={Summary}/>
                     <Route path='/detail/:year?/:round?' component={Detail}/>
-                    <Route path='/driver/:driverId?' component={Driver}/>
+                    <Route path='/driver/:driverId?' component={DriverMain}/>
                 </Switch>
             </MainLayout>
         </Router>
