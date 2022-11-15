@@ -21,7 +21,7 @@ export default function RaceDetailMain () {
   const fetchData = async () => {
     try {
       setLoading(true)
-      const result = await fetcher({ url })
+      const [result] = await fetcher({ urls: [url] })
       setResultData(apiDataToTableData(result, session))
     } catch (e) {
       message(e)

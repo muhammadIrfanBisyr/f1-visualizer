@@ -10,3 +10,12 @@ export const handleDriverStatistic = (data) => {
     fastestLaps: 0
   }), {})]
 }
+
+export const handleDriverSummary = (data) => (
+  data?.data?.MRData?.StandingsTable?.StandingsLists?.map((item) => ({
+    year: item.season,
+    points: parseInt(item.DriverStandings[0].points),
+    position: parseInt(item.DriverStandings[0].position),
+    constructor: item.DriverStandings[0].Constructors[0].constructorId
+  }))
+)

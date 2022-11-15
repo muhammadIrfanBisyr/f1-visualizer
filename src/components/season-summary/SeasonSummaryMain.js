@@ -15,7 +15,7 @@ export default function SeasonSummaryMain () {
   const fetchData = async () => {
     try {
       setLoading(true)
-      const result = await fetcher({ url: `https://ergast.com/api/f1/${year}/results.json?limit=500` })
+      const [result] = await fetcher({ urls: [`https://ergast.com/api/f1/${year}/results.json?limit=500`] })
       setDataResults(apiDataToTableData(result))
     } catch (e) {
       message(e)

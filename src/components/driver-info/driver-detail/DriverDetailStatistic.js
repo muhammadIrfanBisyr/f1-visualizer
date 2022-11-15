@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Table, message } from 'antd'
+import React, { useContext, useMemo } from 'react'
+import { Table } from 'antd'
 import { handleDriverStatistic } from '../helper/DriverInfoAPI'
 
-import useFetchAPI from '../../../hooks/useFetchAPI'
 import DriverDetailContext from '../context/DriverDetailContext'
 
 const TABLE_COLUMN = [
@@ -40,32 +39,15 @@ const TABLE_COLUMN = [
 ]
 
 export default function DriverDetailStatic () {
-  const { driverId } = useContext(DriverDetailContext)
-  const fetcher = useFetchAPI()
-  const [loading, setLoading] = useState(false)
-  const [dataResult, setDataResult] = useState([])
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      const result = await fetcher({ url: `http://ergast.com/api/f1/drivers/${driverId}/driverStandings.json?limit=500` })
-      setDataResult(handleDriverStatistic(result))
-    } catch (e) {
-      message(e)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [driverId])
+  const { loading, summaryData } = useContext(DriverDetailContext)
+  const dataColumn = useMemo(() => handleDriverStatistic(summaryData), [summaryData])
 
   return (
     <Table
       size='small'
       loading={loading}
       columns={TABLE_COLUMN}
-      dataSource={dataResult}
+      dataSource={dataColumn}
       pagination={false}
     />
   )

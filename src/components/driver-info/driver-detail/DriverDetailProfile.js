@@ -27,7 +27,7 @@ export default function DriverDetailProfile () {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col style={{ paddingTop: '8px' }}>
           <DriverDetailStatic/>
         </Col>
       </Row>

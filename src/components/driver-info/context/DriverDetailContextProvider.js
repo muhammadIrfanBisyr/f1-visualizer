@@ -4,7 +4,8 @@ import DriverDetailContext, { INITITAL_VALUE } from './DriverDetailContext'
 const ACTION = {
   SET_LOADING: 'SET_LOADING',
   SET_PROFILE_DATA: 'SET_PROFILE_DATA',
-  SET_SUMMARY_DATA: 'SET_SUMMARY_DATA'
+  SET_SUMMARY_DATA: 'SET_SUMMARY_DATA',
+  SET_DETAIL_DATA: 'SET_DETAIL_DATA'
 }
 
 function reducer (state, { type, payload }) {
@@ -15,6 +16,8 @@ function reducer (state, { type, payload }) {
       return { ...state, summaryData: payload }
     case ACTION.SET_PROFILE_DATA:
       return { ...state, profileData: payload }
+    case ACTION.SET_DETAIL_DATA:
+      return { ...state, detailData: payload }
     default:
       return state
   }
@@ -36,9 +39,13 @@ export default function DriverDetailContextProvider ({ initValue, children }) {
     dispatch({ type: ACTION.SET_PROFILE_DATA, payload: data })
   }
 
+  const setDetailData = (data) => {
+    dispatch({ type: ACTION.SET_DETAIL_DATA, payload: data })
+  }
+
   return (
     <DriverDetailContext.Provider
-      value={{ ...state, actions: { setSummaryData, setProfileData, setLoading } }}
+      value={{ ...state, actions: { setSummaryData, setProfileData, setLoading, setDetailData } }}
     >
       { children }
     </DriverDetailContext.Provider>

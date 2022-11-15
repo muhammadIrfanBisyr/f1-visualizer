@@ -1,6 +1,8 @@
 import React from 'react'
 import { Row, Col } from 'antd'
+
 import DriverDetailProfile from './DriverDetailProfile'
+import DriverDetailChart from './DriverDetailChart'
 
 export default function DriverDetailLayout () {
   return (
@@ -9,9 +11,7 @@ export default function DriverDetailLayout () {
         <DriverDetailProfile/>
       </Col>
       <Col span={12}>
-        {/* <Card style={{ margin: '0 auto' }}>
-          <Line data={[]}/>
-        </Card> */}
+        <DriverDetailChart/>
       </Col>
       <Col>
         {/* <Table/> */}
