@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Table, message } from 'antd'
-import { handleDriverStatistic } from './helper/DriverInfoAPI'
+import { handleDriverStatistic } from '../helper/DriverInfoAPI'
 
-import useFetchAPI from '../../hooks/useFetchAPI'
+import useFetchAPI from '../../../hooks/useFetchAPI'
+import DriverDetailContext from '../context/DriverDetailContext'
 
 const TABLE_COLUMN = [
   {
@@ -38,7 +39,8 @@ const TABLE_COLUMN = [
   }
 ]
 
-export default function DriverDetailStatic ({ driverId }) {
+export default function DriverDetailStatic () {
+  const { driverId } = useContext(DriverDetailContext)
   const fetcher = useFetchAPI()
   const [loading, setLoading] = useState(false)
   const [dataResult, setDataResult] = useState([])
@@ -55,7 +57,7 @@ export default function DriverDetailStatic ({ driverId }) {
   }
 
   useEffect(() => {
-    if (driverId) { fetchData() }
+    fetchData()
   }, [driverId])
 
   return (
