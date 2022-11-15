@@ -1,4 +1,5 @@
-import { generateCountryColumn, DRIVER_COLUMN, TOTAL_POINT_COLUMN } from '../main-content/SeasonSummaryTable'
+import { generateCountryColumn } from '../../global/table/TableHelper'
+import { DRIVER_COLUMN, TOTAL_POINT_COLUMN } from '../main-content/SeasonSummaryTable'
 
 const calculateConstructor = (data) => {
   const contructors = data.reduce((acc, item) => {

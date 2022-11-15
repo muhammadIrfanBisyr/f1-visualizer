@@ -284,4 +284,23 @@
   border: 1px solid #dededeab;
   height: 30px;
 }
+.driver-detail .driver-profile {
+  height: 300px;
+}
+.driver-detail .driver-summary {
+  height: 300px;
+}
+.driver-detail .driver-summary .ant-card-head {
+  padding: 0px 16px;
+}
+.driver-detail .driver-summary-chart {
+  height: 220px !important;
+}
+.driver-detail .driver-detail-race-detail-table {
+  margin-top: 8px;
+}
+.driver-detail .driver-detail-race-detail-table .flag-icon {
+  height: 15px;
+  vertical-align: middle;
+}
 /*# sourceMappingURL=index.css.map */

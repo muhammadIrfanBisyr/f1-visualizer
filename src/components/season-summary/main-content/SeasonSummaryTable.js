@@ -1,5 +1,4 @@
 import React, { useMemo, useContext } from 'react'
-import { Link } from 'react-router-dom'
 
 import Table from '../../global/table/Table'
 import CountryFlag from '../../global/flag/CountryFlag'
@@ -7,41 +6,6 @@ import TeamLogo from '../../global/logo/TeamLogo'
 
 import SeasonSummaryContext from '../context/SeasonSummaryContext'
 import { calculateRowSpanConstructor } from '../helper/SeasonSummaryAPI'
-
-const RaceResultCell = ({ result, status }) => {
-  let className = 'table-result'
-
-  if (status === 'Finished') {
-    if (result === 1) className += ' table-result-first'
-    else if (result === 2) className += ' table-result-second'
-    else if (result === 3) className += ' table-result-third'
-    else if (result >= 4 && result <= 10) className += ' table-result-points'
-  }
-
-  return (
-        <div className={className}>
-        {
-            status === 'Finished' || status?.charAt(0) === '+' ? result : status && 'DNF'
-        }
-        </div>
-  )
-}
-
-export const generateCountryColumn = (countryInitialKey, country, year, round) => ({
-  key: countryInitialKey,
-  title: () => (
-        <Link to={`/detail/${year}/${round}`}>
-            <div className='table-header-country'>
-                <div>{countryInitialKey.split('_')[0]}</div>
-                <CountryFlag country={country}/>
-            </div>
-        </Link>
-  ),
-  dataIndex: countryInitialKey,
-  render: (countryInitialKey) => (
-        <RaceResultCell result={countryInitialKey?.result} status={countryInitialKey?.status}/>
-  )
-})
 
 export const DRIVER_COLUMN = {
   key: 'driver',
@@ -113,6 +77,8 @@ export default function SeasonSummaryTable () {
       ? dataResults?.dataSource
       : calculateRowSpanConstructor(dataResults?.dataSource),
     [dataResults, dataMode])
+
+  console.log(tableData)
 
   return (
       <Table

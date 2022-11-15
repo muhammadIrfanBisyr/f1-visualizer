@@ -11,7 +11,7 @@ export default function DriverDetailProfile () {
   const { loading, profileData } = useContext(DriverDetailContext)
 
   return (
-    <Card style={{ margin: '0 auto' }} loading={loading}>
+    <Card className='driver-profile' loading={loading}>
       <Row>
         <Col>
           <DriverAvatar shape='square' driverId={profileData?.driverId} size={160}/>

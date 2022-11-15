@@ -31,10 +31,13 @@ export default function DriverDetailMain () {
   }
 
   useEffect(() => {
+    // if (a === 2) { fetchData() }
     fetchData()
   }, [driverId])
 
   return (
-    <DriverDetailLayout/>
+    <div className='driver-detail'>
+      <DriverDetailLayout/>
+    </div>
   )
 }
