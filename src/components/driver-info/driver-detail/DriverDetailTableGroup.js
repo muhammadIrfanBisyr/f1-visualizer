@@ -20,11 +20,14 @@ const DriverDetailTable = ({ year, data }) => {
 }
 
 export default function DriverDetailTableGroup () {
-  const { detailData } = useContext(DriverDetailContext)
+  const { detailData, loading } = useContext(DriverDetailContext)
   const tableData = useMemo(() => handleDriverRaceDetail(detailData), [detailData])
 
   return (
-    <Card className='driver-detail-race-detail'>
+    <Card
+      className='driver-detail-race-detail'
+      loading={loading}
+    >
     {
       Object.entries(tableData).map(([key, value]) => (
         <DriverDetailTable key={`detail_${key}`} year={key} data={value}/>
