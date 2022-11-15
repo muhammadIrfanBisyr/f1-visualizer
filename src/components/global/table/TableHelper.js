@@ -1,20 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { PODIUM_COLOR } from '../constant/Podium'
 
 import CountryFlag from '../flag/CountryFlag'
 
 const RaceResultCell = ({ result, status }) => {
-  let className = 'table-result'
-
-  if (status === 'Finished') {
-    if (result === 1) className += ' table-result-first'
-    else if (result === 2) className += ' table-result-second'
-    else if (result === 3) className += ' table-result-third'
-    else if (result >= 4 && result <= 10) className += ' table-result-points'
-  }
-
+  const res = status === 'Finished' || status?.charAt(0) === '+' ? result <= 3 ? result : 'points' : 'dnf'
   return (
-    <div className={className}>
+    <div style={{ backgroundColor: PODIUM_COLOR[res] }}>
       { status === 'Finished' || status?.charAt(0) === '+' ? result : status && 'DNF'}
     </div>
   )

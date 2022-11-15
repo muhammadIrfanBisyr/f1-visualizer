@@ -5,14 +5,14 @@ import { CrownFilled, DollarCircleFilled } from '@ant-design/icons'
 import SeasonSummaryContext from '../context/SeasonSummaryContext'
 import CountryFlag from '../../global/flag/CountryFlag'
 import DriverAvatar from '../../global/avatar/DriverAvatar'
+import { PODIUM_COLOR } from '../../global/constant/Podium'
 
 const { Text } = Typography
-const COLOR = ['#ffdd34', '#e2e2e2', '#d3a230']
 
 const CrownedAvatar = ({ rank, driverInfo }) => {
   return (
     <>
-      <CrownFilled style={{ fontSize: '20px', color: COLOR[rank - 1], position: 'absolute', top: '3px', left: '13px' }}></CrownFilled>
+      <CrownFilled style={{ fontSize: '20px', color: PODIUM_COLOR[rank], position: 'absolute', top: '3px', left: '13px' }}></CrownFilled>
       <DriverAvatar driverId={driverInfo.driverId} size={45} style={{ marginTop: '16px' }}/>
     </>
   )
@@ -21,9 +21,9 @@ const CrownedAvatar = ({ rank, driverInfo }) => {
 const PodiumStats = ({ firstTot, secondTot, thirdTot }) => {
   return (
     <Space>
-      <DollarCircleFilled style={{ color: COLOR[0] }}/>{firstTot}
-      <DollarCircleFilled style={{ color: COLOR[1] }}/>{secondTot}
-      <DollarCircleFilled style={{ color: COLOR[2] }}/>{thirdTot}
+      <DollarCircleFilled style={{ color: PODIUM_COLOR.first }}/>{firstTot}
+      <DollarCircleFilled style={{ color: PODIUM_COLOR.second }}/>{secondTot}
+      <DollarCircleFilled style={{ color: PODIUM_COLOR.third }}/>{thirdTot}
     </Space>
   )
 }
