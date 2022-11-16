@@ -4,10 +4,23 @@ import { PODIUM_COLOR } from '../constant/Podium'
 
 import CountryFlag from '../flag/CountryFlag'
 
+const checkFinishPositionColor = (result, status) => {
+  if (status === 'Finished' || status?.charAt(0) === '+') {
+    if (result <= 3) {
+      return result
+    } else if (result >= 4 && result <= 10) {
+      return 'points'
+    } else {
+      return 'noPoints'
+    }
+  } else {
+    return 'dnf'
+  }
+}
+
 const RaceResultCell = ({ result, status }) => {
-  const res = status === 'Finished' || status?.charAt(0) === '+' ? result <= 3 ? result : 'points' : 'dnf'
   return (
-    <div style={{ backgroundColor: PODIUM_COLOR[res] }}>
+    <div style={{ backgroundColor: PODIUM_COLOR[checkFinishPositionColor(result, status)], textAlign: 'center' }}>
       { status === 'Finished' || status?.charAt(0) === '+' ? result : status && 'DNF'}
     </div>
   )

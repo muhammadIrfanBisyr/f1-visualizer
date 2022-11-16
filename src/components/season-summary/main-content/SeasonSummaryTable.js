@@ -78,8 +78,6 @@ export default function SeasonSummaryTable () {
       : calculateRowSpanConstructor(dataResults?.dataSource),
     [dataResults, dataMode])
 
-  console.log(tableData)
-
   return (
       <Table
         loading={loading}
