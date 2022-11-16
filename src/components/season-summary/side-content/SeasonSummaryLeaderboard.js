@@ -105,9 +105,13 @@ export default function SeasonSummaryLeaderboard () {
   })).sort((a, b) => b.points - a.points), [dataResults])
 
   return (
-    <Card className='leaderboard' bodyStyle={{ padding: '0px' }} title='Leaderboard'>
+    <Card
+      className='leaderboard'
+      bodyStyle={{ padding: '0px' }}
+      title='Leaderboard'
+      loading={loading}
+    >
       <List
-        loading={loading}
         dataSource={leaderboardData}
         renderItem={(item, index) => (
           <>

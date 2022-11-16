@@ -26,7 +26,7 @@ const RaceResultCell = ({ result, status }) => {
   )
 }
 
-export const generateCountryColumn = (countryInitialKey, country, year, round) => ({
+export const generateCountryColumn = (countryInitialKey, country, year, round, width) => ({
   key: countryInitialKey,
   title: () => (
     <Link to={`/detail/${year}/${round}`}>
@@ -39,5 +39,6 @@ export const generateCountryColumn = (countryInitialKey, country, year, round) =
   dataIndex: countryInitialKey,
   render: (countryInitialKey) => (
     <RaceResultCell result={countryInitialKey?.result} status={countryInitialKey?.status}/>
-  )
+  ),
+  ...(width && { maxWidth: `${width}px` })
 })

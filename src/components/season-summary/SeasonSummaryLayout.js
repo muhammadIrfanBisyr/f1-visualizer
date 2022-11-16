@@ -6,7 +6,7 @@ import SeasonSummarySideContent from './SeasonSummarySideContent'
 
 export default function SeasonSummaryLayout () {
   return (
-    <Row>
+    <Row gutter={[16, 16]}>
         <Col span={19}>
           <SeasonSummaryMainContent/>
         </Col>

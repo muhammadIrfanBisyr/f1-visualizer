@@ -226,11 +226,7 @@
 
 .main-summary-content-container {
     font-size: 8pt;
-    width: 96%;
-    margin-left: 30px !important;
-    border-radius: @card-border-radius !important;
-    box-shadow: @card-box-shadow;
-
+   
     .ant-card-body {
         padding: @card-padding;
     }
@@ -299,15 +295,13 @@
     }
 }
 
-.leaderboard {
-    width: 95%;
-    border-radius: @card-border-radius !important;
-    box-shadow: @card-box-shadow;
-
-    .flag-icon {
-        height: 15px;
-        vertical-align: middle;
-    }
+.summary-side-container {
+    .leaderboard {
+        .flag-icon {
+            height: 15px;
+            vertical-align: middle;
+        }
+    }    
 }
 
 .driver-list-filter-card {
@@ -393,6 +387,7 @@
     .driver-detail-race-detail {
         &-table{
             margin-top: 8px;
+            max-width: 400px;
 
             .flag-icon {
                 height: 15px;

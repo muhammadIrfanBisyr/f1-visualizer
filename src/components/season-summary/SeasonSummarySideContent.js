@@ -4,6 +4,8 @@ import SeasonSummaryLeaderboard from './side-content/SeasonSummaryLeaderboard'
 
 export default function SeasonSummarySideContent () {
   return (
-      <SeasonSummaryLeaderboard/>
+      <div className='summary-side-container'>
+        <SeasonSummaryLeaderboard/>
+      </div>
   )
 }

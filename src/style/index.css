@@ -167,10 +167,6 @@
 }
 .main-summary-content-container {
   font-size: 8pt;
-  width: 96%;
-  margin-left: 30px !important;
-  border-radius: 8px !important;
-  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .main-summary-content-container .ant-card-body {
   padding: 8px;
@@ -224,12 +220,7 @@
 .main-summary-content-container .main-table .table-result-points {
   background-color: #bff5c9;
 }
-.leaderboard {
-  width: 95%;
-  border-radius: 8px !important;
-  box-shadow: 3px 3px 3px 1px #cecece;
-}
-.leaderboard .flag-icon {
+.summary-side-container .leaderboard .flag-icon {
   height: 15px;
   vertical-align: middle;
 }
@@ -298,6 +289,7 @@
 }
 .driver-detail .driver-detail-race-detail-table {
   margin-top: 8px;
+  max-width: 400px;
 }
 .driver-detail .driver-detail-race-detail-table .flag-icon {
   height: 15px;
