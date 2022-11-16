@@ -1,14 +1,14 @@
 import React from 'react'
 
 import DriverListFilter from '../../components/driver-info/DriverListFilter'
-import DriverInfoContextProvider from '../../components/driver-info/context/DriverInfoContextProvider'
+import DriverListContextProvider from '../../components/driver-info/context/DriverListContextProvider'
 import DriverListing from '../../components/driver-info/DriverListing'
 
 export default function DriverList () {
   return (
-    <DriverInfoContextProvider>
+    <DriverListContextProvider>
       <DriverListFilter/>
       <DriverListing/>
-    </DriverInfoContextProvider>
+    </DriverListContextProvider>
   )
 }

@@ -7,13 +7,11 @@ import RaceDetailTrackInfo from './side-content/RaceDetailTrackInfo'
 export default function RaceDetailSideContent () {
   return (
     <>
-      <Row>
-          <Col>
+      <Row gutter={[16, 16]}>
+          <Col span={24}>
               <RaceDetailTrackInfo/>
           </Col>
-      </Row>
-      <Row>
-          <Col>
+          <Col span={24}>
               <RaceDetailPodium/>
           </Col>
       </Row>

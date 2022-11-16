@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Card } from 'antd'
 import YearSelect from '../global/select/YearSelect'
-import DriverInfoContext from './context/DriverInfoContext'
+import DriverInfoContext from './context/DriverListContext'
 
 export default function DriverListFilter () {
   const { actions: { setYear }, year } = useContext(DriverInfoContext)

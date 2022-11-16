@@ -9,10 +9,6 @@
 }
 .main-detail-content-container {
   font-size: 10px;
-  width: 95%;
-  margin-left: 30px !important;
-  border-radius: 8px !important;
-  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .main-detail-content-container .ant-card-body {
   padding: 8px;
@@ -90,10 +86,8 @@
 }
 .track-info-container {
   width: 320px;
-  height: 277px;
+  height: 280px;
   text-align: center;
-  border-radius: 8px !important;
-  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .track-info-container .ant-card-body {
   padding: 8px;
@@ -133,9 +127,6 @@
 .race-result-container {
   width: 320px;
   height: 300px;
-  margin-top: 16px !important;
-  border-radius: 8px !important;
-  box-shadow: 3px 3px 3px 1px #cecece;
 }
 .race-result-container .ant-card-body {
   padding: 8px;
@@ -207,18 +198,6 @@
 }
 .main-summary-content-container .main-table .table-result {
   text-align: center;
-}
-.main-summary-content-container .main-table .table-result-first {
-  background-color: #ffdd34;
-}
-.main-summary-content-container .main-table .table-result-second {
-  background-color: #e2e2e2;
-}
-.main-summary-content-container .main-table .table-result-third {
-  background-color: #d3a230;
-}
-.main-summary-content-container .main-table .table-result-points {
-  background-color: #bff5c9;
 }
 .summary-side-container .leaderboard .flag-icon {
   height: 15px;

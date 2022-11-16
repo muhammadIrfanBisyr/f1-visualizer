@@ -6,7 +6,7 @@ import RaceDetailSideContent from './RaceDetailSideContent'
 
 export default function RaceDetailLayout () {
   return (
-    <Row>
+    <Row gutter={[16, 16]} >
         <Col span={18}>
             <RaceDetailMainContent/>
         </Col>

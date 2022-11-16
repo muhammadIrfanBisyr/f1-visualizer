@@ -1,4 +1,3 @@
-// import { ALL_DATA } from './data'
 
 export const handleDriverStatistic = (data) => {
   return [data?.data?.MRData?.StandingsTable?.StandingsLists?.reduce((acc, item) => ({

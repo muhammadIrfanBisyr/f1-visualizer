@@ -2,11 +2,6 @@
 @fastest-lap-color: #b249c3;
 @fastest-lap-color-hover:rgb(134, 29, 151);
 
-@first-place: #ffdd34;
-@second-place: #e2e2e2;
-@third-place: #d3a230;
-@points-place: #bff5c9;
-
 @card-padding: 8px;
 @card-border-radius: 8px;
 @card-box-shadow: 3px 3px 3px 1px #cecece;
@@ -29,11 +24,6 @@
 .main-detail-content-container {    
     
     font-size: 10px;
-    width: 95%;
-    // height: 640px;
-    margin-left: 30px !important;
-    border-radius: @card-border-radius !important;
-    box-shadow: @card-box-shadow;
 
     .ant-card-body {
         padding: @card-padding;
@@ -132,10 +122,8 @@
 .track-info-container {
 
     width: @right-side-card-width;
-    height: 277px;
+    height: 280px;
     text-align: center;
-    border-radius: @card-border-radius !important;
-    box-shadow: @card-box-shadow;
 
     .ant-card-body {
         padding: @card-padding;
@@ -184,9 +172,6 @@
 .race-result-container{
     width: @right-side-card-width;
     height: 300px;
-    margin-top: 16px !important;
-    border-radius: @card-border-radius !important;
-    box-shadow: @card-box-shadow;
 
     .ant-card-body {
         padding: @card-padding;
@@ -275,22 +260,6 @@
     
         .table-result {
             text-align: center;
-            
-            &-first{
-                background-color: @first-place;
-            }
-    
-            &-second{
-                background-color: @second-place;
-            }
-            
-            &-third{
-                background-color: @third-place;
-            }
-    
-            &-points{
-                background-color: @points-place;
-            }
         }
     }
 }
