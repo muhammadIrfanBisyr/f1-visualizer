@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/f1-visualizer/static/css/main.4a8b3d01.css",
-    "main.js": "/f1-visualizer/static/js/main.a2d8422f.js",
+    "main.css": "/f1-visualizer/static/css/main.3927172e.css",
+    "main.js": "/f1-visualizer/static/js/main.2aa91a7c.js",
     "static/media/manor.svg": "/f1-visualizer/static/media/manor.e63dfca699d4ec2c171361d735f8e247.svg",
     "static/media/ferrari.svg": "/f1-visualizer/static/media/ferrari.31e64be4e889f0a6d606f453577bd8dc.svg",
     "static/media/toro-rosso.svg": "/f1-visualizer/static/media/toro-rosso.a093912db4d0699ce04abf098882403b.svg",
@@ -32,11 +32,11 @@
     "static/media/mclaren.svg": "/f1-visualizer/static/media/mclaren.fa3c16d5ceb2f5972c40e5c9de56005b.svg",
     "static/media/blue-flag.svg": "/f1-visualizer/static/media/blue-flag.51d6e88b51e9a482b9d4c78d3d8dd0c9.svg",
     "static/media/black-flag.svg": "/f1-visualizer/static/media/black-flag.1fb6405703ace09ba2f4e09e358a913b.svg",
-    "main.4a8b3d01.css.map": "/f1-visualizer/static/css/main.4a8b3d01.css.map",
-    "main.a2d8422f.js.map": "/f1-visualizer/static/js/main.a2d8422f.js.map"
+    "main.3927172e.css.map": "/f1-visualizer/static/css/main.3927172e.css.map",
+    "main.2aa91a7c.js.map": "/f1-visualizer/static/js/main.2aa91a7c.js.map"
   },
   "entrypoints": [
-    "static/css/main.4a8b3d01.css",
-    "static/js/main.a2d8422f.js"
+    "static/css/main.3927172e.css",
+    "static/js/main.2aa91a7c.js"
   ]
 }
