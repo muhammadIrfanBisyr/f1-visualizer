@@ -1,33 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Card, Space, Divider, Typography, Tooltip } from 'antd'
-import { CrownOutlined, TrophyOutlined, ThunderboltOutlined, PoundCircleOutlined } from '@ant-design/icons'
+import { List, Card, Space, Divider, Typography, Tooltip, Collapse } from 'antd'
+import { CrownFilled, TrophyFilled, ThunderboltFilled, DollarCircleFilled } from '@ant-design/icons'
 
 import TeamLogo from '../global/logo/TeamLogo'
 import CountryFlag from '../global/flag/CountryFlag'
 import { handleAPIDriver } from './helper/handler'
 import { TEAM_CONST } from '../global/constant/Teams'
-import DriverInfoContext from './context/DriverListContext'
+import DriverListContext from './context/DriverListContext'
 import DriverAvatar from '../global/avatar/DriverAvatar'
+
+import { PODIUM_COLOR } from '../../components/global/constant/Podium'
+import YearSelect from '../global/select/YearSelect'
 
 const { Title, Text } = Typography
 
-const StatsDetail = ({ data, icon }) => {
+const StatsDetail = ({ data, icon, color = '#000000' }) => {
   return (
-    <span>
-      {icon} <br/> {data}
-    </span>
+    <>
+      <div style={{ color }}>{icon} </div>
+      <div>{data}</div>
+    </>
   )
 }
 
 const DriverStats = ({ statsData }) => {
   const statList = [
-    { data: 0, icon: <CrownOutlined/> },
-    { data: statsData.wins, icon: <TrophyOutlined/> },
-    { data: 1, icon: <TrophyOutlined/> },
-    { data: 2, icon: <TrophyOutlined/> },
-    { data: 3, icon: <ThunderboltOutlined/> },
-    { data: statsData.points, icon: <PoundCircleOutlined/> }
+    { data: 0, icon: <CrownFilled/>, color: PODIUM_COLOR.first },
+    { data: statsData.wins, icon: <TrophyFilled/>, color: PODIUM_COLOR.third },
+    { data: 0, icon: <ThunderboltFilled/>, color: PODIUM_COLOR.fastest },
+    { data: statsData.points, icon: <DollarCircleFilled/> }
   ]
 
   return (
@@ -47,9 +49,48 @@ const DriverStats = ({ statsData }) => {
   )
 }
 
-export default function DriverListing () {
-  const { year, loading, actions: { setLoading } } = useContext(DriverInfoContext)
+const DriverCard = ({ driverData }) => {
+  return (
+    <Card className='driver-card'>
+      <div className='constructor-background' style={{ backgroundColor: TEAM_CONST[driverData.constructorId]?.color ?? '#ffffff' }}>
+        <TeamLogo name={driverData.constructorId}/>
+      </div>
+      <DriverAvatar
+        size={100}
+        driverId={driverData.driverId}
+        style={{ marginTop: '16px', border: '3px solid #ffffff' }}
+      />
+        <Title level={4}>{driverData?.name}</Title>
+      <Space className='driver-info'>
+        <CountryFlag nationality={driverData.nationality}/>
+        <Text>{driverData?.number}</Text>
+      </Space>
+      <Divider/>
+      <DriverStats statsData={{
+        points: driverData.points,
+        wins: driverData.wins,
+        constructor: driverData.constructorId
+      }}/>
+  </Card>
+  )
+}
 
+const FilterMenu = () => {
+  const { year, actions: { setYear } } = useContext(DriverListContext)
+  return (
+    <Collapse bordered={false} expandIconPosition='right'>
+      <Collapse.Panel header={<Title level={3}>{`F1 ${year} Driver List`}</Title>} key="1">
+        <Space>
+          Year <YearSelect defaultValue={year} onChange={(val) => setYear(val)}/>
+        </Space>
+      </Collapse.Panel>
+  </Collapse>
+
+  )
+}
+
+export default function DriverListing () {
+  const { year, loading, actions: { setLoading } } = useContext(DriverListContext)
   const [driverData, setDriverData] = useState([])
 
   useEffect(() => {
@@ -57,8 +98,12 @@ export default function DriverListing () {
   }, [year])
 
   return (
-    <div className='driver-list'>
+    <Card
+      className='driver-list'
+      bodyStyle={{ padding: '8px' }}
+    >
       <List
+        header={<FilterMenu/>}
         loading={loading}
         grid={{ gutter: 16, column: 4 }}
         dataSource={driverData}
@@ -66,32 +111,12 @@ export default function DriverListing () {
           <List.Item>
             <Tooltip title={'View the driver information'}>
               <Link to={`/driver/${item.driverId}`}>
-                <Card className='driver-card'>
-                    <div className='constructor-background' style={{ backgroundColor: TEAM_CONST[item.constructorId]?.color ?? '#ffffff' }}>
-                      <TeamLogo name={item.constructorId}/>
-                    </div>
-                    <DriverAvatar
-                      size={100}
-                      driverId={item.driverId}
-                      style={{ marginTop: '16px', border: '3px solid #ffffff' }}
-                    />
-                      <Title level={4}>{item?.name}</Title>
-                    <Space className='driver-info'>
-                      <CountryFlag nationality={item.nationality}/>
-                      <Text>{item?.number}</Text>
-                    </Space>
-                    <Divider/>
-                    <DriverStats statsData={{
-                      points: item.points,
-                      wins: item.wins,
-                      constructor: item.constructorId
-                    }}/>
-                </Card>
+                <DriverCard driverData={item}/>
               </Link>
             </Tooltip>
           </List.Item>
         )}
     />
-    </div>
+    </Card>
   )
 }

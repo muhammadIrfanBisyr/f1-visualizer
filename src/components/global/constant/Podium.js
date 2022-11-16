@@ -7,5 +7,6 @@ export const PODIUM_COLOR = {
   3: '#d3a230',
   points: '#bff5c9',
   noPoints: '#ffffff',
-  dnf: '#f68c8c'
+  dnf: '#f68c8c',
+  fastest: '#b249c3'
 }
