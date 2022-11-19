@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { List, Card, Space, Divider, Typography, Tooltip, Collapse } from 'antd'
+import { List, Card, Space, Divider, Typography, Tooltip, Collapse, Skeleton } from 'antd'
 import { CrownFilled, TrophyFilled, ThunderboltFilled, DollarCircleFilled } from '@ant-design/icons'
 
 import TeamLogo from '../global/logo/TeamLogo'
@@ -104,19 +104,26 @@ export default function DriverListing () {
     >
       <List
         header={<FilterMenu/>}
-        loading={loading}
         grid={{ gutter: 16, column: 4 }}
         dataSource={driverData}
-        renderItem={(item) => (
-          <List.Item>
-            <Tooltip title={'View the driver information'}>
-              <Link to={`/driver/${item.driverId}`}>
-                <DriverCard driverData={item}/>
-              </Link>
-            </Tooltip>
-          </List.Item>
-        )}
-    />
+        renderItem={(item) => {
+          return loading
+            ? (
+            <>
+              <Skeleton active/>
+            </>
+              )
+            : (
+            <List.Item>
+              <Tooltip title={'View the driver information'}>
+                <Link to={`/driver/${item.driverId}`}>
+                  <DriverCard driverData={item}/>
+                </Link>
+              </Tooltip>
+            </List.Item>
+              )
+        }}
+      />
     </Card>
   )
 }

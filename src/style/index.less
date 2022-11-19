@@ -9,6 +9,7 @@
 @right-side-card-width: 320px; 
 
 @main-content-height: 600px;
+@main-collapse-padding: 4px 0px 0px 8px !important;
 
 .main-header {
     background-color: @main-color !important;
@@ -36,6 +37,10 @@
             padding-bottom: 2px;
             padding-top: @card-padding;
         }
+    }
+
+    .ant-collapse-header {
+        padding: @main-collapse-padding;
     }
     
     .session-select{
@@ -226,7 +231,7 @@
     }
 
     .ant-collapse-header {
-        padding: 4px 0px 0px 8px !important;
+        padding: @main-collapse-padding;
     }
 
     .main-table {
@@ -279,7 +284,13 @@
 }
 
 .driver-list {
-    padding: 12px;
+    .ant-collapse-header {
+        padding: @main-collapse-padding;
+    }
+
+    .ant-list-header {
+        padding: 0px;
+    }
 
     .driver-card {
         text-align: center;

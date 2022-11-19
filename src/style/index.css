@@ -20,6 +20,9 @@
   padding-bottom: 2px;
   padding-top: 8px;
 }
+.main-detail-content-container .ant-collapse-header {
+  padding: 4px 0px 0px 8px !important;
+}
 .main-detail-content-container .session-select {
   width: 110px;
 }
@@ -207,8 +210,11 @@
   border-radius: 8px !important;
   margin: 0 12px;
 }
-.driver-list {
-  padding: 12px;
+.driver-list .ant-collapse-header {
+  padding: 4px 0px 0px 8px !important;
+}
+.driver-list .ant-list-header {
+  padding: 0px;
 }
 .driver-list .driver-card {
   text-align: center;
