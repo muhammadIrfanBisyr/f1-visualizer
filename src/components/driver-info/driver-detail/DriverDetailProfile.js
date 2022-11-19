@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Card, Row, Col, Typography, Space } from 'antd'
 
-import DriverDetailStatic from './DriverDetailStatistic'
+import DriverDetailStatistic from './DriverDetailStatistic'
 import DriverAvatar from '../../global/avatar/DriverAvatar'
 import DriverDetailContext from '../context/DriverDetailContext'
 
@@ -12,7 +12,7 @@ export default function DriverDetailProfile () {
 
   return (
     <Card className='driver-profile' loading={loading}>
-      <Row>
+      <Row gutter={[4, 16]}>
         <Col>
           <DriverAvatar shape='square' driverId={profileData?.driverId} size={160}/>
         </Col>
@@ -25,10 +25,8 @@ export default function DriverDetailProfile () {
             <span><Text strong> Car number</Text> {profileData.permanentNumber}</span>
           </Space>
         </Col>
-      </Row>
-      <Row>
-        <Col style={{ paddingTop: '8px' }}>
-          <DriverDetailStatic/>
+        <Col span={24}>
+          <DriverDetailStatistic/>
         </Col>
       </Row>
     </Card>

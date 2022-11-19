@@ -260,6 +260,11 @@
   border: 1px solid #dededeab;
   height: 30px;
 }
+.driver-detail .driver-detail-statistic-table thead > tr > th {
+  background-color: #399df0 !important;
+  color: #f3f1f1;
+  text-align: center;
+}
 .driver-detail .driver-profile {
   height: 300px;
 }
