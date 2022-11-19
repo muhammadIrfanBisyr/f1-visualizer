@@ -268,6 +268,9 @@
 .driver-detail .driver-profile {
   height: 300px;
 }
+.driver-detail .driver-profile .flag-icon {
+  width: 20px;
+}
 .driver-detail .driver-summary {
   height: 300px;
 }
