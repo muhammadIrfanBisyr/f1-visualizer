@@ -8,6 +8,7 @@ export const CONTEXT_INITIAL_STATE = {
   chartType: 'T',
   loading: false,
   resultData: [],
+  lapsData: [],
   actions: {}
 }
 

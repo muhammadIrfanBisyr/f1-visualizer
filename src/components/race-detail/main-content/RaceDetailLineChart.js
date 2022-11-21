@@ -1,20 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useMemo } from 'react'
 import { Select } from 'antd'
 import { Line } from '@ant-design/plots'
 
 import RaceDetailContext from '../context/RaceDetailContext'
 
-import { handleAPILineChart } from '../helper/handler'
+import { handleAPILineChart } from '../helper/RaceDetailAPI'
 import { milisecondsToLapTime } from '../helper/utils'
 import { TEAM_CONST } from '../../global/constant/Teams'
 
 const { Option } = Select
 
 export default function RaceDetailLineChart () {
-  const { track, year } = useContext(RaceDetailContext)
+  const { track, year, resultData, lapsData, loading } = useContext(RaceDetailContext)
 
-  const [allData, setAllData] = useState({})
-  const [isLoading, setLoading] = useState(false)
+  const allData = useMemo(() => handleAPILineChart(resultData, lapsData), [track, year])
 
   const [yAxis, setYAxis] = useState('pos')
   const [chartConfig, setChartConfig] = useState({
@@ -23,10 +22,6 @@ export default function RaceDetailLineChart () {
     max: null,
     min: null
   })
-
-  useEffect(() => {
-    handleAPILineChart({ track, year }, { setAllData, setLoading })
-  }, [track, year])
 
   useEffect(() => {
     switch (yAxis) {
@@ -93,7 +88,7 @@ export default function RaceDetailLineChart () {
               }
             }}
             seriesField='driverId'
-            loading={isLoading}
+            loading={loading}
             colorField='driverId'
             color= {({ driverId }) => TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000'}
             smooth

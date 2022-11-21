@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Table as AntdTable, Popover } from 'antd'
-
-import RaceDetailContext from '../context/RaceDetailContext'
 
 import { FallOutlined, RiseOutlined, MinusOutlined } from '@ant-design/icons'
 
 import CountryFlag from '../../global/flag/CountryFlag'
 import TeamLogo from '../../global/logo/TeamLogo'
 import RaceResultLogo from '../../global/logo/RaceResultLogo'
+
+import RaceDetailContext from '../context/RaceDetailContext'
+import { apiDataToTableData } from '../helper/RaceDetailAPI'
 
 export const RACE_COLUMN = [
   {
@@ -191,19 +192,14 @@ const FastestLapPopover = (props) => {
 
 export default function RaceDetailTable () {
   const { session, resultData, loading } = useContext(RaceDetailContext)
-  const [column, setColumn] = useState([])
 
-  useEffect(() => {
-    if (resultData.length > 0) {
-      if (session === 'Q') { setColumn(QUALIFYING_COLUMN) } else { setColumn(RACE_COLUMN) }
-    }
-  }, [session, resultData])
+  const dataSource = useMemo(() => apiDataToTableData(resultData, session), [resultData, session])
 
   return (
     <AntdTable
         className='main-table'
-        dataSource={resultData}
-        columns={column}
+        dataSource={dataSource}
+        columns={session === 'Q' ? QUALIFYING_COLUMN : RACE_COLUMN}
         rowClassName={record => record?.fastestLapRank === '1' && 'row-fastest-lap'}
         components={{
           body: {

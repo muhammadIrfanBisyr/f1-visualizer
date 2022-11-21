@@ -9,7 +9,8 @@ const ACTION = {
   SET_SESSION: 'SET_SESSION',
   SET_CHART_TYPE: 'SET_CHART_TYPE',
   SET_LOADING: 'SET_LOADING',
-  SET_RESULT_DATA: 'SET_RESULT_DATA'
+  SET_RESULT_DATA: 'SET_RESULT_DATA',
+  SET_LAP_DATA: 'SET_LAP_DATA'
 }
 
 function reducer (state, { type, payload }) {
@@ -28,6 +29,8 @@ function reducer (state, { type, payload }) {
       return { ...state, loading: payload }
     case ACTION.SET_RESULT_DATA:
       return { ...state, resultData: payload }
+    case ACTION.SET_LAP_DATA:
+      return { ...state, lapsData: payload }
     default:
       return state
   }
@@ -77,6 +80,10 @@ export default function RaceDetailContextProvider ({ initValue, children }) {
     dispatch({ type: ACTION.SET_RESULT_DATA, payload: data })
   }
 
+  const setLapData = (data) => {
+    dispatch({ type: ACTION.SET_LAP_DATA, payload: data })
+  }
+
   return (
         <RaceDetailContext.Provider
             value={{
@@ -88,7 +95,8 @@ export default function RaceDetailContextProvider ({ initValue, children }) {
                 setSession,
                 setChartType,
                 setLoading,
-                setResultData
+                setResultData,
+                setLapData
               }
             }}>
             {children}

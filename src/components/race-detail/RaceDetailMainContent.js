@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Card, Space, Collapse, Typography } from 'antd'
 
 import RaceDetailContext from './context/RaceDetailContext'
-import LineChart from './line-chart/LineChart'
+import LineChart from './main-content/RaceDetailLineChart'
 import ChartTypeSelect, { CHART_TYPE_OPTIONS } from '../global/select/ChartTypeSelect'
 import SessionSelect from './select/SessionSelect'
 

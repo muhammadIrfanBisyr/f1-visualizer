@@ -3,7 +3,6 @@ import { message } from 'antd'
 
 import RaceDetailLayout from './RaceDetailLayout'
 import RaceDetailContext from './context/RaceDetailContext'
-import { apiDataToTableData } from './helper/RaceDetailAPI'
 
 import useFetchAPI from '../../hooks/useFetchAPI'
 
@@ -14,15 +13,18 @@ const API_ENDPOINT = {
 }
 
 export default function RaceDetailMain () {
-  const { year, session, track, actions: { setResultData, setLoading } } = useContext(RaceDetailContext)
-  const url = `https://ergast.com/api/f1/${year}/${track}/${API_ENDPOINT[session]}.json`
+  const { year, session, track, actions: { setResultData, setLapData, setLoading } } = useContext(RaceDetailContext)
+
+  const resultUrl = `https://ergast.com/api/f1/${year}/${track}/${API_ENDPOINT[session]}.json`
+  const lapsUrl = `https://ergast.com/api/f1/${year}/${track}/laps.json?limit=1500`
 
   const fetcher = useFetchAPI()
   const fetchData = async () => {
     try {
       setLoading(true)
-      const [result] = await fetcher({ urls: [url] })
-      setResultData(apiDataToTableData(result, session))
+      const [resultData, lapsData] = await fetcher({ urls: [resultUrl, lapsUrl] })
+      setResultData(resultData)
+      setLapData(lapsData)
     } catch (e) {
       message(e)
     } finally {

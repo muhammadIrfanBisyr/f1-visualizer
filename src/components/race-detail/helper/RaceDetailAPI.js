@@ -3,7 +3,9 @@ import { message } from 'antd'
 
 import { lapTimeToMiliseconds } from './utils'
 
-export const apiDataToTableData = (data, session) => {
+export const apiDataToTableData = (data = [], session) => {
+  if (!data?.data) { return [] }
+
   if (session === 'Q') {
     const resData = []
 
@@ -118,39 +120,14 @@ const appendTableDataToLineData = (tableData, lineData) => {
   return { chartData: res.concat(lineData), driverTable }
 }
 
-export const handleAPILineChart = (params, setters) => {
-  const apiUrl = `https://ergast.com/api/f1/${params.year}/${params.track}/laps.json?limit=1500`
-  const apiUrlStart = `https://ergast.com/api/f1/${params.year}/${params.track}/results.json`
+export const handleAPILineChart = (resulData = [], lapsData = []) => {
+  const processedTable = apiDataToTableData(resulData, 'R')
+  const processedLine = apiToLineChartData(lapsData)
 
-  setters.setLoading(true)
-
-  const requestLineData = axios.get(apiUrl)
-  const requestTableData = axios.get(apiUrlStart)
-
-  axios.all([requestLineData, requestTableData]).then(axios.spread((...responses) => {
-    const resLine = responses[0]
-    const resTable = responses[1]
-    try {
-      const processedTable = apiDataToTableData(resTable, 'R')
-      const processedLine = apiToLineChartData(resLine)
-
-      setters.setAllData(
-        {
-          ...appendTableDataToLineData(processedTable, processedLine.resData),
-          chartLimit: processedLine.chartLimit
-        }
-      )
-    } catch (err) {
-      setters.setAllData({})
-    } finally {
-      setters.setLoading(false)
-    }
-  })).catch((err) => {
-    setters.setAllData({})
-    message(`Error fetching API data: ${err}`)
-  }).finally(() => {
-    setters.setLoading(false)
-  })
+  return {
+    ...appendTableDataToLineData(processedTable, processedLine.resData),
+    chartLimit: processedLine.chartLimit
+  }
 }
 
 export const handleAPITracks = (params, setters) => {

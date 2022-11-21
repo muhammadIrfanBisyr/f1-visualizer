@@ -3,7 +3,7 @@ import { Select } from 'antd'
 
 import RaceDetailContext from '../context/RaceDetailContext'
 import TrackInfoContext from '../context/TrackInfoContext'
-import { handleAPITracks } from '../helper/handler'
+import { handleAPITracks } from '../helper/RaceDetailAPI'
 
 const { Option } = Select
 

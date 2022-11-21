@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useMemo } from 'react'
 import { Card, Skeleton } from 'antd'
 
 import TeamLogo from '../../global/logo/TeamLogo'
@@ -6,6 +6,7 @@ import CountryFlag from '../../global/flag/CountryFlag'
 import { TEAM_CONST } from '../../global/constant/Teams'
 
 import RaceDetailContext from '../context/RaceDetailContext'
+import { apiDataToTableData } from '../helper/RaceDetailAPI'
 
 const PODIUM_HEIGHT = [100, 75, 50]
 const PODIUM_WIDTH = 70
@@ -19,9 +20,10 @@ const PODIUM_INITIAL_STATE = {
 }
 
 function Stage ({ place, displayOrder }) {
-  const { resultData } = useContext(RaceDetailContext)
+  const { resultData, session } = useContext(RaceDetailContext)
 
   const [state, setState] = useState(PODIUM_INITIAL_STATE)
+  const podiumData = useMemo(() => apiDataToTableData(resultData, session), [resultData])
 
   useEffect(() => {
     setTimeout(() => {
@@ -30,18 +32,18 @@ function Stage ({ place, displayOrder }) {
   }, [state.height])
 
   useEffect(() => {
-    if (resultData.length !== 0) {
+    if (podiumData.length !== 0) {
       setState({
-        podiumColor: TEAM_CONST[resultData[place].constructorId].color,
+        podiumColor: TEAM_CONST[podiumData[place].constructorId].color,
         height: 0,
-        constructorName: resultData[place].constructorId,
-        driverName: resultData[place].driver.split(' ')[1],
-        nationality: resultData[place].nationality
+        constructorName: podiumData[place].constructorId,
+        driverName: podiumData[place].driver.split(' ')[1],
+        nationality: podiumData[place].nationality
       })
     } else {
       setState({ ...PODIUM_INITIAL_STATE, height: 0 })
     }
-  }, [resultData])
+  }, [podiumData])
 
   return (
         <div
