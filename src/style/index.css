@@ -129,13 +129,16 @@
 }
 .race-result-container {
   width: 320px;
-  height: 300px;
 }
 .race-result-container .ant-card-body {
   padding: 8px;
 }
-.race-result-container .card-title {
-  font-weight: 500;
+.race-result-container .ant-card-head {
+  padding: 0 8px;
+}
+.race-result-container .ant-card-head .ant-card-head-title {
+  padding-bottom: 2px;
+  padding-top: 8px;
 }
 .race-result-container .podium-container {
   text-align: center;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useMemo } from 'react'
-import { Card, Skeleton } from 'antd'
+import { Card, Skeleton, Row, Col, Typography } from 'antd'
 
 import TeamLogo from '../../global/logo/TeamLogo'
 import CountryFlag from '../../global/flag/CountryFlag'
@@ -19,7 +19,7 @@ const PODIUM_INITIAL_STATE = {
   nationality: ''
 }
 
-function Stage ({ place, displayOrder }) {
+const Stage = ({ place, displayOrder }) => {
   const { resultData, session } = useContext(RaceDetailContext)
 
   const [state, setState] = useState(PODIUM_INITIAL_STATE)
@@ -64,12 +64,44 @@ function Stage ({ place, displayOrder }) {
   )
 }
 
+const TextInfo = ({ textData = [] }) => {
+  return (
+    <Row>
+      {
+        textData.map((item) => (
+          <>
+            <Col span={12}><Typography.Text strong>{item.label}</Typography.Text></Col>
+            <Col span={12}>{item.value}</Col>
+          </>
+        ))
+      }
+    </Row>
+  )
+}
+
 export default function RaceDetailPodium () {
   const { loading } = useContext(RaceDetailContext)
 
+  const textData = [{
+    label: 'Fastest Lap',
+    value: 'Leclerc On Lap 53 1:30.999'
+  }, {
+    label: 'Most Position Gain',
+    value: 'Hamilton 5 Position'
+  }, {
+    label: 'Most Position Lost',
+    value: 'Magnussen 1 Position'
+  }, {
+    label: 'Most Lap Led',
+    value: 'Magnussen 30 Laps'
+  }]
+
   return (
-        <Card className='race-result-container'>
-            <div className='card-title'> Session Summary </div>
+        <Card
+          className='race-result-container'
+          title={<Typography.Title level={5}>Session Summary</Typography.Title>}
+        >
+            <div className='card-title'>  </div>
             {
                 loading
                   ? <Skeleton active/>
@@ -79,10 +111,7 @@ export default function RaceDetailPodium () {
                         <Stage place={0} displayOrder={1}/>
                         <Stage place={2} displayOrder={2}/>
                     </div>
-                    <div>Fastest Lap: Leclerc On Lap 53 1:30.999</div>
-                    <div>Most Position Gain: Hamilton 5 Position</div>
-                    <div>Most Position Lost: Magnussen 1 Position</div>
-                    <div>Most Lap Led: Magnussen 30 Laps</div>
+                    <TextInfo textData={textData}/>
                 </>
             }
         </Card>
