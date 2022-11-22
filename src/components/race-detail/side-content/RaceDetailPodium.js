@@ -94,6 +94,10 @@ export default function RaceDetailPodium () {
     `${txtData?.lastName} on lap ${txtData?.fastestLapOnLap} ${txtData?.fastestLapTime}`
   )
 
+  const txtFastestSession = (txtData, session) => (
+    `${txtData?.lastName} ${txtData?.[session]}`
+  )
+
   const txtDataRace = [{
     label: 'Fastest Lap',
     value: txtFastestLap(podiumData.sort((a, b) => parseInt(a.fastestLapRank) - parseInt(b.fastestLapRank))[0])
@@ -110,13 +114,13 @@ export default function RaceDetailPodium () {
 
   const txtDataQualify = [{
     label: 'Fastest Q1',
-    value: '1'
+    value: txtFastestSession(podiumData.find((item) => 'fQ1' in item), 'q1')
   }, {
     label: 'Fastest Q2',
-    value: '1'
+    value: txtFastestSession(podiumData.find((item) => 'fQ2' in item), 'q2')
   }, {
     label: 'Fastest Q3',
-    value: '1'
+    value: txtFastestSession(podiumData.find((item) => 'fQ3' in item), 'q3')
   }]
 
   return (
