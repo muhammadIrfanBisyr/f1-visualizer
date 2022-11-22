@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import RaceDetailContext, { CONTEXT_INITIAL_STATE } from './RaceDetailContext'
-import { SPRINT_RACE_CONST } from '../select/SessionSelect'
+import { SESSION, SPRINT_RACE_CONST } from '../../global/constant/Session'
 
 const ACTION = {
   SET_TRACK: 'SET_TRACK',
@@ -37,7 +37,7 @@ function reducer (state, { type, payload }) {
 }
 
 const getCheckSession = (session, year, trackId) => {
-  return session === 'S' && SPRINT_RACE_CONST.has(`${year}_${trackId}`) ? session : 'R'
+  return session === SESSION.SPRINT.value && SPRINT_RACE_CONST.has(`${year}_${trackId}`) ? session : SESSION.RACE.value
 }
 
 export default function RaceDetailContextProvider ({ initValue, children }) {

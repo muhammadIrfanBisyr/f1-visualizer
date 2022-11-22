@@ -1,81 +1,84 @@
 import axios from 'axios'
 import { message } from 'antd'
 
+import { SESSION } from '../../global/constant/Session'
 import { lapTimeToMiliseconds } from './utils'
 
 export const apiDataToTableData = (data = [], session) => {
-  if (!data?.data) { return [] }
+  try {
+    if (session === SESSION.QUALIFICATION.value) {
+      const resData = []
 
-  if (session === 'Q') {
-    const resData = []
+      // Warning: Lazy lap time comparison
+      const fastestQ1 = ['99:99.999', -1]
+      const fastestQ2 = ['99:99.999', -1]
+      const fastestQ3 = ['99:99.999', -1]
 
-    // Warning: Lazy lap time comparison
-    const fastestQ1 = ['99:99.999', -1]
-    const fastestQ2 = ['99:99.999', -1]
-    const fastestQ3 = ['99:99.999', -1]
+      data.data.MRData.RaceTable.Races[0].QualifyingResults.forEach((item, index) => {
+        if (item?.Q1 && item?.Q1 < fastestQ1[0]) {
+          fastestQ1[0] = item?.Q1
+          fastestQ1[1] = index
+        }
 
-    data.data.MRData.RaceTable.Races[0].QualifyingResults.forEach((item, index) => {
-      if (item?.Q1 && item?.Q1 < fastestQ1[0]) {
-        fastestQ1[0] = item?.Q1
-        fastestQ1[1] = index
+        if (item?.Q2 && item?.Q2 < fastestQ2[0]) {
+          fastestQ2[0] = item?.Q2
+          fastestQ2[1] = index
+        }
+
+        if (item?.Q3 && item?.Q3 < fastestQ3[0]) {
+          fastestQ3[0] = item?.Q3
+          fastestQ3[1] = index
+        }
+
+        resData.push(
+          {
+            pos: item.position,
+            carNo: item.number,
+            driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
+            nationality: item.Driver.nationality,
+            constructor: item.Constructor.name,
+            constructorId: item.Constructor.constructorId,
+            q1: item?.Q1 ?? '',
+            q2: item?.Q2 ?? '',
+            q3: item?.Q3 ?? ''
+          }
+        )
+      })
+
+      if (resData.length > 0) {
+        resData[fastestQ1[1]].fQ1 = fastestQ1[0]
+        resData[fastestQ2[1]].fQ2 = fastestQ2[0]
+        resData[fastestQ3[1]].fQ3 = fastestQ3[0]
       }
 
-      if (item?.Q2 && item?.Q2 < fastestQ2[0]) {
-        fastestQ2[0] = item?.Q2
-        fastestQ2[1] = index
-      }
+      return resData
+    } else {
+      const resArrName = session === SESSION.RACE.value ? 'Results' : 'SprintResults'
 
-      if (item?.Q3 && item?.Q3 < fastestQ3[0]) {
-        fastestQ3[0] = item?.Q3
-        fastestQ3[1] = index
-      }
-
-      resData.push(
+      const year = data.data.MRData.RaceTable.Races[0].season
+      return data.data.MRData.RaceTable.Races[0][resArrName].map((item) => (
         {
           pos: item.position,
+          grid: item.grid,
           carNo: item.number,
           driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
+          driverId: item.Driver.driverId,
           nationality: item.Driver.nationality,
           constructor: item.Constructor.name,
           constructorId: item.Constructor.constructorId,
-          q1: item?.Q1 ?? '',
-          q2: item?.Q2 ?? '',
-          q3: item?.Q3 ?? ''
+          laps: item.laps,
+          time: item?.Time?.time ?? '',
+          status: item.status,
+          points: item.points,
+          fastestLapRank: item?.FastestLap?.rank ?? '',
+          fastestLapTime: item?.FastestLap?.Time?.time ?? '',
+          fastestLapOnLap: item?.FastestLap?.lap ?? '',
+          year
         }
-      )
-    })
-
-    if (resData.length > 0) {
-      resData[fastestQ1[1]].fQ1 = fastestQ1[0]
-      resData[fastestQ2[1]].fQ2 = fastestQ2[0]
-      resData[fastestQ3[1]].fQ3 = fastestQ3[0]
+      ))
     }
-
-    return resData
-  } else {
-    const resArrName = session === 'R' ? 'Results' : 'SprintResults'
-
-    const year = data.data.MRData.RaceTable.Races[0].season
-    return data.data.MRData.RaceTable.Races[0][resArrName].map((item) => (
-      {
-        pos: item.position,
-        grid: item.grid,
-        carNo: item.number,
-        driver: `${item.Driver.givenName} ${item.Driver.familyName}`,
-        driverId: item.Driver.driverId,
-        nationality: item.Driver.nationality,
-        constructor: item.Constructor.name,
-        constructorId: item.Constructor.constructorId,
-        laps: item.laps,
-        time: item?.Time?.time ?? '',
-        status: item.status,
-        points: item.points,
-        fastestLapRank: item?.FastestLap?.rank ?? '',
-        fastestLapTime: item?.FastestLap?.Time?.time ?? '',
-        fastestLapOnLap: item?.FastestLap?.lap ?? '',
-        year
-      }
-    ))
+  } catch {
+    return []
   }
 }
 
@@ -121,7 +124,7 @@ const appendTableDataToLineData = (tableData, lineData) => {
 }
 
 export const handleAPILineChart = (resulData = [], lapsData = []) => {
-  const processedTable = apiDataToTableData(resulData, 'R')
+  const processedTable = apiDataToTableData(resulData, SESSION.RACE.value)
   const processedLine = apiToLineChartData(lapsData)
 
   return {

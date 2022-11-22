@@ -1,21 +1,17 @@
 import React, { useContext, useEffect } from 'react'
 import { message } from 'antd'
 
+import useFetchAPI from '../../hooks/useFetchAPI'
+import { SESSION, getSessionKeyFromValue } from '../global/constant/Session'
+
 import RaceDetailLayout from './RaceDetailLayout'
 import RaceDetailContext from './context/RaceDetailContext'
-
-import useFetchAPI from '../../hooks/useFetchAPI'
-
-const API_ENDPOINT = {
-  Q: 'qualifying',
-  S: 'sprint',
-  R: 'results'
-}
 
 export default function RaceDetailMain () {
   const { year, session, track, actions: { setResultData, setLapData, setLoading } } = useContext(RaceDetailContext)
 
-  const resultUrl = `https://ergast.com/api/f1/${year}/${track}/${API_ENDPOINT[session]}.json`
+  const apiEndpoint = SESSION[getSessionKeyFromValue('value', session)].apiEndpoint
+  const resultUrl = `https://ergast.com/api/f1/${year}/${track}/${apiEndpoint}.json`
   const lapsUrl = `https://ergast.com/api/f1/${year}/${track}/laps.json?limit=1500`
 
   const fetcher = useFetchAPI()

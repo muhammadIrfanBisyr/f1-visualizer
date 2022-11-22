@@ -9,6 +9,7 @@ import RaceResultLogo from '../../global/logo/RaceResultLogo'
 
 import RaceDetailContext from '../context/RaceDetailContext'
 import { apiDataToTableData } from '../helper/RaceDetailAPI'
+import { SESSION } from '../../global/constant/Session'
 
 export const RACE_COLUMN = [
   {
@@ -199,7 +200,7 @@ export default function RaceDetailTable () {
     <AntdTable
         className='main-table'
         dataSource={dataSource}
-        columns={session === 'Q' ? QUALIFYING_COLUMN : RACE_COLUMN}
+        columns={session === SESSION.QUALIFICATION.value ? QUALIFYING_COLUMN : RACE_COLUMN}
         rowClassName={record => record?.fastestLapRank === '1' && 'row-fastest-lap'}
         components={{
           body: {
