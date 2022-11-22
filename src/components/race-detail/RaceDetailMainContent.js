@@ -43,7 +43,7 @@ const SettingMenu = () => {
             defaultValue={chartType}
             onChange={(val) => setChartType(val)}
             width={125}
-            options={session === 'R' ? CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS.slice(0, 1)}/>
+            options={session === SESSION.RACE.value ? CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS.slice(0, 1)}/>
         </Space>
       </Panel>
   </Collapse>

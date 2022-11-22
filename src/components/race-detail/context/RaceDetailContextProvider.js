@@ -64,7 +64,7 @@ export default function RaceDetailContextProvider ({ initValue, children }) {
   }
 
   const setSession = (data) => {
-    const chartType = data !== 'R' ? 'T' : state.chartType
+    const chartType = data !== SESSION.RACE.value ? 'T' : state.chartType
     dispatch({ type: ACTION.SET_SESSION, payload: { session: data, chartType, resultData: [] } })
   }
 
