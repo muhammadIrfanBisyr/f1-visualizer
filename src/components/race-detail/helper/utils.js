@@ -14,3 +14,8 @@ export const milisecondsToLapTime = (miliseconds) => {
 
   return `${minutes}:${secondsAndMilis}`
 }
+
+export const calculatePositionChange = (rawGrid, rawResult) => {
+  const grid = rawGrid === '0' ? 20 : parseInt(rawGrid)
+  return parseInt(rawResult) - grid
+}

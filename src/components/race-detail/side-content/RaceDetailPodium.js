@@ -7,6 +7,8 @@ import { TEAM_CONST } from '../../global/constant/Teams'
 
 import RaceDetailContext from '../context/RaceDetailContext'
 import { apiDataToTableData } from '../helper/RaceDetailAPI'
+import { calculatePositionChange } from '../helper/utils'
+import { SESSION } from '../../global/constant/Session'
 
 const PODIUM_HEIGHT = [100, 75, 50]
 const PODIUM_WIDTH = 70
@@ -19,11 +21,8 @@ const PODIUM_INITIAL_STATE = {
   nationality: ''
 }
 
-const Stage = ({ place, displayOrder }) => {
-  const { resultData, session } = useContext(RaceDetailContext)
-
+const Stage = ({ place, displayOrder, podiumData = [] }) => {
   const [state, setState] = useState(PODIUM_INITIAL_STATE)
-  const podiumData = useMemo(() => apiDataToTableData(resultData, session), [resultData])
 
   useEffect(() => {
     setTimeout(() => {
@@ -70,8 +69,8 @@ const TextInfo = ({ textData = [] }) => {
       {
         textData.map((item) => (
           <>
-            <Col span={12}><Typography.Text strong>{item.label}</Typography.Text></Col>
-            <Col span={12}>{item.value}</Col>
+            <Col span={10}><Typography.Text strong>{item.label}</Typography.Text></Col>
+            <Col span={14}>{item.value}</Col>
           </>
         ))
       }
@@ -80,20 +79,44 @@ const TextInfo = ({ textData = [] }) => {
 }
 
 export default function RaceDetailPodium () {
-  const { loading } = useContext(RaceDetailContext)
+  const { resultData, session, loading } = useContext(RaceDetailContext)
+  const podiumData = useMemo(() => apiDataToTableData(resultData, session), [resultData])
+  const postionChangesData = podiumData.map((item) => ({
+    driverName: item.lastName,
+    pos: calculatePositionChange(item.grid, item.pos)
+  })) ?? []
 
-  const textData = [{
+  const txtPositonChanges = (txtData) => (
+    `${txtData?.driverName} ${Math.abs(txtData?.pos)} positions`
+  )
+
+  const txtFastestLap = (txtData) => (
+    `${txtData?.lastName} on lap ${txtData?.fastestLapOnLap} ${txtData?.fastestLapTime}`
+  )
+
+  const txtDataRace = [{
     label: 'Fastest Lap',
-    value: 'Leclerc On Lap 53 1:30.999'
+    value: txtFastestLap(podiumData.sort((a, b) => parseInt(a.fastestLapRank) - parseInt(b.fastestLapRank))[0])
   }, {
-    label: 'Most Position Gain',
-    value: 'Hamilton 5 Position'
+    label: 'Most Pos. Gain',
+    value: txtPositonChanges(postionChangesData.sort((a, b) => a.pos - b.pos)[0])
   }, {
-    label: 'Most Position Lost',
-    value: 'Magnussen 1 Position'
+    label: 'Most Pos. Lost',
+    value: txtPositonChanges(postionChangesData.sort((a, b) => a.pos - b.pos).slice(-1)[0])
   }, {
     label: 'Most Lap Led',
     value: 'Magnussen 30 Laps'
+  }]
+
+  const txtDataQualify = [{
+    label: 'Fastest Q1',
+    value: '1'
+  }, {
+    label: 'Fastest Q2',
+    value: '1'
+  }, {
+    label: 'Fastest Q3',
+    value: '1'
   }]
 
   return (
@@ -107,11 +130,11 @@ export default function RaceDetailPodium () {
                   ? <Skeleton active/>
                   : <>
                     <div className='podium-container'>
-                        <Stage place={1} displayOrder={0}/>
-                        <Stage place={0} displayOrder={1}/>
-                        <Stage place={2} displayOrder={2}/>
+                        <Stage place={1} displayOrder={0} podiumData={podiumData}/>
+                        <Stage place={0} displayOrder={1} podiumData={podiumData}/>
+                        <Stage place={2} displayOrder={2} podiumData={podiumData}/>
                     </div>
-                    <TextInfo textData={textData}/>
+                    <TextInfo textData={session === SESSION.QUALIFICATION.value ? txtDataQualify : txtDataRace}/>
                 </>
             }
         </Card>

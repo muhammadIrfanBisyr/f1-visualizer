@@ -9,6 +9,7 @@ import RaceResultLogo from '../../global/logo/RaceResultLogo'
 
 import RaceDetailContext from '../context/RaceDetailContext'
 import { apiDataToTableData } from '../helper/RaceDetailAPI'
+import { calculatePositionChange } from '../helper/utils'
 import { SESSION } from '../../global/constant/Session'
 
 export const RACE_COLUMN = [
@@ -85,8 +86,7 @@ export const RACE_COLUMN = [
     title: 'Changes',
     key: 'points',
     render: (_, record) => {
-      const start = record.grid === '0' ? 20 : parseInt(record.grid)
-      const changes = parseInt(record.pos) - start
+      const changes = calculatePositionChange(record.grid, record.pos)
       return (
                 <>
                     <span>
