@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext, useMemo } from 'react'
-import { Select } from 'antd'
+import { Space, Card, Row, Col, Typography, Popover } from 'antd'
 import { Line } from '@ant-design/plots'
+import { SettingOutlined } from '@ant-design/icons'
 
 import RaceDetailContext from '../context/RaceDetailContext'
 
@@ -8,7 +9,41 @@ import { handleAPILineChart } from '../helper/RaceDetailAPI'
 import { milisecondsToLapTime } from '../helper/utils'
 import { TEAM_CONST } from '../../global/constant/Teams'
 
-const { Option } = Select
+import Select from '../../global/select/Select'
+
+const OptionsPopover = ({ yAxis, setYAxis }) => {
+  const dataOption = [
+    { label: 'Position Changes', value: 'pos' },
+    { label: 'Lap Times', value: 'time' }
+  ]
+
+  return (
+    <Space>
+      Data
+      <Select
+        value={yAxis}
+        onChange={(val) => setYAxis(val)}
+        options={dataOption}
+        width={190}
+      />
+    </Space>
+  )
+}
+
+const TitlePanel = ({ yAxis, setYAxis }) => {
+  const titleText = yAxis === 'pos' ? 'Position Changes' : 'Lap Times'
+
+  return (
+    <Row>
+      <Col span={12}><Typography.Title level={5}>{titleText}</Typography.Title></Col>
+      <Col span={12} style={{ textAlign: 'right', paddingRight: '8px' }}>
+        <Popover content={<OptionsPopover yAxis={yAxis} setYAxis={setYAxis} />} trigger="click" placement='bottomRight'>
+          <SettingOutlined/>
+        </Popover>
+      </Col>
+    </Row>
+  )
+}
 
 export default function RaceDetailLineChart () {
   const { track, year, resultData, lapsData, loading } = useContext(RaceDetailContext)
@@ -46,17 +81,11 @@ export default function RaceDetailLineChart () {
   }, [yAxis, allData])
 
   return (
-    <div className='main-line-chart-container'>
-        <Select
-            className='chart-data-type-select'
-            defaultValue={yAxis}
-            value={yAxis}
-            onChange={(val) => { setYAxis(val) }}
-        >
-            <Option value='pos'> Position Changes </Option>
-            <Option value='time'> Lap Times </Option>
-        </Select>
-
+    <Card
+        className='main-line-chart-container'
+        bodyStyle={{ padding: '8px' }}
+        title={<TitlePanel yAxis={yAxis} setYAxis={setYAxis}/>}
+      >
         <Line
             className='main-line-chart'
             data={allData?.chartData ?? []}
@@ -93,6 +122,6 @@ export default function RaceDetailLineChart () {
             color= {({ driverId }) => TEAM_CONST[allData.driverTable[driverId]] ? TEAM_CONST[allData.driverTable[driverId]].color : '#000000'}
             smooth
         />
-    </div>
+    </Card>
   )
 }
