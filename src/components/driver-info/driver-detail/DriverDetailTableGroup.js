@@ -49,7 +49,7 @@ export default function DriverDetailTableGroup () {
 
   const tableData = useMemo(() => handleDriverRaceDetail(detailData), [detailData])
   const constructorData = useMemo(() =>
-    handleDriverSummary(summaryData).map((item) => ({
+    handleDriverSummary(summaryData)?.map((item) => ({
       constructorId: item.constructor,
       constructorName: item.constructorName
     })), [summaryData])
