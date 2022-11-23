@@ -283,12 +283,19 @@
 .driver-detail .driver-summary-chart {
   height: 220px !important;
 }
-.driver-detail .driver-detail-race-detail-table {
-  margin-top: 8px;
-  max-width: 400px;
-}
 .driver-detail .driver-detail-race-detail-table .flag-icon {
   height: 15px;
   vertical-align: middle;
+}
+.driver-detail .driver-detail-race-detail-table .logo-icon {
+  font-size: 27px;
+}
+.driver-detail .driver-detail-race-detail-table .ant-card-head {
+  padding-left: 16px;
+  padding-top: 8px;
+  min-height: 0px;
+}
+.driver-detail .driver-detail-race-detail-table .ant-card-head .ant-card-head-title {
+  padding: 0px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -18,7 +18,8 @@ export const handleDriverSummary = (data) => (
     year: item.season,
     points: parseInt(item.DriverStandings[0].points),
     position: -parseInt(item.DriverStandings[0].position),
-    constructor: item.DriverStandings[0].Constructors[0].constructorId
+    constructor: item.DriverStandings[0].Constructors[0].constructorId,
+    constructorName: item.DriverStandings[0].Constructors[0].name
   }))
 )
 
