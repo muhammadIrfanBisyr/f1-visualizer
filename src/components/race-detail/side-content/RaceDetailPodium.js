@@ -80,7 +80,11 @@ const TextInfo = ({ textData = [] }) => {
 
 export default function RaceDetailPodium () {
   const { resultData, session, loading } = useContext(RaceDetailContext)
-  const podiumData = useMemo(() => apiDataToTableData(resultData, session), [resultData])
+  const podiumData = useMemo(() =>
+    apiDataToTableData(resultData, session), [resultData, session])
+
+  const sortedPodium = [...podiumData].sort((a, b) => parseInt(a.pos) - parseInt(b.pos))
+
   const postionChangesData = podiumData.map((item) => ({
     driverName: item.lastName,
     pos: calculatePositionChange(item.grid, item.pos)
@@ -134,9 +138,9 @@ export default function RaceDetailPodium () {
                   ? <Skeleton active/>
                   : <>
                     <div className='podium-container'>
-                        <Stage place={1} displayOrder={0} podiumData={podiumData}/>
-                        <Stage place={0} displayOrder={1} podiumData={podiumData}/>
-                        <Stage place={2} displayOrder={2} podiumData={podiumData}/>
+                        <Stage place={1} displayOrder={0} podiumData={sortedPodium}/>
+                        <Stage place={0} displayOrder={1} podiumData={sortedPodium}/>
+                        <Stage place={2} displayOrder={2} podiumData={sortedPodium}/>
                     </div>
                     <TextInfo textData={session === SESSION.QUALIFICATION.value ? txtDataQualify : txtDataRace}/>
                 </>
